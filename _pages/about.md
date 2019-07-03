@@ -9,6 +9,7 @@ redirect_from:
 title: "Remote Sensing Geoscientist"
 header:
   overlay_image: /images/Toro_crop.jpg
+  overlay_filter: 0.5
   caption: "Quebrada del Toro, Argentina"
 excerpt: ""
 ---
