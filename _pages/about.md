@@ -6,7 +6,7 @@ author_profile: true
 redirect_from: 
   - /about/
   - /about.html
-title: "Remote Sensing and Earth Surface Processes"
+title: "Remote Sensing Geoscientist"
 header:
   overlay_image: /images/Toro_full.jpg
   overlay_filter: 0.5
