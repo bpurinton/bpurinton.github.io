@@ -1,0 +1,4 @@
+# convert
+ffmpeg -i DSCF1143.MOV DSCF1143.mp4
+# crop length (-ss is start time, -t is duration of clip; can also be -to for stop time)
+ffmpeg -i DJI_QdT_downstream.mp4 -ss 00:00:26 -t 00:00:18 -async 1 drone_toro.mp4
