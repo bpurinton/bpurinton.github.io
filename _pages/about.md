@@ -8,16 +8,24 @@ redirect_from:
   - /about.html
 title: "Remote Sensing Geoscientist"
 header:
-  overlay_image: /images/Toro_full.jpg
+  overlay_image: /images/Toro_crop.jpg
   overlay_filter: 0.5
   caption: "Quebrada del Toro, Argentina"
 excerpt: ""
 ---
 
-**Scientific Interest**
+# Scientific Interest
 I like dirt!
 
-**Research Projects**
+# Research Projects
+Here's some work I've done. See my [Research](/research/index.html) page for details.
 
-**Opportunities**
+<img src="/images/Toro_full.png" alt="toro" width="1000"/>
+
+<p align ="center">
+<i>Rio Toro in northwestern Argentina, where it all began...</i>
+</p>
+
+---
+## Opportunities
 Hire me! Fund me!
