@@ -5,13 +5,15 @@ permalink: /research/
 author_profile: true
 ---
 
-## Wildfire recovery
+## Landscape recovery following wildfire
+
+B.Sc. work. Here's my [thesis](/theses/BP_ba_thesis.pdf)
 
 ---
 
 ## Validation of DEMs
 
-M.Sc. work
+M.Sc. work. Here's my [thesis](/theses/BP_msc_thesis.pdf)
 
 ![](/images/Toro_full.jpg "Rio Toro")
 
