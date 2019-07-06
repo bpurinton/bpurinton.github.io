@@ -28,7 +28,7 @@ See my [Research](/research/index.html) page for details.
 
 <img src="/images/Toro_full.jpg" alt="Rio Toro" width="600"/>
 
-<p align ="center">
+<p align ="left">
 <i>Rio Toro in northwestern Argentina, my PhD study area</i>
 </p>
 
