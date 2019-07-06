@@ -15,17 +15,20 @@ excerpt: ""
 ---
 
 ---
+
 **This site is under construction**
+
 ---
 
 # Scientific Interest
-I like dirt!
+Welcome to my website! My background is in geology and I'll always have a passion for the sort of hard-rock stuff glorified by [John McPhee](https://archive.nytimes.com/www.nytimes.com/books/first/m/mcphee-annals.html), but my scientific interest has shifted to the exciting field of remote sensing, particularly as applied to earth surface processes. Advances in satellite and drone technology allow me to mix my earth science background with relevant programming skills to investigate water and sediment routing through the landscape, and also to draw connections between what we can measure on the ground versus what we can (and still cannot) measure from space. I try and do things open-source (Python) as much as possible, and you can check out my [GitHub](https://github.com/bpurinton) for some inspiration!
 
-# Research Projects
-Here's some work I've done. See my [Research](/research/index.html) page for details.
+## Research Projects
+See my [Research](/research/index.html) page for details.
 
 ![Rio Toro in northwestern Argentina, where it all began...](/images/Toro_full.jpg "Rio Toro")
 
 ---
+
 ## Opportunities
-Hire me! Fund me!
+Hire me! Fund me! I'm finishing my PhD sometime in 2020!
