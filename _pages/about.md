@@ -8,9 +8,9 @@ redirect_from:
   - /about.html
 title: "Remote Sensing Geoscientist"
 header:
-  overlay_image: https://bpurinton.github.io/images/Toro_crop.jpg
-  overlay_filter: 0.5
-  caption: "Quebrada del Toro, Argentina"
+  overlay_image: https://bpurinton.github.io/images/toro_contours.png
+  overlay_filter: 0.2
+  caption: "Topography!"
 excerpt: ""
 ---
 
