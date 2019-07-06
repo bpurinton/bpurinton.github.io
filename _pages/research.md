@@ -13,9 +13,8 @@ B.Sc. work. Here's my [thesis](/theses/BP_ba_thesis.pdf)
 
 ## Validation of DEMs
 
-M.Sc. work. Here's my [thesis](/theses/BP_msc_thesis.pdf)
+M.Sc. work. Here's my [thesis](/theses/BP_msc_thesis.pdf). And the [publication in Earth Surface Dynamics](https://www.earth-surf-dynam.net/5/211/2017/) that came out of it!
 
-![](/images/Toro_full.jpg "Rio Toro")
 
 ---
 

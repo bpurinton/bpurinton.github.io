@@ -26,7 +26,11 @@ Welcome to my website! My background is in geology and I'll always have a passio
 ## Research Projects
 See my [Research](/research/index.html) page for details.
 
-![Rio Toro in northwestern Argentina, where it all began...](/images/Toro_full.jpg =500x)
+<img src="/images//images/Toro_full.jpg" alt="Rio Toro" width="600"/>
+
+<p align ="center">
+<i>Rio Toro in northwestern Argentina, my PhD study area</i>
+</p>
 
 ---
 
