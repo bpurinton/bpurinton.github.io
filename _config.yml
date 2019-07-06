@@ -82,9 +82,9 @@ analytics:
 author:
   name             : "Ben P"
   avatar           : "purinton_profile_photo.jpg"
-  bio              : "I do remote sensing applied to earth surface processes using cameras, drones, satellites, programming, etc."
+  bio              : "Remote Sensing, Geomorphology, Geology, Python, etc."
   location         : "Berlin, Germany"
-  employer         : "University of Potsdam"
+  employer         : 
   pubmed           :
   googlescholar    : "https://scholar.google.de/citations?user=EacO3GQAAAAJ&hl=en"
   email            : ben.purinton@gmail.com
