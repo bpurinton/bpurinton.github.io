@@ -21,7 +21,9 @@ For my B.A. at Wesleyan University I had the opportunity to work on a [Keck Cons
 
 ---
 
-## Validation of DEMs
+## Measuring topography from space
+
+### Validation of DEMs
 
 In this work for my masters I validated the elevation accuracy and geomorphic potential of near-global spaceborne Digital Elevation Models (DEMs), including SRTM-C, TanDEM-X, ALOS World 3D, and ASTER GDEM2. I also worked on photogrammetric DEM production with raw optical scenes like ASTER L1A, RapidEye, SPOT6, and ALOS PRISM, as well as interferometric DEM production from TerraSAR-X/TanDEM-X CoSSC scenes. Validation was carried out with a huge dataset of differential GPS measurements collected over three field seasons in northwestern Argentina. Here's my [master's thesis](/theses/BP_msc_thesis.pdf) and the [publication in Earth Surface Dynamics](https://www.earth-surf-dynam.net/5/211/2017/) that came out of it.
 
@@ -30,9 +32,7 @@ In this work for my masters I validated the elevation accuracy and geomorphic po
 <i>Collecting differential GPS measurements from a salar following a rare rain event on the arid and remote Puna Plateau in Argentina.</i>
 </p>
 
----
-
-## Measuring decadal land-level changes using DEMs
+### Measuring decadal land-level changes using DEMs
 
 Akin to studies of DEM differencing for measuring snow and ice change, I applied careful correction and differencing to the TanDEM-X (collected 2011-2015) and SRTM-C (collected 2000) DEMs to measure ~15 years of land-level changes in some large catchments draining the eastern flank of the Andes in northwestern Argentina. Due to the small magnitude of most land-level changes, the 15-year separation between the DEMs only allowed for sparse automated geophysical results. These vertical change signals were defined outside of remaining vertical uncertainty, primarily caused by the lower quality SRTM-C DEM, despite careful bias correction procedures developed. We were able to gain insight into riverbed aggradation and incision in the Río Toro and Río Grande, particulalry in downstream sections, which are steeper (due to knickpoints), wetter, and modified by anthropogenic activity. Here's the [publication in Earth Surface Dynamics](https://www.earth-surf-dynam.net/6/971/2018/) that came out of it.
 
