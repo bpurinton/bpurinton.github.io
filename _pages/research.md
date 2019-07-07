@@ -19,22 +19,16 @@ For my B.A. at Wesleyan University I had the opportunity to work on a [Keck Cons
 <i>Return of grasses and shrubs among severely burned trees in Fourmile Canyon.</i>
 </p>
 
-<div class="column">
-  <div class="row">
-    <img src="/images/wyoming.jpg" alt="Wyoming" width="400">
-  </div>
-  <div class="row">
-    <img src="/images/fourmile.png" alt="Fourmile" width="200">
-  </div>
-</div>
-
-
 ---
 
 ## Validation of DEMs
 
-In this work for my masters I validated the elevation accuracy and geomorphic potential of modern near-global spaceborne Digital Elevation Models (DEMs), including SRTM-C, TanDEM-X, ALOS World 3D, and ASTER GDEM2. I also worked on photogrammetric DEM production with raw optical scenes like ASTER L1A, RapidEye, SPOT6, and ALOS PRISM, as well as, interferometric DEM production from TerraSAR-X/TanDEM-X CoSSC scenes. Validation was carried out with a huge dataset of differential GPS measurements collected over three field seasons. Here's my [master's thesis](/theses/BP_msc_thesis.pdf) and the [publication in Earth Surface Dynamics](https://www.earth-surf-dynam.net/5/211/2017/) that came out of it.
+In this work for my masters I validated the elevation accuracy and geomorphic potential of modern near-global spaceborne Digital Elevation Models (DEMs), including SRTM-C, TanDEM-X, ALOS World 3D, and ASTER GDEM2. I also worked on photogrammetric DEM production with raw optical scenes like ASTER L1A, RapidEye, SPOT6, and ALOS PRISM, as well as, interferometric DEM production from TerraSAR-X/TanDEM-X CoSSC scenes. Validation was carried out with a huge dataset of differential GPS measurements collected over three field seasons in northwestern Argentina. Here's my [master's thesis](/theses/BP_msc_thesis.pdf) and the [publication in Earth Surface Dynamics](https://www.earth-surf-dynam.net/5/211/2017/) that came out of it.
 
+<img src="/images/dgps_salar.jpg" alt="Salar" width="100%"/>
+<p align ="left">
+<i>Collecting differential GPS measurements from a salar following a rare rain event on the arid and remote Puna Plateau in Argentina.</i>
+</p>
 
 ---
 
