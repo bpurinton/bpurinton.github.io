@@ -7,22 +7,36 @@ author_profile: true
 
 ## Landscape recovery following wildfire
 
-B.Sc. work. Here's my [thesis](/theses/BP_ba_thesis.pdf)
+For my B.A. at Wesleyan University I had the opportunity to work on a [Keck Consortium](https://keckgeology.org/) research project in the Colorado Front Range. In summer 2012, following geology field camp school in Wyoming, Idaho, and Montana, I moved into a cabin at Colorado University's [Mountain Research Station](https://www.colorado.edu/mrs/) to begin four weeks studying the impact of a 2010 wildfire in Fourmile Canyon outside Boulder, Colorado. I studied the relaxation time of extreme erosion events brought on by moderate rainfall following the fire, and also the influence of historical mine tailings piles on the geochemistry of the sediment. Here's my [thesis](/theses/BP_ba_thesis.pdf).
+
 
 ---
 
 ## Validation of DEMs
 
-M.Sc. work. Here's my [thesis](/theses/BP_msc_thesis.pdf). And the [publication in Earth Surface Dynamics](https://www.earth-surf-dynam.net/5/211/2017/) that came out of it!
+M.Sc. work. Here's my [thesis](/theses/BP_msc_thesis.pdf). And the [publication in Earth Surface Dynamics](https://www.earth-surf-dynam.net/5/211/2017/) that came out of it.
 
 
 ---
 
-## River Surveys
+## Measuring decadal land-level changes using DEMs
+
+<figure class="video_container">
+<video width="500" height="340" controls="true">
+  <source src="/videos/drone_toro.mp4" type="video/mp4">
+  <figcaption>Here's a cool video of the lower Rio Toro shot on a DJI Mavic Pro. Note the big gravel piles being formed to prevent rapid channel-bed aggradation.</figcaption>
+</video>
+</figure>
+
+---
+
+
+## River surveys and pebble counting
 
 <figure class="video_container">
 <video width="500" height="340" controls="true">
   <source src="/videos/Ben_survey.mp4" type="video/mp4">
+  <figcaption>Surveying in the upper Quebrada del Toro Catchment in calm conditions.</figcaption>
 </video>
 </figure>
 
@@ -30,11 +44,12 @@ M.Sc. work. Here's my [thesis](/theses/BP_msc_thesis.pdf). And the [publication 
 <figure class="video_container">
 <video width="500" height="340" controls="true">
   <source src="/videos/Ben_survey_windy.mp4" type="video/mp4">
+  <figcaption>Surveying in the upper Quebrada del Toro Catchment in high winds on a Quaternary fluvial terrace.</figcaption>
 </video>
 </figure>
 
-<figure class="video_container">
-<video width="500" height="340" controls="true">
-  <source src="/videos/drone_toro.mp4" type="video/mp4">
-</video>
-</figure>
+---
+
+## Synthetic Aperature Radar (SAR) roughness measurements from a gravel-bed river
+
+...More soon...
