@@ -27,15 +27,9 @@ Oh, hello! Here's a bit about what I do: My background is in geology and I'll al
 See my [Research](/research/index.html) page for details.
 
 <img src="/images/Toro_full.jpg" alt="Rio Toro" width="600"/>
-
 <p align ="left">
 <i>Rio Toro in northwestern Argentina, my PhD study area.</i>
 </p>
-
-<figure>
-  <img source src="/images/Toro_full.jpg" alt="Rio Toro" width="600">
-  <figcaption>Rio Toro in northwestern Argentina, my PhD study area.</figcaption>
-</figure>
 
 ## Opportunities
 Hire me! Fund me! I'm finishing my PhD sometime in 2020!

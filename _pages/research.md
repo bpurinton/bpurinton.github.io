@@ -24,9 +24,11 @@ M.Sc. work. Here's my [thesis](/theses/BP_msc_thesis.pdf). And the [publication 
 <figure class="video_container">
 <video width="500" height="340" controls="true">
   <source src="/videos/drone_toro.mp4" type="video/mp4">
-  <figcaption>Here's a cool video of the lower Rio Toro shot on a DJI Mavic Pro. Note the big gravel piles being formed to prevent rapid channel-bed aggradation.</figcaption>
 </video>
 </figure>
+<p align ="left">
+<i>Here's a cool video of the lower Rio Toro shot on a DJI Mavic Pro. Note the big gravel piles being formed to prevent rapid channel-bed aggradation.</i>
+</p>
 
 ---
 
@@ -34,22 +36,20 @@ M.Sc. work. Here's my [thesis](/theses/BP_msc_thesis.pdf). And the [publication 
 ## River surveys and pebble counting
 
 <figure class="video_container">
-  <video width="500" height="340" controls="true">
-    <source src="/videos/Ben_survey.mp4" type="video/mp4">
-    <figcaption>Surveying in the upper Quebrada del Toro Catchment in calm conditions.</figcaption>
-  </video>
+<video width="500" height="340" controls="true">
+  <source src="/videos/Ben_survey.mp4" type="video/mp4">
+</video>
 </figure>
+<p align ="left">
+<i>Surveying in the upper Quebrada del Toro Catchment in calm conditions.</i>
+</p>
 
 
 <figure class="video_container">
 <video width="500" height="340" controls="true">
   <source src="/videos/Ben_survey_windy.mp4" type="video/mp4">
-  <figcaption>Surveying in the upper Quebrada del Toro Catchment in high winds on a Quaternary fluvial terrace.</figcaption>
 </video>
 </figure>
-
----
-
-## Synthetic Aperature Radar (SAR) roughness measurements from a gravel-bed river
-
-...More soon...
+<p align ="left">
+<i>Surveying in the upper Quebrada del Toro Catchment in high winds on a Quaternary fluvial terrace.</i>
+</p>
