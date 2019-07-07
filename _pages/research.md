@@ -34,10 +34,10 @@ M.Sc. work. Here's my [thesis](/theses/BP_msc_thesis.pdf). And the [publication 
 ## River surveys and pebble counting
 
 <figure class="video_container">
-<video width="500" height="340" controls="true">
-  <source src="/videos/Ben_survey.mp4" type="video/mp4">
-  <figcaption>Surveying in the upper Quebrada del Toro Catchment in calm conditions.</figcaption>
-</video>
+  <video width="500" height="340" controls="true">
+    <source src="/videos/Ben_survey.mp4" type="video/mp4">
+    <figcaption>Surveying in the upper Quebrada del Toro Catchment in calm conditions.</figcaption>
+  </video>
 </figure>
 
 
