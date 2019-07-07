@@ -26,7 +26,7 @@ Oh, hello! Here's a bit about what I do: My background is in geology and I'll al
 ## Research Projects
 See my [Research](/research/index.html) page for details.
 
-<img src="/images/Toro_full.jpg" alt="Rio Toro" width="600"/>
+<img src="/images/Toro_full.jpg" alt="Rio Toro" width="400"/>
 <p align ="left">
 <i>Rio Toro in northwestern Argentina, my PhD study area.</i>
 </p>

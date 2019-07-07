@@ -42,7 +42,7 @@ Akin to studies of DEM differencing for measuring snow and ice change, I applied
 </video>
 </figure>
 <p align ="left">
-<i>Here's a cool video of the lower Rio Toro shot on a DJI Mavic Pro. Note the big gravel piles being formed to prevent rapid channel-bed aggradation.</i>
+<i>Lower Rio Toro shot on a DJI Mavic Pro drone. Note the big gravel piles being formed to prevent rapid channel-bed aggradation.</i>
 </p>
 
 ---
