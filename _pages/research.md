@@ -19,11 +19,11 @@ For my B.A. at Wesleyan University I had the opportunity to work on a [Keck Cons
 <i>Return of grasses and shrubs among severely burned trees in Fourmile Canyon.</i>
 </p>
 
-<div class="row">
-  <div class="column">
+<div class="column">
+  <div class="row">
     <img src="/images/wyoming.jpg" alt="Wyoming" width="400">
   </div>
-  <div class="column">
+  <div class="row">
     <img src="/images/fourmile.png" alt="Fourmile" width="200">
   </div>
 </div>
