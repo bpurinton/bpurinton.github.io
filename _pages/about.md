@@ -12,7 +12,6 @@ header:
   overlay_filter: 0.2
   caption: "Topography!"
 excerpt: ""
-minimal_mistakes_skin: "neon" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
 ---
 
 # Scientific Interest
