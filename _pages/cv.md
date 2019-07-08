@@ -9,6 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
+**->[Here's my current CV](/files/Purinton_CV_July2019.pdf)<-**
+
 Education
 ======
 * B.A. in Earth and Environmental Sciences, Wesleyan University, USA, 2013
