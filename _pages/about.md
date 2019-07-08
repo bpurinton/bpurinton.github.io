@@ -27,6 +27,3 @@ See my [Research](/research/index.html) page for details.
 
 ## Opportunities
 Hire me! Fund me! I'm finishing my PhD sometime in 2020!
-
-
-<meta name="google-site-verification" content="hEa2Y5ap5n65ThSveEpqTpirSU-P8mFULCFl1hXyrm0" />
