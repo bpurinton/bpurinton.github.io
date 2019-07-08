@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Ben Purinton"
+title                    : "Benjamin Purinton"
 title_separator          : "-"
 name                     : &name "Ben Purinton"
 description              : &description "PhD Student, Uni Potsdam"
