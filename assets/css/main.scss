@@ -10,9 +10,6 @@
  *
 */
 
-$link-color: red;
-$body-color: red;
-
 @import "vendor/breakpoint/breakpoint"; // media query mixins
 @import "variables";
 @import "mixins";
@@ -42,3 +39,7 @@ $body-color: red;
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
+
+$link-color: red;
+$body-color: red;
+$border-color: red;
