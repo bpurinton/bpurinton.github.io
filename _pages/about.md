@@ -15,7 +15,7 @@ excerpt: ""
 ---
 
 # Scientific Interest
-Oh, hello! Here's a bit about what I do: My background is in geology and I'll always have a passion for the sort of hard-rock stuff glorified by [John McPhee](https://archive.nytimes.com/www.nytimes.com/books/first/m/mcphee-annals.html), but my scientific interest has shifted to the exciting field of remote sensing applied to earth surface processes. Advances in satellite and drone technology allow me to mix my earth science background with relevant programming skills to investigate water and sediment routing through the landscape, and also to draw connections between what we can measure on the ground versus what we can (and still cannot) measure from space. I try and do things open-source as much as possible, and you can check out my [GitHub](https://github.com/bpurinton) for some inspiration!
+Here's a bit about what I do: My background is in geology, so I'll always have a passion for the hard-rock science glorified by [John McPhee](https://archive.nytimes.com/www.nytimes.com/books/first/m/mcphee-annals.html), but my career interest has shifted to the exciting field of remote sensing applied to earth surface processes. Advances in satellite and drone technology allow me to mix my earth science background with relevant mathematics and data analysis skills to investigate water and sediment routing through the landscape, and also to draw connections between what we can measure on the ground versus what we can (and still cannot) measure from space. I try and do things open-source as much as possible, and you can check out my [GitHub](https://github.com/bpurinton) for some inspiration!
 
 ## Research Projects
 See my [Research](/research/index.html) page for details.
