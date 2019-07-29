@@ -1,6 +1,6 @@
 ---
 permalink: /
-layout: splash
+layout: archive
 excerpt: "Ben Purinton"
 author_profile: true
 redirect_from:

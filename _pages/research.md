@@ -4,7 +4,7 @@ classes:
   - wide
 title: "Research"
 permalink: /research/
-author_profile: true
+author_profile: false
 ---
 
 ## Landscape recovery following wildfire
