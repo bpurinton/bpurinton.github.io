@@ -1,8 +1,6 @@
 ---
 permalink: /
 layout: splash
-classes:
-  - wide
 excerpt: "Ben Purinton"
 author_profile: true
 redirect_from:
