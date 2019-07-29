@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: splash
 classes:
   - wide
 title: "CV"
