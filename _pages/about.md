@@ -26,4 +26,4 @@ See my [Research](/research/index.html) page for details.
 </p>
 
 ## Opportunities
-Hire me! Fund me! I'm finishing my PhD sometime in 2020!
+Hire me! Fund me! I'm finishing my PhD soon!
