@@ -11,12 +11,16 @@ redirect_from:
 
 {% include base_path %}
 
-**->[Here's my current CV](/files/Purinton_CV_October2019.pdf)<-**
+**->[Here's my current CV](/files/Purinton_CV_May2020.pdf)<-**
 
 Education
 ======
-* Ph.D. in Remote Sensing, University of Potsdam, Germany, since 2017
+* Ph.D. in Remote Sensing, University of Potsdam, Germany, 2020
 * M.Sc. in Geology, University of Potsdam, Germany, 2016
 * B.A. in Earth and Environmental Sciences, Wesleyan University, USA, 2013
+
+Appointments
+======
+* Post-Doctoral Researcher and Instructor, University of Potsdam, Germany, Since June 2020
 
 
