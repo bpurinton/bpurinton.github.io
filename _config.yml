@@ -16,19 +16,21 @@ minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Ben P"
-title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
+title                    : "Ben Purinton"
+title_separator          : "|"
+subtitle                 : "Earth Scientist" # site tagline that appears below site title in masthead
 name                     : "Ben Purinton"
-description              : "Earth Scientist"
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+description              : "Made with jekyll and mimimal mistakes."
+url                      : "https://bpurinton.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
+repository               : "bpurinton/my-website" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+teaser                   : "/assets/images/favicon-32x32.png" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+logo                     : "/assets/images/favicon.ico" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+masthead_title           : "Ben P" # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
+
+# this stuff is for blog comments: https://mmistakes.github.io/minimal-mistakes/docs/configuration/#comments
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
@@ -291,3 +293,4 @@ defaults:
       comments: # true
       share: true
       related: true
+      show_date: true
