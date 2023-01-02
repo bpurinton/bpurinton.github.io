@@ -7,7 +7,9 @@ permalink: /publications/
 author_profile: false
 ---
 
-See also: [Google Scholar Profile](https://scholar.google.de/citations?user=EacO3GQAAAAJ&hl=en) and [ORCID](https://orcid.org/0000-0001-8504-8115){:target="_blank"}
+<div>
+  See also: [Google Scholar Profile](https://scholar.google.de/citations?user=EacO3GQAAAAJ&hl=en) and [ORCID](https://orcid.org/0000-0001-8504-8115){:target="_blank"}
+</div>
 
 <div>
   <h2>If you can't access a paper, email me and I'll send you a personal copy.</h2>

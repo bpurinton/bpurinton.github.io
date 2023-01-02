@@ -9,6 +9,10 @@ redirect_from:
   - /resume
 ---
 
-[**Link to my current full CV**](/assets/documents/Purinton_CV_September2022.pdf){:target="_blank"}
+<div>
+  [**Link to my current full CV**](/assets/documents/Purinton_CV_September2022.pdf){:target="_blank"}
+</div>
 
-[**And here's a reduced one pager**](/assets/documents/Purinton_CV_September2022_OnePage.pdf){:target="_blank"}
+<div>
+  [**And here's a reduced one pager**](/assets/documents/Purinton_CV_September2022_OnePage.pdf){:target="_blank"}
+</div>
