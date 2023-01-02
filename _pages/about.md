@@ -23,7 +23,7 @@ I try and keep things open source, you can check out my [GitHub](https://github.
 ## Research Projects
 See my [Research](/research/){:target="_blank"} page for details.
 
-<img src="/assets/images/Toro_full.jpg" alt="Rio Toro" width="500"/>
+<kbd><img src="/assets/images/Toro_full.jpg" alt="Rio Toro" width="500"/></kbd>
 <p align ="left">
 <i>Quebrada del Toro in northwestern Argentina, my PhD study area.</i>
 </p>
