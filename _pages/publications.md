@@ -8,7 +8,7 @@ author_profile: false
 ---
 
 <p></p>
-See also: [Google Scholar Profile](https://scholar.google.de/citations?user=EacO3GQAAAAJ&hl=en) and [ORCID](https://orcid.org/0000-0001-8504-8115){:target="_blank"}
+See also: [Google Scholar Profile](https://scholar.google.de/citations?user=EacO3GQAAAAJ&hl=en){:target="_blank"} and [ORCID](https://orcid.org/0000-0001-8504-8115){:target="_blank"}
 
 
 <p></p>
