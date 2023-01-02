@@ -7,13 +7,14 @@ permalink: /publications/
 author_profile: false
 ---
 
-<div>
-  See also: [Google Scholar Profile](https://scholar.google.de/citations?user=EacO3GQAAAAJ&hl=en) and [ORCID](https://orcid.org/0000-0001-8504-8115){:target="_blank"}
-</div>
+<p></p>
+See also: [Google Scholar Profile](https://scholar.google.de/citations?user=EacO3GQAAAAJ&hl=en) and [ORCID](https://orcid.org/0000-0001-8504-8115){:target="_blank"}
 
-<div>
-  <h2>If you can't access a paper, email me and I'll send you a personal copy.</h2>
-</div>
+
+<p></p>
+<h3>If you can't access a paper, email me and I'll send you a personal copy.</h3>
+
+<hr>
 
 **Purinton, B.**, Mueting, A. and Bookhagen, B.: Image Texture as Quality Indicator for Optical DEM Generation: Geomorphic Applications in the Arid Central Andes, _Remote Sensing_, [https://doi.org/10.3390/rs15010085](https://www.mdpi.com/2072-4292/15/1/85){:target="_blank"}, 2023.
 

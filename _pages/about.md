@@ -21,7 +21,7 @@ My background is in geology, including field observations and mapping, and I lat
 I try and keep things open source, you can check out my [GitHub](https://github.com/bpurinton){:target="_blank"} for code snippets and inspiration.
 
 ## Research Projects
-See my [Research](/research/index.html){:target="_blank"} page for details.
+See my [Research](/research/){:target="_blank"} page for details.
 
 <img src="/assets/images/Toro_full.jpg" alt="Rio Toro" width="500"/>
 <p align ="left">
