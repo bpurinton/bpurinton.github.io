@@ -6,7 +6,7 @@ author_profile: true
 title: "Earth Scientist"
 header:
   overlay_image: /assets/images/dgps_salar.jpg
-  overlay_filter: 0.2
+  overlay_filter: 
   caption: ""
 excerpt: ""
 ---
