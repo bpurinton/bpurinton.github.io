@@ -1,6 +1,8 @@
 ---
 permalink: /
 layout: archive
+classes:
+  - wide
 excerpt: "Ben Purinton"
 author_profile: true
 title: "Earth Scientist"
