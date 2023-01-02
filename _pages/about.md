@@ -7,7 +7,7 @@ title: "Earth Scientist"
 header:
   overlay_image: /assets/images/dgps_salar.jpg
   overlay_filter: 0.2
-  caption: "Puna Plateau, Central Andes"
+  caption: ""
 excerpt: ""
 ---
 
