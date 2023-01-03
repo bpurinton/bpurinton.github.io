@@ -1,6 +1,13 @@
 ---
 layout: posts
 title: Getting started with a jekyll, minimal mistakes, and github pages
+toc: true
+toc_label: "Content"
+tags:
+  - jekyll github-pages minimal-mistakes
+# header:
+  # teaser: /assets/images/thumbnails/udacity-ds-nanodegree-800.png
+# excerpt: "Review of Udacity Data Science Nanodegree and Intro to Machine Learning Nanodegree"
 ---
 
 This site was built with [jekyll](https://jekyllrb.com/){:target="_blank"}. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., `_layouts/`, `_includes/`, `_data/navigation.yml`). 
