@@ -157,5 +157,5 @@ Now we need to do a few things (always pushing the changes with new git commits)
  1. On the github repository, go to "Settings" > "Pages" and set the "Source" > "Deploy from branch", "Branch" to `main`.
  1. Make sure the page is deployed at `https://[USERNAME].github.io`
 
-The deployment will be running in the "Actions" tab of the repository, and you can monitor it there. If there are errors, the page won't deploy, but if everything goes well, then you will see the confirmation and if you navigate to `https://[USERNAME].github.io`, then you will see your static website online!
+The deployment will be running in the "Actions" tab of the repository, and you can monitor it there (*everytime you push a change to your github repo, this action will be run*). If there are errors, the page won't deploy, but if everything goes well, then you will see the confirmation and if you navigate to `https://[USERNAME].github.io`, then you will see your static website online!
 

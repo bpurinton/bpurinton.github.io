@@ -11,12 +11,12 @@ author_profile: false
 
 For my B.A. at Wesleyan University I had the opportunity to work on a [Keck Consortium](https://keckgeology.org/){:target="_blank"} research project in the Colorado Front Range. In summer 2012, following geology field camp school in Wyoming, Idaho, and Montana, I moved into a cabin at Colorado University's [Mountain Research Station](https://www.colorado.edu/mrs/){:target="_blank"} to begin four weeks studying the impact of a 2010 wildfire in Fourmile Canyon outside Boulder, Colorado. I studied the relaxation time of extreme erosion events brought on by moderate rainfall following the fire, and also the influence of historical mine tailings piles on the geochemistry of the sediment. Here's my [thesis](/assets/documents/BP_ba_thesis.pdf){:target="_blank"}.
 
-<img src="/assets/images/wyoming.jpg" alt="Wyoming" width="400"/>
+<img style="border: 2px solid black" src="/assets/images/wyoming.jpg" alt="Wyoming" width="400"/>
 <p align ="left">
 <i>A typical Wyoming view during field school.</i>
 </p>
 
-<img src="/assets/images/fourmile.png" alt="Fourmile" width="200"/>
+<img style="border: 2px solid black" src="/assets/images/fourmile.png" alt="Fourmile" width="200"/>
 <p align ="left">
 <i>Return of grasses and shrubs among severely burned trees in Fourmile Canyon.</i>
 </p>
@@ -29,7 +29,7 @@ For my B.A. at Wesleyan University I had the opportunity to work on a [Keck Cons
 
 In this work for my masters I validated the elevation accuracy and geomorphic potential of near-global spaceborne Digital Elevation Models (DEMs), including SRTM-C, TanDEM-X, ALOS World 3D, and ASTER GDEM2. I also worked on photogrammetric DEM production with raw optical scenes like ASTER L1A, RapidEye, SPOT6, and ALOS PRISM, as well as interferometric DEM production from TerraSAR-X/TanDEM-X CoSSC scenes. Validation was carried out with a huge dataset of differential GNSS measurements collected over three field seasons in northwestern Argentina. Here's the [publication in Earth Surface Dynamics](https://www.earth-surf-dynam.net/5/211/2017/){:target="_blank"} that came out of it. More recently, we also improved on validation using sparse benchmark data through Fourier analysis in the frequency domain to examine the inter-pixel consistency of spaceborne DEMs. You can read about that in [Frontiers](https://www.frontiersin.org/articles/10.3389/feart.2021.758606){:target="_blank"}.
 
-<img src="/assets/images/dgps_salar.jpg" alt="Salar" width="100%"/>
+<img style="border: 2px solid black" src="/assets/images/dgps_salar.jpg" alt="Salar" width="100%"/>
 <p align ="left">
 <i>Collecting differential GPS measurements from a salar following a rare rain event on the arid and remote Puna Plateau in Argentina.</i>
 </p>
@@ -39,7 +39,7 @@ In this work for my masters I validated the elevation accuracy and geomorphic po
 Akin to studies of DEM differencing for measuring snow and ice change, I applied careful correction and differencing to the TanDEM-X (collected 2011-2015) and SRTM-C (collected 2000) DEMs to measure ~15 years of land-level changes in some large catchments draining the eastern flank of the Andes in northwestern Argentina. Due to the small magnitude of most land-level changes, the 15-year separation between the DEMs only allowed for sparse automated geophysical results. These vertical change signals were defined outside of remaining vertical uncertainty, primarily caused by the lower quality SRTM-C DEM, despite careful bias correction procedures developed. We were able to gain insight into riverbed aggradation and incision in the Río Toro and Río Grande, particulalry in downstream sections, which are steeper (due to knickpoints), wetter, and modified by anthropogenic activity. Here's the [publication in Earth Surface Dynamics](https://www.earth-surf-dynam.net/6/971/2018/){:target="_blank"} that came out of it.
 
 <figure class="video_container">
-<video width="600" controls="true">
+<video style="border: 2px solid black" width="600" controls="true">
   <source src="/assets/videos/drone_toro.mp4" type="video/mp4">
 </video>
 </figure>
@@ -59,7 +59,7 @@ Recently, we applied PebbleCounts to examine downstream fining in the Quebrada d
 We also explored the use of spaceborne Synthetic Aperature Radar (SAR) measurements of surface roughness from channel beds using satellites like TerraSAR-X, Sentinel-1, and ALOS PALSAR. These SAR data can be used mainly for discerning gravel and sand transitions over huge areas, but it is hard to look at absolute grain sizes in the channel...see the publication [in Remote Sensing of Environment](https://doi.org/10.1016/j.rse.2020.111799){:target="_blank"}.
 
 <figure class="video_container">
-<video width="500" height="340" controls="true">
+<video style="border: 2px solid black" width="500" height="340" controls="true">
   <source src="/assets/videos/Ben_survey.mp4" type="video/mp4">
 </video>
 </figure>
@@ -69,7 +69,7 @@ We also explored the use of spaceborne Synthetic Aperature Radar (SAR) measureme
 
 
 <figure class="video_container">
-<video width="500" height="340" controls="true">
+<video style="border: 2px solid black" width="500" height="340" controls="true">
   <source src="/assets/videos/Ben_survey_windy.mp4" type="video/mp4">
 </video>
 </figure>
