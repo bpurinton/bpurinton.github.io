@@ -1,0 +1,717 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Getting started with a jekyll, minimal mistakes, and github pages | Ben Purinton</title>
+<meta name="description" content="This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., _layouts/, _includes/, _data/navigation.yml).">
+
+
+  <meta name="author" content="Ben Purinton">
+  
+  <meta property="article:author" content="Ben Purinton">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ben Purinton">
+<meta property="og:title" content="Getting started with a jekyll, minimal mistakes, and github pages">
+<meta property="og:url" content="http://localhost:4000/fresh-jekyll/">
+
+
+  <meta property="og:description" content="This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., _layouts/, _includes/, _data/navigation.yml).">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-01-03T00:00:00-09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/fresh-jekyll/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ben Purinton",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ben Purinton Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<!-- <link rel="icon" type="image/x-icon" href="/assets/images/favicon-test.ico"> -->
+  </head>
+
+  <body class="layout--posts">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ben Purinton
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/research/">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/publications/">Publications</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/purinton_profile_photo.jpg" alt="Ben Purinton" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Ben Purinton</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Howdy. I like dirt :) And computer coding.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Nome, Alaska</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ben.purinton@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/bpurinton" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/dirt_facts" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/benjamin-purinton-3137905a/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <div class="archive">
+    
+      <h1 id="page-title" class="page__title">Getting started with a jekyll, minimal mistakes, and github pages</h1>
+    
+    <p>This site was built with <a href="https://jekyllrb.com/" target="_blank">jekyll</a>. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., <code class="language-plaintext highlighter-rouge">_layouts/</code>, <code class="language-plaintext highlighter-rouge">_includes/</code>, <code class="language-plaintext highlighter-rouge">_data/navigation.yml</code>).</p>
+
+<p>The files are a combination of CSS, Markdown, and HTML. There are also control-flow embedded tags in <a href="https://shopify.github.io/liquid/" target="_blank">Liquid</a>, that work very similar to embedded Ruby, and give access to global variables like <code class="language-plaintext highlighter-rouge">paginator</code> and <code class="language-plaintext highlighter-rouge">site</code>. If you see a <code class="language-plaintext highlighter-rouge">.md</code> or <code class="language-plaintext highlighter-rouge">.html</code> file headed by <code class="language-plaintext highlighter-rouge">---</code>, then you can put Liquid tags there, because this is frontmatter that jekyll is looking for. All sorts of things go in there like the page title, navigation links, and more. I could go on, but let’s get to the practical implementation.</p>
+
+<h2 id="starting-a-site">Starting a site</h2>
+
+<p>The easiest way to learn jekyll is by following their simple <a href="https://jekyllrb.com/docs/step-by-step" target="_blank">tutorial</a>. I just want to summarize the steps that <em>I</em> did to get up and running.</p>
+
+<p>I opened a new VS Code project in a folder call <code class="language-plaintext highlighter-rouge">my-website/</code>. I previously installed Ruby and RubyGems on my local laptop (running Windows 10), so I was able to go to the PowerShell terminal in VS Code and run</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span> <span class="n">bundler</span>
+</code></pre></div></div>
+
+<p>This installed jekyll (somewhere in my <code class="language-plaintext highlighter-rouge">C:\Ruby31-x64</code> directory – sidenote, this is similar to the way I’m used to <code class="language-plaintext highlighter-rouge">conda</code> installing Python packages). Then I ran:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="n">bundle</span> <span class="n">init</span>
+</code></pre></div></div>
+
+<p>That created a blank <code class="language-plaintext highlighter-rouge">Gemfile</code> in the directory, and into that file I dropped:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s2">"jekyll"</span>
+</code></pre></div></div>
+
+<p>After this, back at the terminal I ran:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="n">bundle</span>
+</code></pre></div></div>
+
+<p>This installed jekyll, because that’s what <code class="language-plaintext highlighter-rouge">bundle</code> does! It looks in you <code class="language-plaintext highlighter-rouge">Gemfile</code> and installs all the gems you need for the project.</p>
+
+<p>At this point, I was able to make a toy file <code class="language-plaintext highlighter-rouge">index.html</code> in the <code class="language-plaintext highlighter-rouge">my-website/</code> root directory, and then run at the terminal:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="n">jekyll</span> <span class="n">serve</span> <span class="o">--</span><span class="n">livereload</span>
+</code></pre></div></div>
+
+<p><strong>Jekyll is a static site generator! So when I run this command, it first automatically does a <code class="language-plaintext highlighter-rouge">jekyll build</code>, which creates a new directory <code class="language-plaintext highlighter-rouge">_site/</code> containing all the pages to be published online as HTML.</strong></p>
+
+<p>With the <code class="language-plaintext highlighter-rouge">_site/</code> built, <code class="language-plaintext highlighter-rouge">jekyll serve</code> now gives me access to a local port <code class="language-plaintext highlighter-rouge">http://localhost:4000/</code> that I can navigate to in a new internet browser window, and <code class="language-plaintext highlighter-rouge">--livereload</code> will insure that most changes I make on VS Code are automatically shown in the browser! Some changes (like those to <code class="language-plaintext highlighter-rouge">_config.yml</code>) will need to have the server restarted to show them (i.e., a new <code class="language-plaintext highlighter-rouge">jekyll build</code> has to run).</p>
+
+<p>Overall, we have a great environment with VS Code for editing files, and the browser for viewing our website. There’s so much more jekyll <a href="https://jekyllrb.com/docs/step-by-step/02-liquid/" target="_blank">to learn</a>.</p>
+
+<h2 id="minimal-mistakes">Minimal Mistakes</h2>
+
+<p>Building up an entire website from scratch with jekyll would be a lot of work, especially for something asthetically pleasing. So I took a common shortcut, and used the <a href="https://mmistakes.github.io/minimal-mistakes/" target="_blank">minimal mistakes</a> jekyll theme to get something decent up and running.</p>
+
+<p>Basically, you get a whole bunch of page layouts and boilerplate code in the jekyll language and structure with this repository that you can do a ton of customization on. There’s a nice quick-start guide <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/" target="_blank">here</a> that I used.</p>
+
+<h3 id="getting-minimal-mistakes-to-work-on-github">Getting Minimal Mistakes to Work on GitHub</h3>
+
+<p>At first, I naively tried to use the <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#gem-based-method" target="_blank">gem-based method</a> to get the template running. That actually worked pretty well in VS Code in my local browser. Just adding this gem and running the build and server got it working locally. I was able to play around a lot and spin up a website.</p>
+
+<p><strong>BUT WAIT,</strong> since the location I was deploying the site (github pages, coming up below) is limited in its build-ability (see <a href="https://stackoverflow.com/questions/71001952/github-pages-cant-find-jekyll-theme-minimal-mistakes" target="_blank">this SO conversation</a>), my naive approach didn’t work.</p>
+
+<p>Instead you need to follow <a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#remote-theme-method" target="_blank">here</a>, and have a <code class="language-plaintext highlighter-rouge">Gemfile</code> that looks like:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
+
+<span class="n">gem</span> <span class="s2">"github-pages"</span><span class="p">,</span> <span class="ss">group: :jekyll_plugins</span>
+<span class="n">gem</span> <span class="s2">"jekyll-include-cache"</span><span class="p">,</span> <span class="ss">group: :jekyll_plugins</span>
+</code></pre></div></div>
+
+<p>You also need to:</p>
+
+<ol>
+  <li>Add <code class="language-plaintext highlighter-rouge">jekyll-include-cache</code> to the plugins array of your <code class="language-plaintext highlighter-rouge">_config.yml</code></li>
+  <li>Run <code class="language-plaintext highlighter-rouge">bundle</code> in the directory to update teh bundled gems</li>
+  <li>Add <code class="language-plaintext highlighter-rouge">remote_theme: "mmistakes/minimal-mistakes"</code> to your <code class="language-plaintext highlighter-rouge">_config.yml</code> file. Remove any other <code class="language-plaintext highlighter-rouge">theme:</code> or <code class="language-plaintext highlighter-rouge">remote_theme:</code> entry</li>
+</ol>
+
+<h2 id="proto-directory-structure">Proto Directory Structure</h2>
+
+<p>After a lot of fooling around, I ended up with a prototype for my website that basically looked like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my-website
+├── _data                      # data files for customizing the theme
+|  ├── navigation.yml          # main navigation links
+|  └── ui-text.yml             # text used throughout the theme's UI
+├── _pages                     # a sub-directory with all pages on my site
+|  ├── 404.md                  
+|  ├── about.md                
+|  ├── cv.md                   
+|  ├── publications.md         
+|  └── research.md             
+├── assets
+|  ├── documents               # some documents I link to
+|  ├── images                  # images on my website
+|  └── videos                  # videos on my website
+├── README.md                 
+├── _config.yml                # site configuration
+├── Gemfile                    # gem file dependencies
+└── Gemfile.lock               # gemlock file, you can actually delete this
+</code></pre></div></div>
+
+<p>The git commit with all of that is <a href="https://github.com/bpurinton/bpurinton.github.io/tree/7c44f0e0646bb909de8b03e9153904f581ed1489" target="_blank">here</a>.</p>
+
+<p><strong>BUT WAIT,</strong> where the heck is all of the other files that jekyll needs… <code class="language-plaintext highlighter-rouge">assets</code>, <code class="language-plaintext highlighter-rouge">_layouts</code>, <code class="language-plaintext highlighter-rouge">_includes</code>, and <code class="language-plaintext highlighter-rouge">_sass</code> are stored in the theme’s gem! So I don’t need to make these directories or files! If you would like to make changes, create the files and Jekyll will prefer your local copy (<a href="https://mmistakes.github.io/minimal-mistakes/docs/structure/" target="_blank">source</a>).</p>
+
+<h2 id="where-to-host">Where to host?</h2>
+
+<p>If you’re like me, then you may have dove deep on spinning up a nice website at <code class="language-plaintext highlighter-rouge">http://localhost:4000/</code> while running <code class="language-plaintext highlighter-rouge">jekyll serve</code> in VS Code. Now comes the question, where do I actually deploy my website online so other people can see it?</p>
+
+<p>Basically, this comes down to a matter of getting the static <code class="language-plaintext highlighter-rouge">_site/</code> directory hosted on a server somewhere.</p>
+
+<p>I deployed my site with <a href="https://pages.github.com/" target="_blank">github pages</a>, mostly because it’s free and you can find a lot of help online from people doing the same.</p>
+
+<h2 id="setting-up-github">Setting up github</h2>
+
+<p>First I created a new repository on my github account called <code class="language-plaintext highlighter-rouge">[USERNAME].github.io</code> (for me that would be repo at <code class="language-plaintext highlighter-rouge">https://github.com/bpurinton/bpurinton.github.io</code>). I set it to Public and initialized it with no license or README.</p>
+
+<p>Now, back in my nice website directory, I renamed the directory <code class="language-plaintext highlighter-rouge">bpurinton.github.io</code> to match my github repo. I also added a README file, but I left this mostly blank.</p>
+
+<p>Since I had been running the static site built with <code class="language-plaintext highlighter-rouge">jekyll serve</code> (which runs <code class="language-plaintext highlighter-rouge">jekyll build</code>), I had the <code class="language-plaintext highlighter-rouge">_site/</code> directory ready to go. <strong>But github pages runs its own build on the repo, so at this point I can actually delete the <code class="language-plaintext highlighter-rouge">_site/</code> directory.</strong> Basically, I use <code class="language-plaintext highlighter-rouge">_site/</code> when I’m in production mode in VS Code and using the local port browser to make updates. When it’s time to push stuff to github, I just delete this directory. <em>There’s probably a better way to do this by preventing <code class="language-plaintext highlighter-rouge">_site/</code> from pushing, but that’s something for future Ben.</em></p>
+
+<p>At this point I ran the following git commands from the VS Code terminal in the website directory (because I have git installed and available at the command line):</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># initialize the repository with a .git/ directory</span>
+<span class="n">git</span> <span class="n">init</span>
+
+<span class="c1"># add all files in the directory</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+
+<span class="c1"># commit the files</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">"first commit"</span>
+
+<span class="c1"># set the current branch (I think?)</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="no">M</span> <span class="n">main</span>
+
+<span class="c1"># set the upstream push location</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">bpurinton</span><span class="o">/</span><span class="n">bpurinton</span><span class="p">.</span><span class="nf">github</span><span class="p">.</span><span class="nf">io</span><span class="p">.</span><span class="nf">git</span>
+
+<span class="c1"># push my files up</span>
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">main</span>
+</code></pre></div></div>
+
+<h2 id="deploying">Deploying</h2>
+
+<p>Now we need to do a few things (always pushing the changes with new git commits):</p>
+
+<ol>
+  <li>In <code class="language-plaintext highlighter-rouge">_config.yml</code> set <code class="language-plaintext highlighter-rouge">url : "https://[USERNAME].github.io"</code> and set <code class="language-plaintext highlighter-rouge">repository : "[USERNAME]/[USERNAME].github.io"</code></li>
+  <li>On the github repository, go to “Settings” &gt; “Pages” and set the “Source” &gt; “Deploy from branch”, “Branch” to <code class="language-plaintext highlighter-rouge">main</code>.</li>
+  <li>Make sure the page is deployed at <code class="language-plaintext highlighter-rouge">https://[USERNAME].github.io</code></li>
+</ol>
+
+<p>The deployment will be running in the “Actions” tab of the repository, and you can monitor it there. If there are errors, the page won’t deploy, but if everything goes well, then you will see the confirmation and if you navigate to <code class="language-plaintext highlighter-rouge">https://[USERNAME].github.io</code>, then you will see your static website online!</p>
+
+
+
+<ul class="taxonomy__index">
+  
+  
+    <li>
+      <a href="#2023">
+        <strong>2023</strong> <span class="taxonomy__count">4</span>
+      </a>
+    </li>
+  
+</ul>
+
+
+
+
+  <section id="2023" class="taxonomy__section">
+    <h2 class="archive__subtitle">2023</h2>
+    <div class="entries-list">
+      
+        
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/hi/" rel="permalink">First Post!
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This blog is going to be a collection of notes to myself, hopefully some of these are useful to others. I will post about computer programming and mix that i...</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/fresh-jekyll/" rel="permalink">Getting started with a jekyll, minimal mistakes, and github pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming l...</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deploying-own-domain/" rel="permalink">Deploying github page to own domain
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I wanted something a little more professional than https://[USERNAME].github.io for my website name. Come on, https://bendirt.com is at least memorable!
+
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/backtick-code-color/" rel="permalink">Changing in-line code color
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal...</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+
+
+  </div>
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/bpurinton/bpurinton.github.io" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Ben Purinton. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

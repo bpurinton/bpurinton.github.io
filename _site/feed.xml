@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-01-03T11:24:52-09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Purinton</title><subtitle>Made with jekyll and mimimal mistakes.</subtitle><author><name>Ben Purinton</name></author><entry><title type="html">First Post!</title><link href="http://localhost:4000/hi/" rel="alternate" type="text/html" title="First Post!" /><published>2023-01-03T00:00:00-09:00</published><updated>2023-01-03T00:00:00-09:00</updated><id>http://localhost:4000/hi</id><content type="html" xml:base="http://localhost:4000/hi/">&lt;p&gt;This blog is going to be a collection of notes to myself, hopefully some of these are useful to others. I will post about computer programming and mix that in with some Earth science, because, you guessed it, &lt;em&gt;I &amp;lt;3 Dirt&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;After years of working off a forked copy of the minimal mistakes Jekyll theme for academic pages (&lt;a href=&quot;https://github.com/academicpages/academicpages.github.io&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;), I decided it was time to start from scratch. I had little understanding of website development in 2018 when I first setup my site. Now that I’m learning more about Ruby on Rails, HTML, CSS, and how to deploy a site, I’m ready to build up a new, simplified website.&lt;/p&gt;</content><author><name>Ben Purinton</name></author><summary type="html">This blog is going to be a collection of notes to myself, hopefully some of these are useful to others. I will post about computer programming and mix that in with some Earth science, because, you guessed it, I &amp;lt;3 Dirt.</summary></entry><entry><title type="html">Changing in-line code color</title><link href="http://localhost:4000/backtick-code-color/" rel="alternate" type="text/html" title="Changing in-line code color" /><published>2023-01-03T00:00:00-09:00</published><updated>2023-01-03T00:00:00-09:00</updated><id>http://localhost:4000/backtick-code-color</id><content type="html" xml:base="http://localhost:4000/backtick-code-color/">&lt;p&gt;I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass/minimal-mistakes/_base.scss&lt;/code&gt; file and changed this part of the code:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;sr&quot;&gt;/* code */&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;tt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;kbd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;samp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;font&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;family: &lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$monospace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;to:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;sr&quot;&gt;/* code */&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;tt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;kbd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;samp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;font&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;family: &lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$monospace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;ss&quot;&gt;color: &lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#CC5500;&lt;/span&gt;
+  &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;background: &lt;/span&gt;&lt;span class=&quot;vg&quot;&gt;$link&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#CC5500&lt;/code&gt; is a nice burnt oragne color. I also tried changing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;background&lt;/code&gt; color, but this also affected triple-backtick code snippets.&lt;/p&gt;</content><author><name>Ben Purinton</name></author><summary type="html">I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal-mistakes/_base.scss file and changed this part of the code:</summary></entry><entry><title type="html">Deploying github page to own domain</title><link href="http://localhost:4000/deploying-own-domain/" rel="alternate" type="text/html" title="Deploying github page to own domain" /><published>2023-01-03T00:00:00-09:00</published><updated>2023-01-03T00:00:00-09:00</updated><id>http://localhost:4000/deploying-own-domain</id><content type="html" xml:base="http://localhost:4000/deploying-own-domain/">&lt;p&gt;I wanted something a little more professional than &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://[USERNAME].github.io&lt;/code&gt; for my website name. Come on, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://bendirt.com&lt;/code&gt; is at least memorable!&lt;/p&gt;
+
+&lt;p&gt;I mostly just followed this &lt;a href=&quot;https://www.cross-validated.com/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-III/&quot; target=&quot;_blank&quot;&gt;amazing guide&lt;/a&gt;. I recommend checking out that whole four part series, although it uses Docker, which I didn’t touch for my site… &lt;em&gt;Another thing for future Ben&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let me summarize the steps:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Go to your favorite place to buy domains and find a good one. I bought mine for 12/year from &lt;a href=&quot;https://domains.google/&quot; target=&quot;_blank&quot;&gt;google domains&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Add a file called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CNAME&lt;/code&gt; (no extension) to your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://github.com/[USERNAME]/[USERNAME].github.io&lt;/code&gt; website directory. That file will contain the name of your domain (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www.bendirt.com&lt;/code&gt;).&lt;/li&gt;
+  &lt;li&gt;Go the DNS settings on your google domain page and add github’s servers and the repository to the “Resource records”:
+    &lt;ul&gt;
+      &lt;li&gt;Host name: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[YOUR DOMAIN].[YOUR EXTENSION]&lt;/code&gt; (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bendirt.com&lt;/code&gt;); Type: A; TTL: 1h; Data:
+        &lt;ul&gt;
+          &lt;li&gt;185.199.108.153&lt;/li&gt;
+          &lt;li&gt;185.199.109.153&lt;/li&gt;
+          &lt;li&gt;185.199.110.153&lt;/li&gt;
+          &lt;li&gt;185.199.111.153&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Host name: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www.[YOUR DOMAIN].[YOUR EXTENSION]&lt;/code&gt; (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;www.bendirt.com&lt;/code&gt;); Type: CNAME; TTL: 1h; Data: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[USERNAME].github.io&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Go back to your repository “Settings” &amp;gt; “Pages”, and you should see your domain as the deployment location!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;You need to be patient for a bit, but once the domain is ready you can also check “Enforce HTTPS” to protect visitors to the website&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you are having problems, github has a good &lt;a href=&quot;https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/troubleshooting-custom-domains-and-github-pages&quot; target=&quot;_blank&quot;&gt;troubleshooting page&lt;/a&gt;.&lt;/p&gt;</content><author><name>Ben Purinton</name></author><summary type="html">I wanted something a little more professional than https://[USERNAME].github.io for my website name. Come on, https://bendirt.com is at least memorable!</summary></entry><entry><title type="html">Getting started with a jekyll, minimal mistakes, and github pages</title><link href="http://localhost:4000/fresh-jekyll/" rel="alternate" type="text/html" title="Getting started with a jekyll, minimal mistakes, and github pages" /><published>2023-01-03T00:00:00-09:00</published><updated>2023-01-03T00:00:00-09:00</updated><id>http://localhost:4000/fresh-jekyll</id><content type="html" xml:base="http://localhost:4000/fresh-jekyll/">&lt;p&gt;This site was built with &lt;a href=&quot;https://jekyllrb.com/&quot; target=&quot;_blank&quot;&gt;jekyll&lt;/a&gt;. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts/&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes/&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data/navigation.yml&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;The files are a combination of CSS, Markdown, and HTML. There are also control-flow embedded tags in &lt;a href=&quot;https://shopify.github.io/liquid/&quot; target=&quot;_blank&quot;&gt;Liquid&lt;/a&gt;, that work very similar to embedded Ruby, and give access to global variables like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;paginator&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;site&lt;/code&gt;. If you see a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.html&lt;/code&gt; file headed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;---&lt;/code&gt;, then you can put Liquid tags there, because this is frontmatter that jekyll is looking for. All sorts of things go in there like the page title, navigation links, and more. I could go on, but let’s get to the practical implementation.&lt;/p&gt;
+
+&lt;h2 id=&quot;starting-a-site&quot;&gt;Starting a site&lt;/h2&gt;
+
+&lt;p&gt;The easiest way to learn jekyll is by following their simple &lt;a href=&quot;https://jekyllrb.com/docs/step-by-step&quot; target=&quot;_blank&quot;&gt;tutorial&lt;/a&gt;. I just want to summarize the steps that &lt;em&gt;I&lt;/em&gt; did to get up and running.&lt;/p&gt;
+
+&lt;p&gt;I opened a new VS Code project in a folder call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my-website/&lt;/code&gt;. I previously installed Ruby and RubyGems on my local laptop (running Windows 10), so I was able to go to the PowerShell terminal in VS Code and run&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bundler&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This installed jekyll (somewhere in my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;C:\Ruby31-x64&lt;/code&gt; directory – sidenote, this is similar to the way I’m used to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;conda&lt;/code&gt; installing Python packages). Then I ran:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That created a blank &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; in the directory, and into that file I dropped:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;jekyll&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After this, back at the terminal I ran:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This installed jekyll, because that’s what &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle&lt;/code&gt; does! It looks in you &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; and installs all the gems you need for the project.&lt;/p&gt;
+
+&lt;p&gt;At this point, I was able to make a toy file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.html&lt;/code&gt; in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my-website/&lt;/code&gt; root directory, and then run at the terminal:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;serve&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;livereload&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Jekyll is a static site generator! So when I run this command, it first automatically does a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll build&lt;/code&gt;, which creates a new directory &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site/&lt;/code&gt; containing all the pages to be published online as HTML.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site/&lt;/code&gt; built, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt; now gives me access to a local port &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:4000/&lt;/code&gt; that I can navigate to in a new internet browser window, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--livereload&lt;/code&gt; will insure that most changes I make on VS Code are automatically shown in the browser! Some changes (like those to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;) will need to have the server restarted to show them (i.e., a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll build&lt;/code&gt; has to run).&lt;/p&gt;
+
+&lt;p&gt;Overall, we have a great environment with VS Code for editing files, and the browser for viewing our website. There’s so much more jekyll &lt;a href=&quot;https://jekyllrb.com/docs/step-by-step/02-liquid/&quot; target=&quot;_blank&quot;&gt;to learn&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;minimal-mistakes&quot;&gt;Minimal Mistakes&lt;/h2&gt;
+
+&lt;p&gt;Building up an entire website from scratch with jekyll would be a lot of work, especially for something asthetically pleasing. So I took a common shortcut, and used the &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/&quot; target=&quot;_blank&quot;&gt;minimal mistakes&lt;/a&gt; jekyll theme to get something decent up and running.&lt;/p&gt;
+
+&lt;p&gt;Basically, you get a whole bunch of page layouts and boilerplate code in the jekyll language and structure with this repository that you can do a ton of customization on. There’s a nice quick-start guide &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt; that I used.&lt;/p&gt;
+
+&lt;h3 id=&quot;getting-minimal-mistakes-to-work-on-github&quot;&gt;Getting Minimal Mistakes to Work on GitHub&lt;/h3&gt;
+
+&lt;p&gt;At first, I naively tried to use the &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#gem-based-method&quot; target=&quot;_blank&quot;&gt;gem-based method&lt;/a&gt; to get the template running. That actually worked pretty well in VS Code in my local browser. Just adding this gem and running the build and server got it working locally. I was able to play around a lot and spin up a website.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;BUT WAIT,&lt;/strong&gt; since the location I was deploying the site (github pages, coming up below) is limited in its build-ability (see &lt;a href=&quot;https://stackoverflow.com/questions/71001952/github-pages-cant-find-jekyll-theme-minimal-mistakes&quot; target=&quot;_blank&quot;&gt;this SO conversation&lt;/a&gt;), my naive approach didn’t work.&lt;/p&gt;
+
+&lt;p&gt;Instead you need to follow &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#remote-theme-method&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;, and have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; that looks like:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://rubygems.org&quot;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;github-pages&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;group: :jekyll_plugins&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;jekyll-include-cache&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;group: :jekyll_plugins&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You also need to:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll-include-cache&lt;/code&gt; to the plugins array of your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle&lt;/code&gt; in the directory to update teh bundled gems&lt;/li&gt;
+  &lt;li&gt;Add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remote_theme: &quot;mmistakes/minimal-mistakes&quot;&lt;/code&gt; to your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; file. Remove any other &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;theme:&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remote_theme:&lt;/code&gt; entry&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;proto-directory-structure&quot;&gt;Proto Directory Structure&lt;/h2&gt;
+
+&lt;p&gt;After a lot of fooling around, I ended up with a prototype for my website that basically looked like:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;my-website
+├── _data                      # data files for customizing the theme
+|  ├── navigation.yml          # main navigation links
+|  └── ui-text.yml             # text used throughout the theme&apos;s UI
+├── _pages                     # a sub-directory with all pages on my site
+|  ├── 404.md                  
+|  ├── about.md                
+|  ├── cv.md                   
+|  ├── publications.md         
+|  └── research.md             
+├── assets
+|  ├── documents               # some documents I link to
+|  ├── images                  # images on my website
+|  └── videos                  # videos on my website
+├── README.md                 
+├── _config.yml                # site configuration
+├── Gemfile                    # gem file dependencies
+└── Gemfile.lock               # gemlock file, you can actually delete this
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The git commit with all of that is &lt;a href=&quot;https://github.com/bpurinton/bpurinton.github.io/tree/7c44f0e0646bb909de8b03e9153904f581ed1489&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;BUT WAIT,&lt;/strong&gt; where the heck is all of the other files that jekyll needs… &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assets&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass&lt;/code&gt; are stored in the theme’s gem! So I don’t need to make these directories or files! If you would like to make changes, create the files and Jekyll will prefer your local copy (&lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/structure/&quot; target=&quot;_blank&quot;&gt;source&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h2 id=&quot;where-to-host&quot;&gt;Where to host?&lt;/h2&gt;
+
+&lt;p&gt;If you’re like me, then you may have dove deep on spinning up a nice website at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:4000/&lt;/code&gt; while running &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt; in VS Code. Now comes the question, where do I actually deploy my website online so other people can see it?&lt;/p&gt;
+
+&lt;p&gt;Basically, this comes down to a matter of getting the static &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site/&lt;/code&gt; directory hosted on a server somewhere.&lt;/p&gt;
+
+&lt;p&gt;I deployed my site with &lt;a href=&quot;https://pages.github.com/&quot; target=&quot;_blank&quot;&gt;github pages&lt;/a&gt;, mostly because it’s free and you can find a lot of help online from people doing the same.&lt;/p&gt;
+
+&lt;h2 id=&quot;setting-up-github&quot;&gt;Setting up github&lt;/h2&gt;
+
+&lt;p&gt;First I created a new repository on my github account called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[USERNAME].github.io&lt;/code&gt; (for me that would be repo at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://github.com/bpurinton/bpurinton.github.io&lt;/code&gt;). I set it to Public and initialized it with no license or README.&lt;/p&gt;
+
+&lt;p&gt;Now, back in my nice website directory, I renamed the directory &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bpurinton.github.io&lt;/code&gt; to match my github repo. I also added a README file, but I left this mostly blank.&lt;/p&gt;
+
+&lt;p&gt;Since I had been running the static site built with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt; (which runs &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll build&lt;/code&gt;), I had the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site/&lt;/code&gt; directory ready to go. &lt;strong&gt;But github pages runs its own build on the repo, so at this point I can actually delete the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site/&lt;/code&gt; directory.&lt;/strong&gt; Basically, I use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site/&lt;/code&gt; when I’m in production mode in VS Code and using the local port browser to make updates. When it’s time to push stuff to github, I just delete this directory. &lt;em&gt;There’s probably a better way to do this by preventing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site/&lt;/code&gt; from pushing, but that’s something for future Ben.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point I ran the following git commands from the VS Code terminal in the website directory (because I have git installed and available at the command line):&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# initialize the repository with a .git/ directory&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# add all files in the directory&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# commit the files&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;first commit&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# set the current branch (I think?)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;branch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;M&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# set the upstream push location&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remote&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:/&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bpurinton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bpurinton&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;git&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# push my files up&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;deploying&quot;&gt;Deploying&lt;/h2&gt;
+
+&lt;p&gt;Now we need to do a few things (always pushing the changes with new git commits):&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;url : &quot;https://[USERNAME].github.io&quot;&lt;/code&gt; and set &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repository : &quot;[USERNAME]/[USERNAME].github.io&quot;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;On the github repository, go to “Settings” &amp;gt; “Pages” and set the “Source” &amp;gt; “Deploy from branch”, “Branch” to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Make sure the page is deployed at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://[USERNAME].github.io&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The deployment will be running in the “Actions” tab of the repository, and you can monitor it there. If there are errors, the page won’t deploy, but if everything goes well, then you will see the confirmation and if you navigate to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://[USERNAME].github.io&lt;/code&gt;, then you will see your static website online!&lt;/p&gt;</content><author><name>Ben Purinton</name></author><summary type="html">This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., _layouts/, _includes/, _data/navigation.yml).</summary></entry></feed>
