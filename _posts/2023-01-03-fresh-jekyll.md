@@ -1,5 +1,5 @@
 ---
-layout: posts
+# layout: posts
 title: Getting started with a jekyll, minimal mistakes, and github pages
 toc: true
 toc_label: "Content"

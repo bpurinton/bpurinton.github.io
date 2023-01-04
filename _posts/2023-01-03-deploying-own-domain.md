@@ -1,5 +1,5 @@
 ---
-layout: posts
+# layout: posts
 title: Deploying github page to own domain
 toc: false
 toc_label: "Content"

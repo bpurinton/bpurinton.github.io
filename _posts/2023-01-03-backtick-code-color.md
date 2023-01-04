@@ -1,5 +1,5 @@
 ---
-layout: posts
+# layout: posts
 title: Changing in-line code color
 toc: false
 toc_label: "Content"
