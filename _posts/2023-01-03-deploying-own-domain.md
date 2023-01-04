@@ -1,8 +1,9 @@
 ---
 layout: posts
 title: Deploying github page to own domain
-toc: true
+toc: false
 toc_label: "Content"
+toc_sticky: true
 tags: github-pages domain-name
 # header:
   # teaser: /assets/images/thumbnails/udacity-ds-nanodegree-800.png

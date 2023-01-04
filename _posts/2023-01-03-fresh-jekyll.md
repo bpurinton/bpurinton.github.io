@@ -3,6 +3,7 @@ layout: posts
 title: Getting started with a jekyll, minimal mistakes, and github pages
 toc: true
 toc_label: "Content"
+toc_sticky: true
 tags: jekyll github-pages minimal-mistakes
 # header:
   # teaser: /assets/images/thumbnails/udacity-ds-nanodegree-800.png

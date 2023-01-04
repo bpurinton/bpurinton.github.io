@@ -9,32 +9,28 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Changing in-line code color | Ben Purinton</title>
-<meta name="description" content="I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal-mistakes/_base.scss file and changed this part of the code:">
+<!-- begin _includes/seo.html --><title>Posts by Tag | Ben Purinton</title>
+<meta name="description" content="Made with jekyll and mimimal mistakes.">
 
 
   <meta name="author" content="Ben Purinton">
   
-  <meta property="article:author" content="Ben Purinton">
-  
 
 
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Ben Purinton">
-<meta property="og:title" content="Changing in-line code color">
-<meta property="og:url" content="http://localhost:4000/backtick-code-color/">
+<meta property="og:title" content="Posts by Tag">
+<meta property="og:url" content="http://localhost:4000/tags/">
 
 
-  <meta property="og:description" content="I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal-mistakes/_base.scss file and changed this part of the code:">
-
-
-
+  <meta property="og:description" content="Made with jekyll and mimimal mistakes.">
 
 
 
 
-  <meta property="article:published_time" content="2023-01-03T00:00:00-09:00">
+
+
 
 
 
@@ -45,7 +41,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/backtick-code-color/">
+<link rel="canonical" href="http://localhost:4000/tags/">
 
 
 
@@ -99,7 +95,7 @@
 <!-- <link rel="icon" type="image/x-icon" href="/assets/images/favicon-test.ico"> -->
   </head>
 
-  <body class="layout--posts">
+  <body class="layout--tags">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -281,58 +277,105 @@
 
   <div class="archive">
     
-      <h1 id="page-title" class="page__title">Changing in-line code color</h1>
+      <h1 id="page-title" class="page__title">Posts by Tag</h1>
     
-    <p>I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my <code class="language-plaintext highlighter-rouge">_sass/minimal-mistakes/_base.scss</code> file and changed this part of the code:</p>
+    
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sr">/* code */</span>
 
-<span class="n">tt</span><span class="p">,</span>
-<span class="n">code</span><span class="p">,</span>
-<span class="n">kbd</span><span class="p">,</span>
-<span class="n">samp</span><span class="p">,</span>
-<span class="n">pre</span> <span class="p">{</span>
-  <span class="n">font</span><span class="o">-</span><span class="ss">family: </span><span class="vg">$monospace</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
 
-<p>to:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sr">/* code */</span>
-
-<span class="n">tt</span><span class="p">,</span>
-<span class="n">code</span><span class="p">,</span>
-<span class="n">kbd</span><span class="p">,</span>
-<span class="n">samp</span><span class="p">,</span>
-<span class="n">pre</span> <span class="p">{</span>
-  <span class="n">font</span><span class="o">-</span><span class="ss">family: </span><span class="vg">$monospace</span><span class="p">;</span>
-  <span class="ss">color: </span><span class="c1">#CC5500;</span>
-  <span class="sr">//</span> <span class="ss">background: </span><span class="vg">$link</span><span class="o">-</span><span class="n">color</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">#CC5500</code> is a nice burnt oragne color. I also tried changing the <code class="language-plaintext highlighter-rouge">background</code> color, but this also affected triple-backtick code snippets.</p>
 
 
 <ul class="taxonomy__index">
   
+    
+      
+        <li>
+          <a href="#jekyll">
+            <strong>jekyll</strong> <span class="taxonomy__count">3</span>
+          </a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="#github-pages">
+            <strong>github-pages</strong> <span class="taxonomy__count">3</span>
+          </a>
+        </li>
+      
+    
+      
+    
+      
+    
   
-    <li>
-      <a href="#2023">
-        <strong>2023</strong> <span class="taxonomy__count">5</span>
-      </a>
-    </li>
+    
+      
+    
+      
+        <li>
+          <a href="#minimal-mistakes">
+            <strong>minimal-mistakes</strong> <span class="taxonomy__count">2</span>
+          </a>
+        </li>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+        <li>
+          <a href="#css">
+            <strong>css</strong> <span class="taxonomy__count">1</span>
+          </a>
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          <a href="#domain-name">
+            <strong>domain-name</strong> <span class="taxonomy__count">1</span>
+          </a>
+        </li>
+      
+    
+      
+        <li>
+          <a href="#seo">
+            <strong>seo</strong> <span class="taxonomy__count">1</span>
+          </a>
+        </li>
+      
+    
   
 </ul>
 
 
 
-
-  <section id="2023" class="taxonomy__section">
-    <h2 class="archive__subtitle">2023</h2>
-    <div class="entries-list">
-      
-        
+  
+    
+      <section id="jekyll" class="taxonomy__section">
+        <h2 class="archive__subtitle">jekyll</h2>
+        <div class="entries-list">
+          
+            
 
 
 
@@ -377,54 +420,8 @@
   </article>
 </div>
 
-      
-        
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/hi/" rel="permalink">First Post!
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          less than 1 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">This blog is going to be a collection of notes to myself, hopefully some of these are useful to others. I will post about computer programming and mix that i...</p>
-  </article>
-</div>
-
-      
-        
+          
+            
 
 
 
@@ -469,8 +466,160 @@
   </article>
 </div>
 
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
+        <a href="/backtick-code-color/" rel="permalink">Changing in-line code color
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
         
+        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal...</p>
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+      </section>
+    
+  
+    
+  
+    
+  
+    
+      <section id="github-pages" class="taxonomy__section">
+        <h2 class="archive__subtitle">github-pages</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/sitemap-and-SEO/" rel="permalink">Adding a <code class="language-plaintext highlighter-rouge">sitemap.xml</code> for SEO
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-01-04T00:00:00-09:00">January 4, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful ...</p>
+  </article>
+</div>
+
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/fresh-jekyll/" rel="permalink">Getting started with a jekyll, minimal mistakes, and github pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming l...</p>
+  </article>
+</div>
+
+          
+            
 
 
 
@@ -517,8 +666,72 @@
   </article>
 </div>
 
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+      </section>
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+      <section id="minimal-mistakes" class="taxonomy__section">
+        <h2 class="archive__subtitle">minimal-mistakes</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
+        <a href="/fresh-jekyll/" rel="permalink">Getting started with a jekyll, minimal mistakes, and github pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
         
+        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming l...</p>
+  </article>
+</div>
+
+          
+            
 
 
 
@@ -563,10 +776,198 @@
   </article>
 </div>
 
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+      </section>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+  
+    
+      <section id="css" class="taxonomy__section">
+        <h2 class="archive__subtitle">css</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-    </div>
-    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
-  </section>
+        <a href="/backtick-code-color/" rel="permalink">Changing in-line code color
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal...</p>
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+      </section>
+    
+  
+    
+  
+    
+      <section id="domain-name" class="taxonomy__section">
+        <h2 class="archive__subtitle">domain-name</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/deploying-own-domain/" rel="permalink">Deploying github page to own domain
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I wanted something a little more professional than https://[USERNAME].github.io for my website name. Come on, https://bendirt.com is at least memorable!
+
+</p>
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+      </section>
+    
+  
+    
+      <section id="seo" class="taxonomy__section">
+        <h2 class="archive__subtitle">seo</h2>
+        <div class="entries-list">
+          
+            
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/sitemap-and-SEO/" rel="permalink">Adding a <code class="language-plaintext highlighter-rouge">sitemap.xml</code> for SEO
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-01-04T00:00:00-09:00">January 4, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful ...</p>
+  </article>
+</div>
+
+          
+        </div>
+        <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+      </section>
+    
+  
 
 
   </div>

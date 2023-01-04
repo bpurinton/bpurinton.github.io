@@ -1,8 +1,9 @@
 ---
 layout: posts
 title: Changing in-line code color
-toc: true
+toc: false
 toc_label: "Content"
+toc_sticky: true
 tags: jekyll minimal-mistakes css
 # header:
   # teaser: /assets/images/thumbnails/udacity-ds-nanodegree-800.png

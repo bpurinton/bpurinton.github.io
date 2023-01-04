@@ -3,6 +3,7 @@
 title: Adding a `sitemap.xml` for SEO
 toc: true
 toc_label: "Content"
+toc_sticky: true
 tags: github-pages seo jekyll
 # header:
   # teaser: /assets/images/thumbnails/udacity-ds-nanodegree-800.png

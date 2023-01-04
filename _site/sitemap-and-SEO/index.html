@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Changing in-line code color | Ben Purinton</title>
-<meta name="description" content="I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal-mistakes/_base.scss file and changed this part of the code:">
+<!-- begin _includes/seo.html --><title>Adding a sitemap.xml for SEO | Ben Purinton</title>
+<meta name="description" content="SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful guide.">
 
 
   <meta name="author" content="Ben Purinton">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Ben Purinton">
-<meta property="og:title" content="Changing in-line code color">
-<meta property="og:url" content="https://bendirt.com/sitemap-and-SEO/">
+<meta property="og:title" content="Adding a sitemap.xml for SEO">
+<meta property="og:url" content="http://localhost:4000/sitemap-and-SEO/">
 
 
-  <meta property="og:description" content="I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal-mistakes/_base.scss file and changed this part of the code:">
+  <meta property="og:description" content="SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful guide.">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://bendirt.com/sitemap-and-SEO/">
+<link rel="canonical" href="http://localhost:4000/sitemap-and-SEO/">
 
 
 
@@ -56,7 +56,7 @@
     
       "@type": "Person",
       "name": "Ben Purinton",
-      "url": "https://bendirt.com/"
+      "url": "http://localhost:4000/"
     
   }
 </script>
@@ -99,7 +99,7 @@
 <!-- <link rel="icon" type="image/x-icon" href="/assets/images/favicon-test.ico"> -->
   </head>
 
-  <body class="layout--posts">
+  <body class="layout--single">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -152,6 +152,8 @@
 
 
 
+
+
 <div id="main" role="main">
   
   <div class="sidebar sticky">
@@ -162,7 +164,7 @@
 
   
     <div class="author__avatar">
-      <a href="https://bendirt.com/">
+      <a href="http://localhost:4000/">
         <img src="/assets/images/purinton_profile_photo.jpg" alt="Ben Purinton" itemprop="image" class="u-photo">
       </a>
     </div>
@@ -170,7 +172,7 @@
 
   <div class="author__content">
     <h3 class="author__name p-name" itemprop="name">
-      <a class="u-url" rel="me" href="https://bendirt.com/" itemprop="url">Ben Purinton</a>
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Ben Purinton</a>
     </h3>
     
       <div class="author__bio p-note" itemprop="description">
@@ -279,73 +281,20 @@
 
 
 
-  <div class="archive">
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Adding a sitemap.xml for SEO">
+    <meta itemprop="description" content="SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful guide.">
+    <meta itemprop="datePublished" content="2023-01-04T00:00:00-09:00">
     
-      <h1 id="page-title" class="page__title">Changing in-line code color</h1>
-    
-    <p>I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my <code class="language-plaintext highlighter-rouge">_sass/minimal-mistakes/_base.scss</code> file and changed this part of the code:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sr">/* code */</span>
-
-<span class="n">tt</span><span class="p">,</span>
-<span class="n">code</span><span class="p">,</span>
-<span class="n">kbd</span><span class="p">,</span>
-<span class="n">samp</span><span class="p">,</span>
-<span class="n">pre</span> <span class="p">{</span>
-  <span class="n">font</span><span class="o">-</span><span class="ss">family: </span><span class="vg">$monospace</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>to:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="sr">/* code */</span>
-
-<span class="n">tt</span><span class="p">,</span>
-<span class="n">code</span><span class="p">,</span>
-<span class="n">kbd</span><span class="p">,</span>
-<span class="n">samp</span><span class="p">,</span>
-<span class="n">pre</span> <span class="p">{</span>
-  <span class="n">font</span><span class="o">-</span><span class="ss">family: </span><span class="vg">$monospace</span><span class="p">;</span>
-  <span class="ss">color: </span><span class="c1">#CC5500;</span>
-  <span class="sr">//</span> <span class="ss">background: </span><span class="vg">$link</span><span class="o">-</span><span class="n">color</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">#CC5500</code> is a nice burnt oragne color. I also tried changing the <code class="language-plaintext highlighter-rouge">background</code> color, but this also affected triple-backtick code snippets.</p>
-
-
-<ul class="taxonomy__index">
-  
-  
-    <li>
-      <a href="#2023">
-        <strong>2023</strong> <span class="taxonomy__count">5</span>
-      </a>
-    </li>
-  
-</ul>
-
-
-
-
-  <section id="2023" class="taxonomy__section">
-    <h2 class="archive__subtitle">2023</h2>
-    <div class="entries-list">
+    <div class="page__inner-wrap">
       
-        
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/sitemap-and-SEO/" rel="permalink">Changing in-line code color
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/sitemap-and-SEO/" class="u-url" itemprop="url">Adding a <code class="language-plaintext highlighter-rouge">sitemap.xml</code> for SEO
 </a>
-      
-    </h2>
-    
+          </h1>
+          
 
   <p class="page__meta">
     
@@ -366,24 +315,175 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          less than 1 minute read
+          1 minute read
         
       </span>
     
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal...</p>
-  </article>
-</div>
-
+        </header>
       
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Content</h4></header>
+              <ul class="toc__menu"><li><a href="#register-on-google-search-console">Register on Google Search Console</a></li><li><a href="#generate-a-sitemap">Generate a sitemap</a></li><li><a href="#submit-the-sitemap">Submit the sitemap</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on <a href="https://www.cross-validated.com/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-IV/" target="_blank">this wonderful guide</a>.</p>
+
+<h2 id="register-on-google-search-console">Register on Google Search Console</h2>
+
+<p>The first thing I did was register my domain on the <a href="https://search.google.com/search-console/about" target="_blank">Google Search Console</a>. That was easy, because I had already purchased the domain from <a href="https://domains.google/" target="_blank">Google Domains</a>. The search console allows us to track our site and improve the search results.</p>
+
+<h2 id="generate-a-sitemap">Generate a sitemap</h2>
+
+<p>For the search console, we need a <code class="language-plaintext highlighter-rouge">sitemap.xml</code> that is just a map of all the URLs in our domain. I noticed the <code class="language-plaintext highlighter-rouge">site.xml</code> was in the <code class="language-plaintext highlighter-rouge">_site/</code> folder of my local build, and was updated everytime I ran:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec jekyll build
+</code></pre></div></div>
+
+<p>That’s the handy command-line way to locally rebuild the website in the <code class="language-plaintext highlighter-rouge">_site/</code> folder when I make changes. <strong>However,</strong> if I run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec jekyll serve
+</code></pre></div></div>
+
+<p>(which first executes a <code class="language-plaintext highlighter-rouge">build</code>), then the <code class="language-plaintext highlighter-rouge">sitemap.xml</code> appears like:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;urlset</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"</span> <span class="na">xmlns=</span><span class="s">"http://www.sitemaps.org/schemas/sitemap/0.9"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;url&gt;</span>
+<span class="nt">&lt;loc&gt;</span>http://localhost:4000/backtick-code-color/<span class="nt">&lt;/loc&gt;</span>
+<span class="nt">&lt;lastmod&gt;</span>2023-01-03T00:00:00-09:00<span class="nt">&lt;/lastmod&gt;</span>
+<span class="nt">&lt;/url&gt;</span>
+<span class="nt">&lt;url&gt;</span>
+<span class="nt">&lt;loc&gt;</span>http://localhost:4000/deploying-own-domain/<span class="nt">&lt;/loc&gt;</span>
+<span class="nt">&lt;lastmod&gt;</span>2023-01-03T00:00:00-09:00<span class="nt">&lt;/lastmod&gt;</span>
+<span class="nt">&lt;/url&gt;</span>
+<span class="nt">&lt;url&gt;</span>
+<span class="nt">&lt;loc&gt;</span>http://localhost:4000/fresh-jekyll/<span class="nt">&lt;/loc&gt;</span>
+<span class="nt">&lt;lastmod&gt;</span>2023-01-03T00:00:00-09:00<span class="nt">&lt;/lastmod&gt;</span>
+...
+</code></pre></div></div>
+
+<p>All of the domain is at the base URL of <code class="language-plaintext highlighter-rouge">http://localhost:4000/</code>. That’s because <em>Jekyll 3.3 overrides config site.url with url: <code class="language-plaintext highlighter-rouge">http://localhost:4000</code> when running jekyll serve locally in development. If you want to avoid this behavior set <code class="language-plaintext highlighter-rouge">JEKYLL_ENV=production</code> to force the environment to production.</em></p>
+
+<p>Oops! I didn’t want to mess with the <code class="language-plaintext highlighter-rouge">JEKYLL_ENV</code> variable, and I wanted to continue making local edits, so rather than this, I just ran a plain:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec jekyll build
+</code></pre></div></div>
+
+<p>And that gave me a nice <code class="language-plaintext highlighter-rouge">_site/sitemap.xml</code> file:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;urlset</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"</span> <span class="na">xmlns=</span><span class="s">"http://www.sitemaps.org/schemas/sitemap/0.9"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;url&gt;</span>
+<span class="nt">&lt;loc&gt;</span>https://bendirt.com/backtick-code-color/<span class="nt">&lt;/loc&gt;</span>
+<span class="nt">&lt;lastmod&gt;</span>2023-01-03T00:00:00-09:00<span class="nt">&lt;/lastmod&gt;</span>
+<span class="nt">&lt;/url&gt;</span>
+<span class="nt">&lt;url&gt;</span>
+<span class="nt">&lt;loc&gt;</span>https://bendirt.com/deploying-own-domain/<span class="nt">&lt;/loc&gt;</span>
+<span class="nt">&lt;lastmod&gt;</span>2023-01-03T00:00:00-09:00<span class="nt">&lt;/lastmod&gt;</span>
+<span class="nt">&lt;/url&gt;</span>
+<span class="nt">&lt;url&gt;</span>
+<span class="nt">&lt;loc&gt;</span>https://bendirt.com/fresh-jekyll/<span class="nt">&lt;/loc&gt;</span>
+<span class="nt">&lt;lastmod&gt;</span>2023-01-03T00:00:00-09:00<span class="nt">&lt;/lastmod&gt;</span>
+...
+</code></pre></div></div>
+
+<h2 id="submit-the-sitemap">Submit the sitemap</h2>
+
+<p>Now <em>this</em> is what I need to upload to the Google Search Console “Sitemap” at: <code class="language-plaintext highlighter-rouge">https://search.google.com/search-console/sitemaps</code>.</p>
+
+<p>But I can’t just upload this, I need to submit a URL….</p>
+
+<p><strong>All that dancing around for nothing. If I visit my deployed website, then an updated <code class="language-plaintext highlighter-rouge">sitemap.xml</code> already exists at <code class="language-plaintext highlighter-rouge">https://www.bendirt.com/sitemap.xml</code>. I guess this was generated during the github-pages deployment?</strong></p>
+
+<p>Now it’s just about patience with the Google Search Console, since it may take a few days to update with analytics.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#github-pages" class="page__taxonomy-item p-category" rel="tag">github-pages</a><span class="sep">, </span>
+    
+      <a href="/tags/#jekyll" class="page__taxonomy-item p-category" rel="tag">jekyll</a><span class="sep">, </span>
+    
+      <a href="/tags/#seo" class="page__taxonomy-item p-category" rel="tag">seo</a>
+    
+    </span>
+  </p>
+
+
+
+
         
 
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-01-04T00:00:00-09:00">January 4, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Adding+a+%60sitemap.xml%60+for+SEO%20http%3A%2F%2Flocalhost%3A4000%2Fsitemap-and-SEO%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fsitemap-and-SEO%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fsitemap-and-SEO%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
 
 
-<div class="list__item">
+      
+  <nav class="pagination">
+    
+      <a href="/hi/" class="pagination--pager" title="First Post!
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
@@ -397,7 +497,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         
         <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
       </span>
@@ -410,7 +510,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           less than 1 minute read
         
@@ -423,13 +523,17 @@
   </article>
 </div>
 
-      
         
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
@@ -443,7 +547,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         
         <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
       </span>
@@ -456,7 +560,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           6 minute read
         
@@ -469,13 +573,17 @@
   </article>
 </div>
 
-      
         
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
@@ -489,7 +597,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         
         <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
       </span>
@@ -502,7 +610,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           1 minute read
         
@@ -517,13 +625,17 @@
   </article>
 </div>
 
-      
         
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
@@ -537,7 +649,7 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         
         <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
       </span>
@@ -550,7 +662,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           less than 1 minute read
         
@@ -563,14 +675,13 @@
   </article>
 </div>
 
-      
+        
+      </div>
     </div>
-    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
-  </section>
-
-
-  </div>
+  
+  
 </div>
+
     </div>
 
     
