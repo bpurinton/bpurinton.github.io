@@ -1,6 +1,12 @@
 ---
 layout: posts
 title: Deploying github page to own domain
+toc: true
+toc_label: "Content"
+tags: github-pages domain-name
+# header:
+  # teaser: /assets/images/thumbnails/udacity-ds-nanodegree-800.png
+# excerpt: "Review of Udacity Data Science Nanodegree and Intro to Machine Learning Nanodegree"
 ---
 
 I wanted something a little more professional than `https://[USERNAME].github.io` for my website name. Come on, `https://bendirt.com` is at least memorable!

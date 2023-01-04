@@ -1,6 +1,12 @@
 ---
 layout: posts
 title: Changing in-line code color
+toc: true
+toc_label: "Content"
+tags: jekyll minimal-mistakes css
+# header:
+  # teaser: /assets/images/thumbnails/udacity-ds-nanodegree-800.png
+# excerpt: "Review of Udacity Data Science Nanodegree and Intro to Machine Learning Nanodegree"
 ---
 
 I was getting annoyed with the difficulty of seeing the code with \`\` (backtick) symbols in my blog posts. To change these colors I went into my `_sass/minimal-mistakes/_base.scss` file and changed this part of the code:
