@@ -29,10 +29,15 @@ On this site, my [research](/research/) page contains some of the science I've d
 
 By the way, I started [blogging](/blog/). Let's see how that goes!
 
-<img style="border: 2px solid black" src="/assets/images/Toro_full.jpg" alt="Rio Toro" width="500">
+<figure class="align-center">
+  <img src="/assets/images/Toro_full.jpg" alt="Rio Toro" style="border: 2px solid black" width="500">
+  <figcaption>Quebrada del Toro in northwestern Argentina, my PhD study area.</figcaption>
+</figure>
+
+<!-- <img style="border: 2px solid black" src="/assets/images/Toro_full.jpg" alt="Rio Toro" width="500">
 <p align="left">
   <i>Quebrada del Toro in northwestern Argentina, my PhD study area.</i>
-</p>
+</p> -->
 
 ## Opportunities
 Get in touch for collaboration!

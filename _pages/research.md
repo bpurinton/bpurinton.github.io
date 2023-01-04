@@ -11,6 +11,11 @@ author_profile: false
 
 For my B.A. at Wesleyan University I had the opportunity to work on a [Keck Consortium](https://keckgeology.org/){:target="_blank"} research project in the Colorado Front Range. In summer 2012, following geology field camp school in Wyoming, Idaho, and Montana, I moved into a cabin at Colorado University's [Mountain Research Station](https://www.colorado.edu/mrs/){:target="_blank"} to begin four weeks studying the impact of a 2010 wildfire in Fourmile Canyon outside Boulder, Colorado. I studied the relaxation time of extreme erosion events brought on by moderate rainfall following the fire, and also the influence of historical mine tailings piles on the geochemistry of the sediment. Here's my [thesis](/assets/documents/BP_ba_thesis.pdf){:target="_blank"}.
 
+<!-- <figure class="align-center">
+  <img src="/assets/images/wyoming.jpg" alt="Wyoming" style="border: 2px solid black" width="500">
+  <figcaption>A typical Wyoming view during field school.</figcaption>
+</figure> -->
+
 <img style="border: 2px solid black" src="/assets/images/wyoming.jpg" alt="Wyoming" width="400"/>
 <p align ="left">
 <i>A typical Wyoming view during field school.</i>
