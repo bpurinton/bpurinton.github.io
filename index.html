@@ -28,7 +28,8 @@ author_profile: true
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.excerpt }}
+    <!-- {{ post.excerpt }} -->
+    {{ post.content | truncatewords: 60 }}
   </div>
   {% endfor %}
 </div>
