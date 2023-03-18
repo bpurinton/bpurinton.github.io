@@ -1,6 +1,6 @@
 ---
 # layout: posts
-title: Merging `main` into an in-progress `feature-branch`
+title: Git merging main into an in-progress feature-branch
 toc: true
 toc_label: "Content"
 toc_sticky: true
@@ -15,6 +15,8 @@ In a collaborative (or solo) `git` project I'm often in a position where I was w
 The question is: how do I merge the changes on `main` into my `feature-branch`, such that, when I merge the `feature-branch` into `main` down the road, there is a clean history?
 
 We could `merge --squash`, but what we really want for a nice clean history is explained here.
+
+**Note, this blog post is a companion to [this longer post](https://www.bendirt.com/notes-on-git/){:target="_blank"}**
 
 # Change the editor
 
