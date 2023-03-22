@@ -76,7 +76,9 @@ Now I can push:
 (feature-branch) $ git push
 ```
 
-And if I check on the open PR for the feature branch, I will see all of the history from `main`.
+**These two actions take all of the `main` commits that occurred since making the feature branch and slots them into the feature branch's history**
+
+And if I check on the open PR for the feature branch, I will see all of the history from `main`, and I can continue working on (and making commits) the feature branch.
 
 # Merge to `main`
 
@@ -84,7 +86,7 @@ When I'm done with the `feature-branch` (meaning I've made all the commits I'm g
 
   - merge on Github using the open PR, including receiving code review and then clicking "Squash and merge"
 
-  OR (if I want to merge without the PR / code review)
+  OR **if I want to merge without the PR / code review**:
 
   - run these commands:
 
@@ -105,4 +107,16 @@ Now, with the messy history of commits ironed out, we merge the feature to main:
 git checkout main
 git merge feature-branch
 git push
+```
+
+And if we want to delete the remote `feature-branch` branch from Github:
+
+```bash
+git push origin :feature-branch
+```
+
+And locally we can delete the branch with:
+
+```bash
+git branch -d feature-branch
 ```
