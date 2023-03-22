@@ -76,7 +76,9 @@ Now I can push:
 (feature-branch) $ git push
 ```
 
-And if I check on the open PR for the feature branch, I will see all of the history from `main`.
+**These two actions take all of the `main` commits that occurred since making the feature branch and slots them into the feature branch's history**
+
+And if I check on the open PR for the feature branch, I will see all of the history from `main`, and I can continue working on (and making commits) the feature branch.
 
 # Merge to `main`
 
@@ -107,4 +109,10 @@ git merge feature-branch
 git push
 ```
 
-And if we want to delete the 
+And if we want to delete the remote `feature-branch` branch from Github:
+
+```bash
+git push origin :feature-branch
+```
+
+And locally we can run
