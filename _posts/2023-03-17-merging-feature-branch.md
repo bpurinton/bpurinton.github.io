@@ -84,7 +84,7 @@ When I'm done with the `feature-branch` (meaning I've made all the commits I'm g
 
   - merge on Github using the open PR, including receiving code review and then clicking "Squash and merge"
 
-  OR (if I want to merge without the PR / code review)
+  OR **if I want to merge without the PR / code review**:
 
   - run these commands:
 
@@ -106,3 +106,5 @@ git checkout main
 git merge feature-branch
 git push
 ```
+
+And if we want to delete the 
