@@ -115,4 +115,8 @@ And if we want to delete the remote `feature-branch` branch from Github:
 git push origin :feature-branch
 ```
 
-And locally we can run
+And locally we can delete the branch with:
+
+```bash
+git branch -d feature-branch
+```
