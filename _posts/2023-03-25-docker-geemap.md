@@ -37,3 +37,10 @@ Now I can make some sweet maps:
 
 ![](/assets/images/sentinel1.gif)
 
+# Some more notes on docker
+
+On my M2 Mac with `arm64` Apple Silicon architecture, I need to build images by adding `FROM --platform=linux/amd64 <parent-image>` to the top of the `Dockerfile`.
+
+Then I can build as usual with `docker build -t <image-name> .`
+
+Then when I want to run an image locally I need to supply the platform with `docker run -it --platform linux/amd64 <image-name>` 
