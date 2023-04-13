@@ -91,7 +91,7 @@ But, how do the ground-based port radar measurements represent this time period?
 
 A couple of notes in comparison to the Sentinel-1 satellite: the ground based radar has a much higher spatial resolution (each pixel shows a smaller area), it has a much higher temporal resolution (the timelapse is composed of one image every four minutes), and the radar wavelength is shorter (by about half). 
 
-Regardless of these differences, the same general rule of darker = smoother and ligher = rougher hold for interpreting this video timelapse courtesy of UAF:
+Regardless of these differences, the same general rule of darker = smoother and lighter = rougher hold for interpreting this video timelapse courtesy of UAF (Press the play button to watch it):
 
 <figure class="video_container">
 <video style="border: 2px solid black" width="600" controls="true">
