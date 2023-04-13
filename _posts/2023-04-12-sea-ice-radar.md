@@ -12,12 +12,12 @@ header:
 
 I recently found out about [UAF's sea-ice radar monitor](https://seaice.alaska.edu/gi/observatories/nome_radar/){:target="_blank"} at the end of the pier in Nome's port. 
 
-<img style="border: 2px solid black" src="https://seaice.alaska.edu/gi/observatories/nome_radar/nome_radar-placement2.png" alt="Pier Radar" width="400"/>
+<img style="border: 2px solid black" src="https://seaice.alaska.edu/gi/observatories/nome_radar/nome_radar-placement2.png" alt="Pier Radar" width="500"/>
 <p align ="left">
 <i>Location of radar in port of Nome. Image from <a href="https://seaice.alaska.edu/gi/observatories/nome_radar/" target="_blank">here</a>.</i>
 </p>
 
-<img style="border: 2px solid black" src="/assets/images/nome-pier-radar-4-12.png" alt="Latest Radar" width="400"/>
+<img style="border: 2px solid black" src="/assets/images/nome-pier-radar-4-12.png" alt="Latest Radar" width="500"/>
 <p align ="left">
 <i>Latest radar image from the port.</i>
 </p>
@@ -32,9 +32,9 @@ Essentially, these sensors emit radiation (a.k.a. light) at a specific frequency
 
 The exact interaction of the light with sea ice and open water is more complex, but in general **smoother surfaces** like calm open water and smoother sea ice **show up as darker** in the radar image, whereas windy water, sea ice ridges, and a variety of other **rougher surfaces** from sea ice **show up as lighter** in the radar image.
 
-**BIG DISCLAIMER:** The interpretation of sea ice from radar images is very difficult, and I am not an expert. Always use extreme caution when venturing out on the ice pack. [This is an excellent guide] to sea ice interpretation from radar, and here's an image showing the general relationship and myriad complications of measuring sea ice extent and type from radar imagery:
+**BIG DISCLAIMER:** The interpretation of sea ice from radar images is very difficult, and I am not an expert. Always use extreme caution when venturing out on the ice pack. [This is an excellent guide](https://driftnoise.com/sentinel-1-information.html){:target="_blank"} to sea ice interpretation from radar, and here's an image showing the general relationship and myriad complications of measuring sea ice extent and type from radar imagery:
 
-<img style="border: 2px solid black" src="https://driftnoise.com/static/images/s1_backscatter_qualitative.png" alt="Radar and Sea Ice" width="400"/>
+<img style="border: 2px solid black" src="https://driftnoise.com/static/images/s1_backscatter_qualitative.png" alt="Radar and Sea Ice" width="500"/>
 <p align ="left">
 <i>Image from <a href="https://driftnoise.com/sentinel-1-information.html" target="_blank">here</a>, based on modification of <a href="http://articles.adsabs.harvard.edu//full/1996ESASP.383..291J/0000291.000.html" target="_blank">Johannessen et al. (1997)</a></i>
 </p>
@@ -52,7 +52,7 @@ With that out of the way, let's look at some pretty pictures.
 
 Before we get into the weird world of radar, how does it look with our own eyes on the coast off of Nome right now?
 
-<img style="border: 2px solid black" src="/assets/images/sea-ice-office.jpg" alt="Sea Ice Picture" width="400"/>
+<img style="border: 2px solid black" src="/assets/images/sea-ice-office.jpg" alt="Sea Ice Picture" width="500"/>
 
 That's a picture from today. You can see the relatively smoother, stable, older ice near-shore and then some ridges of rafted ice about one or two kilometers out in the distance.  
 
@@ -80,6 +80,7 @@ Okay, true, I only showed the VV (vertical-vertical) polarized timelapse, but we
 
 ![](/assets/images/sentinel1-VH.gif)
 
+I also really like how the radar images show the smoother (darker pixels) on the land north of the coastline, where the tundra is covered in several meters of mostly smooth snow. The lighter pixels on the land are a mixture of human infrastructure (buildings, roads, mining operations) and natural, rough features occurring in river valleys (willows poking up through the snow).
 
 
 ## Radar From Port
