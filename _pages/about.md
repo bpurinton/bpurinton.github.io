@@ -11,7 +11,7 @@ header:
 excerpt: ""
 ---
 
-> _I used to sit in class and listen to the terms come floating down the room like paper airplanes. Geology was called a descriptive science, and with its pitted outwash plains and drowned rivers, its hanging tributaries and starved coastlines, it was nothing if not descriptive. It was a fountain of metaphor..._ - [John McPhee](https://archive.nytimes.com/www.nytimes.com/books/first/m/mcphee-annals.html){:target="_blank"}
+> _The poles of the earth have wandered. The equator has apparently moved. The continents, perched on their plates, are thought to have been carried so very far and to be going in so many directions that it seems an act of almost pure hubris to assert that some landmark of our world is fixed at 73 degrees 57 minutes and 53 seconds west longitude and 40 degrees 51 minutes and 14 seconds north latitude--a temporary description, at any rate, as if for a boat on the sea._ - [John McPhee](https://archive.nytimes.com/www.nytimes.com/books/first/m/mcphee-annals.html){:target="_blank"}
 
 # Who?
 
