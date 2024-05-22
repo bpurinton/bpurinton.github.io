@@ -109,7 +109,7 @@ author:
   name             : "Ben Purinton"
   avatar           : "/assets/images/purinton_profile_photo.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Howdy. I like dirt :) And computer coding."
-  location         : "Nome, Alaska"
+  location         : "Seattle, Washington"
   email            :
   links:
     - label: "Email"
