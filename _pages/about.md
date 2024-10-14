@@ -15,7 +15,7 @@ excerpt: ""
 
 Hey, I'm Ben. Formerly a scientist within the [Remote Sensing and Earth Surface Processes group](https://up-rs-esp.github.io/){:target="_blank"} at the University of Potsdam in Germany. Now working at the University of Washington in the [Terrain Analysis and Cryosphere Observation Lab](https://uw-cryo.github.io/authors/ben/){:target="_blank"} (With a jaunt in sub-arctic [Nome, Alaska](https://www.visitnomealaska.com/){:target="_blank"} along the way.)
 
-I have my feet in a few worlds. Aside from my science jobs, I also work for [First Draft](https://learn.firstdraft.com), developing a web application development course for beginner programmers. This has been my primary focus for the past few years.
+I have my feet in a few worlds. Aside from my science jobs, I also work for [First Draft](https://learn.firstdraft.com){:target="_blank"}, developing a web application development course for beginner programmers. This has been my primary focus for the past few years.
 
 I'm open to consulting, and have run workshops for GIS mapping. My inbox is open if you want to get in touch about workshops, projects, or anything else!
 
