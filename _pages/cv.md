@@ -20,18 +20,18 @@ Here is a [link to my current full CV](/assets/documents/Purinton_CV_October2024
 - MSc, Geology, University of Potsdam, Germany, November 2016
 - BA, Earth & Environmental Sciences, Wesleyan University, USA, May 2013
 
-## Experience and 
+## Experience 
 
-- Always: Consulting and workshops for GIS mapping and geoscientific data analysis
-- November 2022 - present: Educator and Developer, First Draft, LLC 
-- June 2023 - present: Research Scientist, University of Washington, USA 
-- November 2022 - April 2024: Living and working in Nome, Alaska 
-- June 2020 - October 2022: Post-Doctoral Researcher and Instructor, University of Potsdam, Germany
-- 2017 - 2020: PhD Candidate and Teaching Assistant, University of Potsdam, Germany
-- March 2015 - 2019: Fieldwork in the Eastern Central Andes for master's and doctoral theses
-- Summer 2012: Keck Consortium funded fieldwork for Colorado Front Range bachelor's thesis
-- Spring 2012: Geochemistry lab technician at Wesleyan University
-- Summer 2011: NSF funded research intern at Lamont-Doherty Earth Observatory
+- **Always**: Consulting and workshops for GIS mapping and geoscientific data analysis
+- **November 2022 - present**: Educator and Developer, First Draft, LLC 
+- **June 2023 - present**: Research Scientist, University of Washington, USA 
+- **November 2022 - April 2024**: Living and working in Nome, Alaska 
+- **June 2020 - October 2022**: Post-Doctoral Researcher and Instructor, University of Potsdam, Germany
+- **2017 - 2020**: PhD Candidate and Teaching Assistant, University of Potsdam, Germany
+- **March 2015 - 2019**: Fieldwork in the Eastern Central Andes for master's and doctoral theses
+- **Summer 2012**: Keck Consortium funded fieldwork for Colorado Front Range bachelor's thesis
+- **Spring 2012**: Geochemistry lab technician at Wesleyan University
+- **Summer 2011**: NSF funded research intern at Lamont-Doherty Earth Observatory
 
 ## Skills
 
