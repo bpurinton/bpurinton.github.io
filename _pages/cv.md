@@ -23,7 +23,8 @@ Here is a [link to my current full CV](/assets/documents/Purinton_CV_October2024
 ## Experience 
 
 - **Always**: Consulting and workshops for GIS mapping and geoscientific data analysis
-- **November 2022 - present**: Educator and Developer, First Draft, LLC 
+- **November 2022 - present**: Educator and Developer, First Draft, LLC
+- **March 2023 - present**: Teaching Assistant, University of Chicago, USA
 - **June 2023 - present**: Research Scientist, University of Washington, USA 
 - **November 2022 - April 2024**: Living and working in Nome, Alaska 
 - **June 2020 - October 2022**: Post-Doctoral Researcher and Instructor, University of Potsdam, Germany
