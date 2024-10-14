@@ -9,9 +9,6 @@ redirect_from:
   - /resume
 ---
 
-<p></p>
-[**Link to my current full CV**](/assets/documents/Purinton_CV_September2022.pdf){:target="_blank"}
-
-
-<p></p>
-[**And here's a reduced one pager**](/assets/documents/Purinton_CV_September2022_OnePage.pdf){:target="_blank"}
+<p>
+  Here is a [link to my current full CV](/assets/documents/Purinton_CV_October2024.pdf){:target="_blank"}, written in a detailed, academic format. My professional highlights are below.
+</p>
