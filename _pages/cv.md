@@ -38,7 +38,7 @@ Here is a [link to my current full CV](/assets/documents/Purinton_CV_October2024
 ### Programming
 
 - Python, Bash scripting (5+ years): Geospatial and statistical tasks
-- Ruby, Rails, JavaScript, SQL, HTML, CSS (3+ years): Full-stack web application development
+- Ruby, Rails, Django, JavaScript, SQL, HTML, CSS (3+ years): Full-stack web application development
 
 ### Software
 
