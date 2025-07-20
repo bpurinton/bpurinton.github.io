@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Adding a sitemap.xml for SEO | Ben Purinton</title>
-<meta name="description" content="SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful guide.">
+<meta name="description" content="SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful guide.  Register on Google Search Console  The first thing I did was register my domain on the Google Search Console. That was easy, because I had already purchased the domain from Google Domains. The search console allows us to track our site and improve the search results.  Generate a sitemap  For the search console, we need a sitemap.xml that is just a map of all the URLs in our domain. I noticed the site.xml was in the _site/ folder of my local build, and was updated everytime I ran:  bundle exec jekyll build   That’s the handy command-line way to locally rebuild the website in the _site/ folder when I make changes. However, if I run:  bundle exec jekyll serve   (which first executes a build), then the sitemap.xml appears like:  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;urlset xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot; xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt; &lt;url&gt; &lt;loc&gt;http://localhost:4000/backtick-code-color/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; &lt;/url&gt; &lt;url&gt; &lt;loc&gt;http://localhost:4000/deploying-own-domain/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; &lt;/url&gt; &lt;url&gt; &lt;loc&gt;http://localhost:4000/fresh-jekyll/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; ...   All of the domain is at the base URL of http://localhost:4000/. That’s because Jekyll 3.3 overrides config site.url with url: http://localhost:4000 when running jekyll serve locally in development. If you want to avoid this behavior set JEKYLL_ENV=production to force the environment to production.  Oops! I didn’t want to mess with the JEKYLL_ENV variable, and I wanted to continue making local edits, so rather than this, I just ran a plain:  bundle exec jekyll build   And that gave me a nice _site/sitemap.xml file:  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;urlset xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot; xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt; &lt;url&gt; &lt;loc&gt;https://bendirt.com/backtick-code-color/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; &lt;/url&gt; &lt;url&gt; &lt;loc&gt;https://bendirt.com/deploying-own-domain/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; &lt;/url&gt; &lt;url&gt; &lt;loc&gt;https://bendirt.com/fresh-jekyll/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; ...   Submit the sitemap  Now this is what I need to upload to the Google Search Console “Sitemap” at: https://search.google.com/search-console/sitemaps.  But I can’t just upload this, I need to submit a URL….  All that dancing around for nothing. If I visit my deployed website, then an updated sitemap.xml already exists at https://www.bendirt.com/sitemap.xml. I guess this was generated during the github-pages deployment?  Now it’s just about patience with the Google Search Console, since it may take a few days to update with analytics.">
 
 
   <meta name="author" content="Ben Purinton">
@@ -26,7 +26,7 @@
 <meta property="og:url" content="http://localhost:4000/sitemap-and-SEO/">
 
 
-  <meta property="og:description" content="SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful guide.">
+  <meta property="og:description" content="SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful guide.  Register on Google Search Console  The first thing I did was register my domain on the Google Search Console. That was easy, because I had already purchased the domain from Google Domains. The search console allows us to track our site and improve the search results.  Generate a sitemap  For the search console, we need a sitemap.xml that is just a map of all the URLs in our domain. I noticed the site.xml was in the _site/ folder of my local build, and was updated everytime I ran:  bundle exec jekyll build   That’s the handy command-line way to locally rebuild the website in the _site/ folder when I make changes. However, if I run:  bundle exec jekyll serve   (which first executes a build), then the sitemap.xml appears like:  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;urlset xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot; xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt; &lt;url&gt; &lt;loc&gt;http://localhost:4000/backtick-code-color/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; &lt;/url&gt; &lt;url&gt; &lt;loc&gt;http://localhost:4000/deploying-own-domain/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; &lt;/url&gt; &lt;url&gt; &lt;loc&gt;http://localhost:4000/fresh-jekyll/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; ...   All of the domain is at the base URL of http://localhost:4000/. That’s because Jekyll 3.3 overrides config site.url with url: http://localhost:4000 when running jekyll serve locally in development. If you want to avoid this behavior set JEKYLL_ENV=production to force the environment to production.  Oops! I didn’t want to mess with the JEKYLL_ENV variable, and I wanted to continue making local edits, so rather than this, I just ran a plain:  bundle exec jekyll build   And that gave me a nice _site/sitemap.xml file:  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; &lt;urlset xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot; xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt; &lt;url&gt; &lt;loc&gt;https://bendirt.com/backtick-code-color/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; &lt;/url&gt; &lt;url&gt; &lt;loc&gt;https://bendirt.com/deploying-own-domain/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; &lt;/url&gt; &lt;url&gt; &lt;loc&gt;https://bendirt.com/fresh-jekyll/&lt;/loc&gt; &lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt; ...   Submit the sitemap  Now this is what I need to upload to the Google Search Console “Sitemap” at: https://search.google.com/search-console/sitemaps.  But I can’t just upload this, I need to submit a URL….  All that dancing around for nothing. If I visit my deployed website, then an updated sitemap.xml already exists at https://www.bendirt.com/sitemap.xml. I guess this was generated during the github-pages deployment?  Now it’s just about patience with the Google Search Console, since it may take a few days to update with analytics.">
 
 
 
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-01-04T00:00:00-09:00">
+  <meta property="article:published_time" content="2023-01-04T00:00:00-08:00">
 
 
 
@@ -187,7 +187,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Nome, Alaska</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, Washington</span>
         </li>
       
 
@@ -283,8 +283,8 @@
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Adding a sitemap.xml for SEO">
-    <meta itemprop="description" content="SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful guide.">
-    <meta itemprop="datePublished" content="2023-01-04T00:00:00-09:00">
+    <meta itemprop="description" content="SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful guide.Register on Google Search ConsoleThe first thing I did was register my domain on the Google Search Console. That was easy, because I had already purchased the domain from Google Domains. The search console allows us to track our site and improve the search results.Generate a sitemapFor the search console, we need a sitemap.xml that is just a map of all the URLs in our domain. I noticed the site.xml was in the _site/ folder of my local build, and was updated everytime I ran:bundle exec jekyll buildThat’s the handy command-line way to locally rebuild the website in the _site/ folder when I make changes. However, if I run:bundle exec jekyll serve(which first executes a build), then the sitemap.xml appears like:&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;urlset xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot; xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;&lt;url&gt;&lt;loc&gt;http://localhost:4000/backtick-code-color/&lt;/loc&gt;&lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt;&lt;/url&gt;&lt;url&gt;&lt;loc&gt;http://localhost:4000/deploying-own-domain/&lt;/loc&gt;&lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt;&lt;/url&gt;&lt;url&gt;&lt;loc&gt;http://localhost:4000/fresh-jekyll/&lt;/loc&gt;&lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt;...All of the domain is at the base URL of http://localhost:4000/. That’s because Jekyll 3.3 overrides config site.url with url: http://localhost:4000 when running jekyll serve locally in development. If you want to avoid this behavior set JEKYLL_ENV=production to force the environment to production.Oops! I didn’t want to mess with the JEKYLL_ENV variable, and I wanted to continue making local edits, so rather than this, I just ran a plain:bundle exec jekyll buildAnd that gave me a nice _site/sitemap.xml file:&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;urlset xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd&quot; xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;&lt;url&gt;&lt;loc&gt;https://bendirt.com/backtick-code-color/&lt;/loc&gt;&lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt;&lt;/url&gt;&lt;url&gt;&lt;loc&gt;https://bendirt.com/deploying-own-domain/&lt;/loc&gt;&lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt;&lt;/url&gt;&lt;url&gt;&lt;loc&gt;https://bendirt.com/fresh-jekyll/&lt;/loc&gt;&lt;lastmod&gt;2023-01-03T00:00:00-09:00&lt;/lastmod&gt;...Submit the sitemapNow this is what I need to upload to the Google Search Console “Sitemap” at: https://search.google.com/search-console/sitemaps.But I can’t just upload this, I need to submit a URL….All that dancing around for nothing. If I visit my deployed website, then an updated sitemap.xml already exists at https://www.bendirt.com/sitemap.xml. I guess this was generated during the github-pages deployment?Now it’s just about patience with the Google Search Console, since it may take a few days to update with analytics.">
+    <meta itemprop="datePublished" content="2023-01-04T00:00:00-08:00">
     
 
     <div class="page__inner-wrap">
@@ -302,7 +302,7 @@
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2023-01-04T00:00:00-09:00">January 4, 2023</time>
+        <time datetime="2023-01-04T00:00:00-08:00">January 4, 2023</time>
       </span>
     
 
@@ -435,7 +435,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-01-04T00:00:00-09:00">January 4, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-01-04T00:00:00-08:00">January 4, 2023</time></p>
 
       </footer>
 
@@ -459,7 +459,8 @@
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/bookdown/" class="pagination--pager" title="Writing a textbook with bookdown
+">Next</a>
     
   </nav>
 
@@ -482,12 +483,12 @@
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
       <div class="archive__item-teaser">
-        <img src="/assets/images/favicon-32x32.png" alt="">
+        <img src="/assets/images/sea-ice-office.jpg" alt="">
       </div>
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/hi/" rel="permalink">First Post!
+        <a href="/sea-ice-radar/" rel="permalink">Exploring Nome’s Sea Ice with Satellite and Ground Radar
 </a>
       
     </h2>
@@ -499,57 +500,7 @@
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          less than 1 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">This blog is going to be a collection of notes to myself, hopefully some of these are useful to others. I will post about computer programming and mix that i...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-      <div class="archive__item-teaser">
-        <img src="/assets/images/favicon-32x32.png" alt="">
-      </div>
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/fresh-jekyll/" rel="permalink">Getting started with a jekyll, minimal mistakes, and github pages
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+        <time datetime="2023-04-12T00:00:00-07:00">April 12, 2023</time>
       </span>
     
 
@@ -569,57 +520,7 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming l...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-      <div class="archive__item-teaser">
-        <img src="/assets/images/favicon-32x32.png" alt="">
-      </div>
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/deploying-own-domain/" rel="permalink">Deploying github page to own domain
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">I wanted something a little more professional than https://[USERNAME].github.io for my website name. Come on, https://bendirt.com is at least memorable!
+    <p class="archive__item-excerpt" itemprop="description">I recently found out about UAF’s sea-ice radar monitor at the end of the pier in Nome’s port.
 
 </p>
   </article>
@@ -639,7 +540,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backtick-code-color/" rel="permalink">Changing in-line code color
+        <a href="/docker-geemap/" rel="permalink">Running dockerized google earth engine (GEE) map
 </a>
       
     </h2>
@@ -651,7 +552,7 @@
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+        <time datetime="2023-03-25T00:00:00-07:00">March 25, 2023</time>
       </span>
     
 
@@ -664,14 +565,118 @@
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          less than 1 minute read
+          1 minute read
         
       </span>
     
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal...</p>
+    <p class="archive__item-excerpt" itemprop="description">The steps I took to open and run a dockerized geemap:
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/notes-on-git/" rel="permalink">Notes on using git
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-18T00:00:00-07:00">March 18, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’m currently going through the extremely helpful thoughtbot git tutorial. I want to leave some notes here for future reference.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/merging-feature-branch/" rel="permalink">Git merging main into an in-progress feature-branch
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-17T00:00:00-07:00">March 17, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In a collaborative (or solo) git project I’m often in a position where I was working on a feature-branch, got busy, stopped working on it, then came back to ...</p>
   </article>
 </div>
 
@@ -732,7 +737,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 Ben Purinton. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2025 Ben Purinton. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

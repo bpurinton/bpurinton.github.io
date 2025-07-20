@@ -1,0 +1,763 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Custom JavaScript in Bookdown | Ben Purinton</title>
+<meta name="description" content="I wanted some custom behavior in my bookdown project. Specifically, I wanted all the internal cross references to open in new tabs so that the reading flow is unbroken.  The Issue  With external references, bookdown’s formatting makes it easy to write:  [some website](theURL){target=&quot;_blank&quot;}   which parses to  &lt;a href=&quot;theURL&quot; target=&quot;_blank&quot;&gt;some website&lt;/a&gt;   But the bookdown internal cross-reference works like:  [some cross reference][the section ID]   This doesn’t accept the additional {target=&quot;_blank&quot;}. So how to fix this?  JavaScript to the Rescue  JavaScript &lt;script&gt;s in the HTML document allow you to modify the HTML after bookdown (well, pandoc actually) finishes rendering the output into HTML static files. My understanding is that this re-rendering and HTML addition is actually carried out by the browser when it encounters the &lt;script&gt;&lt;/script&gt; tags in an HTML document.  First, I found this post, and the first answer there (this one) told me that I could use a very simple JS script to retroactively add all my nice target=&quot;_blank&quot;s:  var links = document.getElementsByTagName(&#39;a&#39;); var len = links.length;  for(var i=0; i&lt;len; i++) {    links[i].target = &quot;_blank&quot;; }   This script gets all the &lt;a&gt;&lt;/a&gt; link tags, and adds the code iteratively in a loop. If the link already had a target=&quot;_blank&quot; tag, it just overwrites it. Probably it would be “more correct” to ignore those that already have the tag, but it ain’t broke so I ain’t fixin it.  How do I get this thing to run?  I’m fairly new to JS, but luckily I found this post regarding JS and bookdown. Unfortunately the person was not answered, but their code told me I just needed to do three things in my bookdown project.  First, I needed to make a new file in the assets/styling/ folder called scripts.html. I could put this file anywhere and call it anything, but I consider what I’m doing here “styling”. Now any other JS scripts I want in my project can go into assets/styling/scripts.html.  Second, I just need to drop the above JS script into the new file with some HTML tags:  &lt;script&gt;   var links = document.getElementsByTagName(&#39;a&#39;);   var len = links.length;    for(var i=0; i&lt;len; i++)   {     links[i].target = &quot;_blank&quot;;   } &lt;/script&gt;   Lastly, I need to point the file out to bookdown, so that it will add the script to each HTML file, which will then later be interpreted by the browser. I just need to add the following to the _output.yml file associated with my bookdown project:  bookdown::gitbook:   css: assets/styling/style.css   pandoc_args: [&quot;--lua-filter=assets/styling/footnote.lua&quot;]   includes:     in_header: assets/styling/style.html     after_body: assets/styling/scripts.html   # ...   Now the project includes my custom script added to every HTML page.">
+
+
+  <meta name="author" content="Ben Purinton">
+  
+  <meta property="article:author" content="Ben Purinton">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ben Purinton">
+<meta property="og:title" content="Custom JavaScript in Bookdown">
+<meta property="og:url" content="http://localhost:4000/javascript-in-bookdown/">
+
+
+  <meta property="og:description" content="I wanted some custom behavior in my bookdown project. Specifically, I wanted all the internal cross references to open in new tabs so that the reading flow is unbroken.  The Issue  With external references, bookdown’s formatting makes it easy to write:  [some website](theURL){target=&quot;_blank&quot;}   which parses to  &lt;a href=&quot;theURL&quot; target=&quot;_blank&quot;&gt;some website&lt;/a&gt;   But the bookdown internal cross-reference works like:  [some cross reference][the section ID]   This doesn’t accept the additional {target=&quot;_blank&quot;}. So how to fix this?  JavaScript to the Rescue  JavaScript &lt;script&gt;s in the HTML document allow you to modify the HTML after bookdown (well, pandoc actually) finishes rendering the output into HTML static files. My understanding is that this re-rendering and HTML addition is actually carried out by the browser when it encounters the &lt;script&gt;&lt;/script&gt; tags in an HTML document.  First, I found this post, and the first answer there (this one) told me that I could use a very simple JS script to retroactively add all my nice target=&quot;_blank&quot;s:  var links = document.getElementsByTagName(&#39;a&#39;); var len = links.length;  for(var i=0; i&lt;len; i++) {    links[i].target = &quot;_blank&quot;; }   This script gets all the &lt;a&gt;&lt;/a&gt; link tags, and adds the code iteratively in a loop. If the link already had a target=&quot;_blank&quot; tag, it just overwrites it. Probably it would be “more correct” to ignore those that already have the tag, but it ain’t broke so I ain’t fixin it.  How do I get this thing to run?  I’m fairly new to JS, but luckily I found this post regarding JS and bookdown. Unfortunately the person was not answered, but their code told me I just needed to do three things in my bookdown project.  First, I needed to make a new file in the assets/styling/ folder called scripts.html. I could put this file anywhere and call it anything, but I consider what I’m doing here “styling”. Now any other JS scripts I want in my project can go into assets/styling/scripts.html.  Second, I just need to drop the above JS script into the new file with some HTML tags:  &lt;script&gt;   var links = document.getElementsByTagName(&#39;a&#39;);   var len = links.length;    for(var i=0; i&lt;len; i++)   {     links[i].target = &quot;_blank&quot;;   } &lt;/script&gt;   Lastly, I need to point the file out to bookdown, so that it will add the script to each HTML file, which will then later be interpreted by the browser. I just need to add the following to the _output.yml file associated with my bookdown project:  bookdown::gitbook:   css: assets/styling/style.css   pandoc_args: [&quot;--lua-filter=assets/styling/footnote.lua&quot;]   includes:     in_header: assets/styling/style.html     after_body: assets/styling/scripts.html   # ...   Now the project includes my custom script added to every HTML page.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-02-07T00:00:00-08:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/javascript-in-bookdown/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ben Purinton",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ben Purinton Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<!-- <link rel="icon" type="image/x-icon" href="/assets/images/favicon-test.ico"> -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ben Purinton
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/research/">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/publications/">Publications</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/purinton_profile_photo.jpg" alt="Ben Purinton" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Ben Purinton</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Howdy. I like dirt :) And computer coding.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, Washington</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ben.purinton@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/bpurinton" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/dirt_facts" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/benjamin-purinton-3137905a/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Custom JavaScript in Bookdown">
+    <meta itemprop="description" content="I wanted some custom behavior in my bookdown project. Specifically, I wanted all the internal cross references to open in new tabs so that the reading flow is unbroken.The IssueWith external references, bookdown’s formatting makes it easy to write:[some website](theURL){target=&quot;_blank&quot;}which parses to&lt;a href=&quot;theURL&quot; target=&quot;_blank&quot;&gt;some website&lt;/a&gt;But the bookdown internal cross-reference works like:[some cross reference][the section ID]This doesn’t accept the additional {target=&quot;_blank&quot;}. So how to fix this?JavaScript to the RescueJavaScript &lt;script&gt;s in the HTML document allow you to modify the HTML after bookdown (well, pandoc actually) finishes rendering the output into HTML static files. My understanding is that this re-rendering and HTML addition is actually carried out by the browser when it encounters the &lt;script&gt;&lt;/script&gt; tags in an HTML document.First, I found this post, and the first answer there (this one) told me that I could use a very simple JS script to retroactively add all my nice target=&quot;_blank&quot;s:var links = document.getElementsByTagName(&#39;a&#39;);var len = links.length;for(var i=0; i&lt;len; i++){   links[i].target = &quot;_blank&quot;;}This script gets all the &lt;a&gt;&lt;/a&gt; link tags, and adds the code iteratively in a loop. If the link already had a target=&quot;_blank&quot; tag, it just overwrites it. Probably it would be “more correct” to ignore those that already have the tag, but it ain’t broke so I ain’t fixin it.How do I get this thing to run?I’m fairly new to JS, but luckily I found this post regarding JS and bookdown. Unfortunately the person was not answered, but their code told me I just needed to do three things in my bookdown project.First, I needed to make a new file in the assets/styling/ folder called scripts.html. I could put this file anywhere and call it anything, but I consider what I’m doing here “styling”. Now any other JS scripts I want in my project can go into assets/styling/scripts.html.Second, I just need to drop the above JS script into the new file with some HTML tags:&lt;script&gt;  var links = document.getElementsByTagName(&#39;a&#39;);  var len = links.length;  for(var i=0; i&lt;len; i++)  {    links[i].target = &quot;_blank&quot;;  }&lt;/script&gt;Lastly, I need to point the file out to bookdown, so that it will add the script to each HTML file, which will then later be interpreted by the browser. I just need to add the following to the _output.yml file associated with my bookdown project:bookdown::gitbook:  css: assets/styling/style.css  pandoc_args: [&quot;--lua-filter=assets/styling/footnote.lua&quot;]  includes:    in_header: assets/styling/style.html    after_body: assets/styling/scripts.html  # ...Now the project includes my custom script added to every HTML page.">
+    <meta itemprop="datePublished" content="2023-02-07T00:00:00-08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/javascript-in-bookdown/" class="u-url" itemprop="url">Custom JavaScript in Bookdown
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-02-07T00:00:00-08:00">February 7, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Content</h4></header>
+              <ul class="toc__menu"><li><a href="#the-issue">The Issue</a></li><li><a href="#javascript-to-the-rescue">JavaScript to the Rescue</a><ul><li><a href="#how-do-i-get-this-thing-to-run">How do I get this thing to run?</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>I wanted some custom behavior in my bookdown project. Specifically, I wanted all the internal cross references to open in new tabs so that the reading flow is unbroken.</p>
+
+<h1 id="the-issue">The Issue</h1>
+
+<p>With <em>external</em> references, bookdown’s formatting makes it easy to write:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">some website</span><span class="p">](</span><span class="sx">theURL</span><span class="p">)</span>{target="_blank"}
+</code></pre></div></div>
+
+<p>which parses to</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"theURL"</span> <span class="na">target=</span><span class="s">"_blank"</span><span class="nt">&gt;</span>some website<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
+
+<p>But the bookdown <em>internal</em> cross-reference works like:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">some cross reference</span><span class="p">][</span><span class="ss">the section ID</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>This doesn’t accept the additional <code class="language-plaintext highlighter-rouge">{target="_blank"}</code>. So how to fix this?</p>
+
+<h1 id="javascript-to-the-rescue">JavaScript to the Rescue</h1>
+
+<p>JavaScript <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code>s in the HTML document allow you to modify the HTML after bookdown (well, pandoc actually) finishes rendering the output into HTML static files. My understanding is that this re-rendering and HTML addition is actually carried out by the browser when it encounters the <code class="language-plaintext highlighter-rouge">&lt;script&gt;&lt;/script&gt;</code> tags in an HTML document.</p>
+
+<p>First, I found <a href="https://stackoverflow.com/questions/6822945/add-target-blank-to-link-with-javascript" target="_blank">this post</a>, and the first answer there (<a href="https://stackoverflow.com/a/6823034" target="_blank">this one</a>) told me that I could use a very simple JS script to retroactively add all my nice <code class="language-plaintext highlighter-rouge">target="_blank"</code>s:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">links</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">links</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="nx">links</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">target</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">_blank</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This script gets all the <code class="language-plaintext highlighter-rouge">&lt;a&gt;&lt;/a&gt;</code> link tags, and adds the code iteratively in a loop. If the link already had a <code class="language-plaintext highlighter-rouge">target="_blank"</code> tag, it just overwrites it. Probably it would be “more correct” to ignore those that already have the tag, but it ain’t broke so I ain’t fixin it.</p>
+
+<h2 id="how-do-i-get-this-thing-to-run">How do I get this thing to run?</h2>
+
+<p>I’m fairly new to JS, but luckily I found <a href="https://community.rstudio.com/t/insertion-of-javascript-into-bookdown-project/44176" target="_blank">this post</a> regarding JS and bookdown. Unfortunately the person was not answered, but their code told me I just needed to do three things in my bookdown project.</p>
+
+<p>First, I needed to make a new file in the <code class="language-plaintext highlighter-rouge">assets/styling/</code> folder called <code class="language-plaintext highlighter-rouge">scripts.html</code>. I could put this file anywhere and call it anything, but I consider what I’m doing here “styling”. Now any other JS scripts I want in my project can go into <code class="language-plaintext highlighter-rouge">assets/styling/scripts.html</code>.</p>
+
+<p>Second, I just need to drop the above JS script into the new file with some HTML tags:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script&gt;</span>
+  <span class="kd">var</span> <span class="nx">links</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">links</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="nx">links</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">target</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">_blank</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>Lastly, I need to point the file out to bookdown, so that it will add the script to each HTML file, which will then later be interpreted by the browser. I just need to add the following to the <code class="language-plaintext highlighter-rouge">_output.yml</code> file associated with my bookdown project:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">bookdown::gitbook:</span>
+  <span class="s">css</span><span class="err">:</span> <span class="s">assets/styling/style.css</span>
+  <span class="s">pandoc_args</span><span class="err">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">--lua-filter=assets/styling/footnote.lua"</span><span class="pi">]</span>
+  <span class="na">includes</span><span class="pi">:</span>
+    <span class="na">in_header</span><span class="pi">:</span> <span class="s">assets/styling/style.html</span>
+    <span class="na">after_body</span><span class="pi">:</span> <span class="s">assets/styling/scripts.html</span>
+  <span class="c1"># ...</span>
+</code></pre></div></div>
+
+<p>Now the project includes my custom script added to every HTML page.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#bookdown" class="page__taxonomy-item p-category" rel="tag">bookdown</a><span class="sep">, </span>
+    
+      <a href="/tags/#html" class="page__taxonomy-item p-category" rel="tag">html</a><span class="sep">, </span>
+    
+      <a href="/tags/#javascript" class="page__taxonomy-item p-category" rel="tag">javascript</a><span class="sep">, </span>
+    
+      <a href="/tags/#markdown" class="page__taxonomy-item p-category" rel="tag">markdown</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-02-07T00:00:00-08:00">February 7, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Custom+JavaScript+in+Bookdown%20http%3A%2F%2Flocalhost%3A4000%2Fjavascript-in-bookdown%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjavascript-in-bookdown%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjavascript-in-bookdown%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/bookdown/" class="pagination--pager" title="Writing a textbook with bookdown
+">Previous</a>
+    
+    
+      <a href="/ruby-on-rails-with-postgres/" class="pagination--pager" title="Setting up Ruby on Rails with PostgreSQL
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/sea-ice-office.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/sea-ice-radar/" rel="permalink">Exploring Nome’s Sea Ice with Satellite and Ground Radar
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-12T00:00:00-07:00">April 12, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I recently found out about UAF’s sea-ice radar monitor at the end of the pier in Nome’s port.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docker-geemap/" rel="permalink">Running dockerized google earth engine (GEE) map
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-25T00:00:00-07:00">March 25, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">The steps I took to open and run a dockerized geemap:
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/notes-on-git/" rel="permalink">Notes on using git
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-18T00:00:00-07:00">March 18, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’m currently going through the extremely helpful thoughtbot git tutorial. I want to leave some notes here for future reference.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/merging-feature-branch/" rel="permalink">Git merging main into an in-progress feature-branch
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-17T00:00:00-07:00">March 17, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In a collaborative (or solo) git project I’m often in a position where I was working on a feature-branch, got busy, stopped working on it, then came back to ...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/bpurinton/bpurinton.github.io" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Ben Purinton. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

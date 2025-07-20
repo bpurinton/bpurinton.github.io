@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Getting started with a jekyll, minimal mistakes, and github pages | Ben Purinton</title>
-<meta name="description" content="This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., _layouts/, _includes/, _data/navigation.yml).">
+<meta name="description" content="This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., _layouts/, _includes/, _data/navigation.yml).  The files are a combination of CSS, Markdown, and HTML. There are also control-flow embedded tags in Liquid, that work very similar to embedded Ruby, and give access to global variables like paginator and site. If you see a .md or .html file headed by ---, then you can put Liquid tags there, because this is frontmatter that jekyll is looking for. All sorts of things go in there like the page title, navigation links, and more. I could go on, but let’s get to the practical implementation.  Starting a site  The easiest way to learn jekyll is by following their simple tutorial. I just want to summarize the steps that I did to get up and running.  I opened a new VS Code project in a folder call my-website/. I previously installed Ruby and RubyGems on my local laptop (running Windows 10), so I was able to go to the PowerShell terminal in VS Code and run  &gt; gem install jekyll bundler   This installed jekyll (somewhere in my C:\Ruby31-x64 directory – sidenote, this is similar to the way I’m used to conda installing Python packages). Then I ran:  &gt; bundle init   That created a blank Gemfile in the directory, and into that file I dropped:  gem &quot;jekyll&quot;   After this, back at the terminal I ran:  &gt; bundle   This installed jekyll, because that’s what bundle does! It looks in you Gemfile and installs all the gems you need for the project.  At this point, I was able to make a toy file index.html in the my-website/ root directory, and then run at the terminal:  &gt; jekyll serve --livereload   Jekyll is a static site generator! So when I run this command, it first automatically does a jekyll build, which creates a new directory _site/ containing all the pages to be published online as HTML.  With the _site/ built, jekyll serve now gives me access to a local port http://localhost:4000/ that I can navigate to in a new internet browser window, and --livereload will insure that most changes I make on VS Code are automatically shown in the browser! Some changes (like those to _config.yml) will need to have the server restarted to show them (i.e., a new jekyll build has to run).  Overall, we have a great environment with VS Code for editing files, and the browser for viewing our website. There’s so much more jekyll to learn.  Minimal Mistakes  Building up an entire website from scratch with jekyll would be a lot of work, especially for something asthetically pleasing. So I took a common shortcut, and used the minimal mistakes jekyll theme to get something decent up and running.  Basically, you get a whole bunch of page layouts and boilerplate code in the jekyll language and structure with this repository that you can do a ton of customization on. There’s a nice quick-start guide here that I used.  Getting Minimal Mistakes to Work on GitHub  At first, I naively tried to use the gem-based method to get the template running. That actually worked pretty well in VS Code in my local browser. Just adding this gem and running the build and server got it working locally. I was able to play around a lot and spin up a website.  BUT WAIT, since the location I was deploying the site (github pages, coming up below) is limited in its build-ability (see this SO conversation), my naive approach didn’t work.  Instead you need to follow here, and have a Gemfile that looks like:  source &quot;https://rubygems.org&quot;  gem &quot;github-pages&quot;, group: :jekyll_plugins gem &quot;jekyll-include-cache&quot;, group: :jekyll_plugins   You also need to:     Add jekyll-include-cache to the plugins array of your _config.yml   Run bundle in the directory to update teh bundled gems   Add remote_theme: &quot;mmistakes/minimal-mistakes&quot; to your _config.yml file. Remove any other theme: or remote_theme: entry   Proto Directory Structure  After a lot of fooling around, I ended up with a prototype for my website that basically looked like:  my-website ├── _data                      # data files for customizing the theme |  ├── navigation.yml          # main navigation links |  └── ui-text.yml             # text used throughout the theme&#39;s UI ├── _pages                     # a sub-directory with all pages on my site |  ├── 404.md                   |  ├── about.md                 |  ├── cv.md                    |  ├── publications.md          |  └── research.md              ├── assets |  ├── documents               # some documents I link to |  ├── images                  # images on my website |  └── videos                  # videos on my website ├── README.md                  ├── _config.yml                # site configuration ├── Gemfile                    # gem file dependencies └── Gemfile.lock               # gemlock file, you can actually delete this   The git commit with all of that is here.  BUT WAIT, where the heck is all of the other files that jekyll needs… assets, _layouts, _includes, and _sass are stored in the theme’s gem! So I don’t need to make these directories or files! If you would like to make changes, create the files and Jekyll will prefer your local copy (source).  Where to host?  If you’re like me, then you may have dove deep on spinning up a nice website at http://localhost:4000/ while running jekyll serve in VS Code. Now comes the question, where do I actually deploy my website online so other people can see it?  Basically, this comes down to a matter of getting the static _site/ directory hosted on a server somewhere.  I deployed my site with github pages, mostly because it’s free and you can find a lot of help online from people doing the same.  Setting up github  First I created a new repository on my github account called [USERNAME].github.io (for me that would be repo at https://github.com/bpurinton/bpurinton.github.io). I set it to Public and initialized it with no license or README.  Now, back in my nice website directory, I renamed the directory bpurinton.github.io to match my github repo. I also added a README file, but I left this mostly blank.  Since I had been running the static site built with jekyll serve (which runs jekyll build), I had the _site/ directory ready to go. But github pages runs its own build on the repo, so at this point I can actually delete the _site/ directory. Basically, I use _site/ when I’m in production mode in VS Code and using the local port browser to make updates. When it’s time to push stuff to github, I just delete this directory. There’s probably a better way to do this by preventing _site/ from pushing, but that’s something for future Ben.  At this point I ran the following git commands from the VS Code terminal in the website directory (because I have git installed and available at the command line):  # initialize the repository with a .git/ directory git init  # add all files in the directory git add .  # commit the files git commit -m &quot;first commit&quot;  # set the current branch (I think?) git branch -M main  # set the upstream push location git remote add origin https://github.com/bpurinton/bpurinton.github.io.git  # push my files up git push -u origin main   Deploying  Now we need to do a few things (always pushing the changes with new git commits):     In _config.yml set url : &quot;https://[USERNAME].github.io&quot; and set repository : &quot;[USERNAME]/[USERNAME].github.io&quot;   On the github repository, go to “Settings” &gt; “Pages” and set the “Source” &gt; “Deploy from branch”, “Branch” to main.   Make sure the page is deployed at https://[USERNAME].github.io   The deployment will be running in the “Actions” tab of the repository, and you can monitor it there (everytime you push a change to your github repo, this action will be run). If there are errors, the page won’t deploy, but if everything goes well, then you will see the confirmation and if you navigate to https://[USERNAME].github.io, then you will see your static website online!">
 
 
   <meta name="author" content="Ben Purinton">
@@ -26,7 +26,7 @@
 <meta property="og:url" content="http://localhost:4000/fresh-jekyll/">
 
 
-  <meta property="og:description" content="This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., _layouts/, _includes/, _data/navigation.yml).">
+  <meta property="og:description" content="This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., _layouts/, _includes/, _data/navigation.yml).  The files are a combination of CSS, Markdown, and HTML. There are also control-flow embedded tags in Liquid, that work very similar to embedded Ruby, and give access to global variables like paginator and site. If you see a .md or .html file headed by ---, then you can put Liquid tags there, because this is frontmatter that jekyll is looking for. All sorts of things go in there like the page title, navigation links, and more. I could go on, but let’s get to the practical implementation.  Starting a site  The easiest way to learn jekyll is by following their simple tutorial. I just want to summarize the steps that I did to get up and running.  I opened a new VS Code project in a folder call my-website/. I previously installed Ruby and RubyGems on my local laptop (running Windows 10), so I was able to go to the PowerShell terminal in VS Code and run  &gt; gem install jekyll bundler   This installed jekyll (somewhere in my C:\Ruby31-x64 directory – sidenote, this is similar to the way I’m used to conda installing Python packages). Then I ran:  &gt; bundle init   That created a blank Gemfile in the directory, and into that file I dropped:  gem &quot;jekyll&quot;   After this, back at the terminal I ran:  &gt; bundle   This installed jekyll, because that’s what bundle does! It looks in you Gemfile and installs all the gems you need for the project.  At this point, I was able to make a toy file index.html in the my-website/ root directory, and then run at the terminal:  &gt; jekyll serve --livereload   Jekyll is a static site generator! So when I run this command, it first automatically does a jekyll build, which creates a new directory _site/ containing all the pages to be published online as HTML.  With the _site/ built, jekyll serve now gives me access to a local port http://localhost:4000/ that I can navigate to in a new internet browser window, and --livereload will insure that most changes I make on VS Code are automatically shown in the browser! Some changes (like those to _config.yml) will need to have the server restarted to show them (i.e., a new jekyll build has to run).  Overall, we have a great environment with VS Code for editing files, and the browser for viewing our website. There’s so much more jekyll to learn.  Minimal Mistakes  Building up an entire website from scratch with jekyll would be a lot of work, especially for something asthetically pleasing. So I took a common shortcut, and used the minimal mistakes jekyll theme to get something decent up and running.  Basically, you get a whole bunch of page layouts and boilerplate code in the jekyll language and structure with this repository that you can do a ton of customization on. There’s a nice quick-start guide here that I used.  Getting Minimal Mistakes to Work on GitHub  At first, I naively tried to use the gem-based method to get the template running. That actually worked pretty well in VS Code in my local browser. Just adding this gem and running the build and server got it working locally. I was able to play around a lot and spin up a website.  BUT WAIT, since the location I was deploying the site (github pages, coming up below) is limited in its build-ability (see this SO conversation), my naive approach didn’t work.  Instead you need to follow here, and have a Gemfile that looks like:  source &quot;https://rubygems.org&quot;  gem &quot;github-pages&quot;, group: :jekyll_plugins gem &quot;jekyll-include-cache&quot;, group: :jekyll_plugins   You also need to:     Add jekyll-include-cache to the plugins array of your _config.yml   Run bundle in the directory to update teh bundled gems   Add remote_theme: &quot;mmistakes/minimal-mistakes&quot; to your _config.yml file. Remove any other theme: or remote_theme: entry   Proto Directory Structure  After a lot of fooling around, I ended up with a prototype for my website that basically looked like:  my-website ├── _data                      # data files for customizing the theme |  ├── navigation.yml          # main navigation links |  └── ui-text.yml             # text used throughout the theme&#39;s UI ├── _pages                     # a sub-directory with all pages on my site |  ├── 404.md                   |  ├── about.md                 |  ├── cv.md                    |  ├── publications.md          |  └── research.md              ├── assets |  ├── documents               # some documents I link to |  ├── images                  # images on my website |  └── videos                  # videos on my website ├── README.md                  ├── _config.yml                # site configuration ├── Gemfile                    # gem file dependencies └── Gemfile.lock               # gemlock file, you can actually delete this   The git commit with all of that is here.  BUT WAIT, where the heck is all of the other files that jekyll needs… assets, _layouts, _includes, and _sass are stored in the theme’s gem! So I don’t need to make these directories or files! If you would like to make changes, create the files and Jekyll will prefer your local copy (source).  Where to host?  If you’re like me, then you may have dove deep on spinning up a nice website at http://localhost:4000/ while running jekyll serve in VS Code. Now comes the question, where do I actually deploy my website online so other people can see it?  Basically, this comes down to a matter of getting the static _site/ directory hosted on a server somewhere.  I deployed my site with github pages, mostly because it’s free and you can find a lot of help online from people doing the same.  Setting up github  First I created a new repository on my github account called [USERNAME].github.io (for me that would be repo at https://github.com/bpurinton/bpurinton.github.io). I set it to Public and initialized it with no license or README.  Now, back in my nice website directory, I renamed the directory bpurinton.github.io to match my github repo. I also added a README file, but I left this mostly blank.  Since I had been running the static site built with jekyll serve (which runs jekyll build), I had the _site/ directory ready to go. But github pages runs its own build on the repo, so at this point I can actually delete the _site/ directory. Basically, I use _site/ when I’m in production mode in VS Code and using the local port browser to make updates. When it’s time to push stuff to github, I just delete this directory. There’s probably a better way to do this by preventing _site/ from pushing, but that’s something for future Ben.  At this point I ran the following git commands from the VS Code terminal in the website directory (because I have git installed and available at the command line):  # initialize the repository with a .git/ directory git init  # add all files in the directory git add .  # commit the files git commit -m &quot;first commit&quot;  # set the current branch (I think?) git branch -M main  # set the upstream push location git remote add origin https://github.com/bpurinton/bpurinton.github.io.git  # push my files up git push -u origin main   Deploying  Now we need to do a few things (always pushing the changes with new git commits):     In _config.yml set url : &quot;https://[USERNAME].github.io&quot; and set repository : &quot;[USERNAME]/[USERNAME].github.io&quot;   On the github repository, go to “Settings” &gt; “Pages” and set the “Source” &gt; “Deploy from branch”, “Branch” to main.   Make sure the page is deployed at https://[USERNAME].github.io   The deployment will be running in the “Actions” tab of the repository, and you can monitor it there (everytime you push a change to your github repo, this action will be run). If there are errors, the page won’t deploy, but if everything goes well, then you will see the confirmation and if you navigate to https://[USERNAME].github.io, then you will see your static website online!">
 
 
 
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-01-03T00:00:00-09:00">
+  <meta property="article:published_time" content="2023-01-03T00:00:00-08:00">
 
 
 
@@ -99,7 +99,7 @@
 <!-- <link rel="icon" type="image/x-icon" href="/assets/images/favicon-test.ico"> -->
   </head>
 
-  <body class="layout--posts">
+  <body class="layout--single">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -152,6 +152,8 @@
 
 
 
+
+
 <div id="main" role="main">
   
   <div class="sidebar sticky">
@@ -185,7 +187,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
-          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Nome, Alaska</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, Washington</span>
         </li>
       
 
@@ -279,11 +281,61 @@
 
 
 
-  <div class="archive">
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Getting started with a jekyll, minimal mistakes, and github pages">
+    <meta itemprop="description" content="This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., _layouts/, _includes/, _data/navigation.yml).The files are a combination of CSS, Markdown, and HTML. There are also control-flow embedded tags in Liquid, that work very similar to embedded Ruby, and give access to global variables like paginator and site. If you see a .md or .html file headed by ---, then you can put Liquid tags there, because this is frontmatter that jekyll is looking for. All sorts of things go in there like the page title, navigation links, and more. I could go on, but let’s get to the practical implementation.Starting a siteThe easiest way to learn jekyll is by following their simple tutorial. I just want to summarize the steps that I did to get up and running.I opened a new VS Code project in a folder call my-website/. I previously installed Ruby and RubyGems on my local laptop (running Windows 10), so I was able to go to the PowerShell terminal in VS Code and run&gt; gem install jekyll bundlerThis installed jekyll (somewhere in my C:\Ruby31-x64 directory – sidenote, this is similar to the way I’m used to conda installing Python packages). Then I ran:&gt; bundle initThat created a blank Gemfile in the directory, and into that file I dropped:gem &quot;jekyll&quot;After this, back at the terminal I ran:&gt; bundleThis installed jekyll, because that’s what bundle does! It looks in you Gemfile and installs all the gems you need for the project.At this point, I was able to make a toy file index.html in the my-website/ root directory, and then run at the terminal:&gt; jekyll serve --livereloadJekyll is a static site generator! So when I run this command, it first automatically does a jekyll build, which creates a new directory _site/ containing all the pages to be published online as HTML.With the _site/ built, jekyll serve now gives me access to a local port http://localhost:4000/ that I can navigate to in a new internet browser window, and --livereload will insure that most changes I make on VS Code are automatically shown in the browser! Some changes (like those to _config.yml) will need to have the server restarted to show them (i.e., a new jekyll build has to run).Overall, we have a great environment with VS Code for editing files, and the browser for viewing our website. There’s so much more jekyll to learn.Minimal MistakesBuilding up an entire website from scratch with jekyll would be a lot of work, especially for something asthetically pleasing. So I took a common shortcut, and used the minimal mistakes jekyll theme to get something decent up and running.Basically, you get a whole bunch of page layouts and boilerplate code in the jekyll language and structure with this repository that you can do a ton of customization on. There’s a nice quick-start guide here that I used.Getting Minimal Mistakes to Work on GitHubAt first, I naively tried to use the gem-based method to get the template running. That actually worked pretty well in VS Code in my local browser. Just adding this gem and running the build and server got it working locally. I was able to play around a lot and spin up a website.BUT WAIT, since the location I was deploying the site (github pages, coming up below) is limited in its build-ability (see this SO conversation), my naive approach didn’t work.Instead you need to follow here, and have a Gemfile that looks like:source &quot;https://rubygems.org&quot;gem &quot;github-pages&quot;, group: :jekyll_pluginsgem &quot;jekyll-include-cache&quot;, group: :jekyll_pluginsYou also need to:  Add jekyll-include-cache to the plugins array of your _config.yml  Run bundle in the directory to update teh bundled gems  Add remote_theme: &quot;mmistakes/minimal-mistakes&quot; to your _config.yml file. Remove any other theme: or remote_theme: entryProto Directory StructureAfter a lot of fooling around, I ended up with a prototype for my website that basically looked like:my-website├── _data                      # data files for customizing the theme|  ├── navigation.yml          # main navigation links|  └── ui-text.yml             # text used throughout the theme&#39;s UI├── _pages                     # a sub-directory with all pages on my site|  ├── 404.md                  |  ├── about.md                |  ├── cv.md                   |  ├── publications.md         |  └── research.md             ├── assets|  ├── documents               # some documents I link to|  ├── images                  # images on my website|  └── videos                  # videos on my website├── README.md                 ├── _config.yml                # site configuration├── Gemfile                    # gem file dependencies└── Gemfile.lock               # gemlock file, you can actually delete thisThe git commit with all of that is here.BUT WAIT, where the heck is all of the other files that jekyll needs… assets, _layouts, _includes, and _sass are stored in the theme’s gem! So I don’t need to make these directories or files! If you would like to make changes, create the files and Jekyll will prefer your local copy (source).Where to host?If you’re like me, then you may have dove deep on spinning up a nice website at http://localhost:4000/ while running jekyll serve in VS Code. Now comes the question, where do I actually deploy my website online so other people can see it?Basically, this comes down to a matter of getting the static _site/ directory hosted on a server somewhere.I deployed my site with github pages, mostly because it’s free and you can find a lot of help online from people doing the same.Setting up githubFirst I created a new repository on my github account called [USERNAME].github.io (for me that would be repo at https://github.com/bpurinton/bpurinton.github.io). I set it to Public and initialized it with no license or README.Now, back in my nice website directory, I renamed the directory bpurinton.github.io to match my github repo. I also added a README file, but I left this mostly blank.Since I had been running the static site built with jekyll serve (which runs jekyll build), I had the _site/ directory ready to go. But github pages runs its own build on the repo, so at this point I can actually delete the _site/ directory. Basically, I use _site/ when I’m in production mode in VS Code and using the local port browser to make updates. When it’s time to push stuff to github, I just delete this directory. There’s probably a better way to do this by preventing _site/ from pushing, but that’s something for future Ben.At this point I ran the following git commands from the VS Code terminal in the website directory (because I have git installed and available at the command line):# initialize the repository with a .git/ directorygit init# add all files in the directorygit add .# commit the filesgit commit -m &quot;first commit&quot;# set the current branch (I think?)git branch -M main# set the upstream push locationgit remote add origin https://github.com/bpurinton/bpurinton.github.io.git# push my files upgit push -u origin mainDeployingNow we need to do a few things (always pushing the changes with new git commits):  In _config.yml set url : &quot;https://[USERNAME].github.io&quot; and set repository : &quot;[USERNAME]/[USERNAME].github.io&quot;  On the github repository, go to “Settings” &gt; “Pages” and set the “Source” &gt; “Deploy from branch”, “Branch” to main.  Make sure the page is deployed at https://[USERNAME].github.ioThe deployment will be running in the “Actions” tab of the repository, and you can monitor it there (everytime you push a change to your github repo, this action will be run). If there are errors, the page won’t deploy, but if everything goes well, then you will see the confirmation and if you navigate to https://[USERNAME].github.io, then you will see your static website online!">
+    <meta itemprop="datePublished" content="2023-01-03T00:00:00-08:00">
     
-      <h1 id="page-title" class="page__title">Getting started with a jekyll, minimal mistakes, and github pages</h1>
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/fresh-jekyll/" class="u-url" itemprop="url">Getting started with a jekyll, minimal mistakes, and github pages
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
     
-    <p>This site was built with <a href="https://jekyllrb.com/" target="_blank">jekyll</a>. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., <code class="language-plaintext highlighter-rouge">_layouts/</code>, <code class="language-plaintext highlighter-rouge">_includes/</code>, <code class="language-plaintext highlighter-rouge">_data/navigation.yml</code>).</p>
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-01-03T00:00:00-08:00">January 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Content</h4></header>
+              <ul class="toc__menu"><li><a href="#starting-a-site">Starting a site</a></li><li><a href="#minimal-mistakes">Minimal Mistakes</a><ul><li><a href="#getting-minimal-mistakes-to-work-on-github">Getting Minimal Mistakes to Work on GitHub</a></li></ul></li><li><a href="#proto-directory-structure">Proto Directory Structure</a></li><li><a href="#where-to-host">Where to host?</a></li><li><a href="#setting-up-github">Setting up github</a></li><li><a href="#deploying">Deploying</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>This site was built with <a href="https://jekyllrb.com/" target="_blank">jekyll</a>. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming language Ruby. Jekyll uses a defined file structure, similar to Ruby on Rails, where there are specific ways to name folders and files (e.g., <code class="language-plaintext highlighter-rouge">_layouts/</code>, <code class="language-plaintext highlighter-rouge">_includes/</code>, <code class="language-plaintext highlighter-rouge">_data/navigation.yml</code>).</p>
 
 <p>The files are a combination of CSS, Markdown, and HTML. There are also control-flow embedded tags in <a href="https://shopify.github.io/liquid/" target="_blank">Liquid</a>, that work very similar to embedded Ruby, and give access to global variables like <code class="language-plaintext highlighter-rouge">paginator</code> and <code class="language-plaintext highlighter-rouge">site</code>. If you see a <code class="language-plaintext highlighter-rouge">.md</code> or <code class="language-plaintext highlighter-rouge">.html</code> file headed by <code class="language-plaintext highlighter-rouge">---</code>, then you can put Liquid tags there, because this is frontmatter that jekyll is looking for. All sorts of things go in there like the page title, navigation links, and more. I could go on, but let’s get to the practical implementation.</p>
 
@@ -430,81 +482,89 @@
 <p>The deployment will be running in the “Actions” tab of the repository, and you can monitor it there (<em>everytime you push a change to your github repo, this action will be run</em>). If there are errors, the page won’t deploy, but if everything goes well, then you will see the confirmation and if you navigate to <code class="language-plaintext highlighter-rouge">https://[USERNAME].github.io</code>, then you will see your static website online!</p>
 
 
+        
+      </section>
 
-<ul class="taxonomy__index">
+      <footer class="page__meta">
+        
+        
   
+
+
   
-    <li>
-      <a href="#2023">
-        <strong>2023</strong> <span class="taxonomy__count">5</span>
-      </a>
-    </li>
-  
-</ul>
 
-
-
-
-  <section id="2023" class="taxonomy__section">
-    <h2 class="archive__subtitle">2023</h2>
-    <div class="entries-list">
-      
-        
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
     
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/sitemap-and-SEO/" rel="permalink">Adding a <code class="language-plaintext highlighter-rouge">sitemap.xml</code> for SEO
-</a>
-      
-    </h2>
+      <a href="/tags/#github-pages" class="page__taxonomy-item p-category" rel="tag">github-pages</a><span class="sep">, </span>
     
-
-  <p class="page__meta">
+      <a href="/tags/#jekyll" class="page__taxonomy-item p-category" rel="tag">jekyll</a><span class="sep">, </span>
     
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2023-01-04T00:00:00-09:00">January 4, 2023</time>
-      </span>
+      <a href="/tags/#minimal-mistakes" class="page__taxonomy-item p-category" rel="tag">minimal-mistakes</a>
     
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          1 minute read
-        
-      </span>
-    
+    </span>
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">SEO stands for Search Engine Optimization. I want to improve how my site comes up when people search for it. As usual, I’m relying heavily on this wonderful ...</p>
-  </article>
-</div>
 
-      
+
         
 
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-01-03T00:00:00-08:00">January 3, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Getting+started+with+a+jekyll%2C+minimal+mistakes%2C+and+github+pages%20http%3A%2F%2Flocalhost%3A4000%2Ffresh-jekyll%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ffresh-jekyll%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ffresh-jekyll%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
 
 
-<div class="list__item">
+      
+  <nav class="pagination">
+    
+      <a href="/deploying-own-domain/" class="pagination--pager" title="Deploying github page to own domain
+">Previous</a>
+    
+    
+      <a href="/hi/" class="pagination--pager" title="First Post!
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/sea-ice-office.jpg" alt="">
+      </div>
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/hi/" rel="permalink">First Post!
+        <a href="/sea-ice-radar/" rel="permalink">Exploring Nome’s Sea Ice with Satellite and Ground Radar
 </a>
       
     </h2>
@@ -514,9 +574,9 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+        <time datetime="2023-04-12T00:00:00-07:00">April 12, 2023</time>
       </span>
     
 
@@ -527,53 +587,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          less than 1 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">This blog is going to be a collection of notes to myself, hopefully some of these are useful to others. I will post about computer programming and mix that i...</p>
-  </article>
-</div>
-
-      
-        
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/fresh-jekyll/" rel="permalink">Getting started with a jekyll, minimal mistakes, and github pages
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           6 minute read
         
@@ -582,21 +596,27 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">This site was built with jekyll. In my own words, this is a static (as opposed to dynamic? I think so) website generator that is written in the programming l...</p>
+    <p class="archive__item-excerpt" itemprop="description">I recently found out about UAF’s sea-ice radar monitor at the end of the pier in Nome’s port.
+
+</p>
   </article>
 </div>
 
-      
         
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/deploying-own-domain/" rel="permalink">Deploying github page to own domain
+        <a href="/docker-geemap/" rel="permalink">Running dockerized google earth engine (GEE) map
 </a>
       
     </h2>
@@ -606,9 +626,9 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+        <time datetime="2023-03-25T00:00:00-07:00">March 25, 2023</time>
       </span>
     
 
@@ -619,7 +639,7 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
           1 minute read
         
@@ -628,23 +648,27 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">I wanted something a little more professional than https://[USERNAME].github.io for my website name. Come on, https://bendirt.com is at least memorable!
+    <p class="archive__item-excerpt" itemprop="description">The steps I took to open and run a dockerized geemap:
 
 </p>
   </article>
 </div>
 
-      
         
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/backtick-code-color/" rel="permalink">Changing in-line code color
+        <a href="/notes-on-git/" rel="permalink">Notes on using git
 </a>
       
     </h2>
@@ -654,9 +678,9 @@
     
       
       <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2023-01-03T00:00:00-09:00">January 3, 2023</time>
+        <time datetime="2023-03-18T00:00:00-07:00">March 18, 2023</time>
       </span>
     
 
@@ -667,27 +691,78 @@
       
 
       <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          less than 1 minute read
+          10 minute read
         
       </span>
     
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">I was getting annoyed with the difficulty of seeing the code with `` (backtick) symbols in my blog posts. To change these colors I went into my _sass/minimal...</p>
+    <p class="archive__item-excerpt" itemprop="description">I’m currently going through the extremely helpful thoughtbot git tutorial. I want to leave some notes here for future reference.
+
+</p>
   </article>
 </div>
 
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
-    </div>
-    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
-  </section>
+        <a href="/merging-feature-branch/" rel="permalink">Git merging main into an in-progress feature-branch
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-17T00:00:00-07:00">March 17, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
 
 
-  </div>
+    <p class="archive__item-excerpt" itemprop="description">In a collaborative (or solo) git project I’m often in a position where I was working on a feature-branch, got busy, stopped working on it, then came back to ...</p>
+  </article>
 </div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
     </div>
 
     
@@ -738,7 +813,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 Ben Purinton. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2025 Ben Purinton. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

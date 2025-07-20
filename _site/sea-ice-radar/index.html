@@ -1,0 +1,804 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Exploring Nome’s Sea Ice with Satellite and Ground Radar | Ben Purinton</title>
+<meta name="description" content="I recently found out about UAF’s sea-ice radar monitor at the end of the pier in Nome’s port.">
+
+
+  <meta name="author" content="Ben Purinton">
+  
+  <meta property="article:author" content="Ben Purinton">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ben Purinton">
+<meta property="og:title" content="Exploring Nome’s Sea Ice with Satellite and Ground Radar">
+<meta property="og:url" content="http://localhost:4000/sea-ice-radar/">
+
+
+  <meta property="og:description" content="I recently found out about UAF’s sea-ice radar monitor at the end of the pier in Nome’s port.">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/sea-ice-office.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2023-04-12T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/sea-ice-radar/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ben Purinton",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ben Purinton Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<!-- <link rel="icon" type="image/x-icon" href="/assets/images/favicon-test.ico"> -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ben Purinton
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/research/">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/publications/">Publications</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/purinton_profile_photo.jpg" alt="Ben Purinton" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Ben Purinton</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Howdy. I like dirt :) And computer coding.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, Washington</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ben.purinton@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/bpurinton" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/dirt_facts" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/benjamin-purinton-3137905a/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Exploring Nome’s Sea Ice with Satellite and Ground Radar">
+    <meta itemprop="description" content="I recently found out about UAF’s sea-ice radar monitor at the end of the pier in Nome’s port.">
+    <meta itemprop="datePublished" content="2023-04-12T00:00:00-07:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/sea-ice-radar/" class="u-url" itemprop="url">Exploring Nome’s Sea Ice with Satellite and Ground Radar
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-12T00:00:00-07:00">April 12, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Content</h4></header>
+              <ul class="toc__menu"><li><a href="#quick-radar-background">Quick radar background</a></li><li><a href="#on-to-the-good-stuff">On to the good stuff</a><ul><li><a href="#what-does-it-actually-look-like">What does it actually look like?</a></li><li><a href="#sentinel-1-satellite-radar">Sentinel-1 Satellite Radar</a><ul><li><a href="#what-about-the-other-polarization">What about the other polarization?</a></li></ul></li><li><a href="#radar-from-port">Radar From Port</a></li><li><a href="#hold-up-why-not-optical-images">Hold up, why not optical images?</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>I recently found out about <a href="https://seaice.alaska.edu/gi/observatories/nome_radar/" target="_blank">UAF’s sea-ice radar monitor</a> at the end of the pier in Nome’s port.</p>
+
+<p><img style="border: 2px solid black" src="https://seaice.alaska.edu/gi/observatories/nome_radar/nome_radar-placement2.png" alt="Pier Radar" width="500" /></p>
+<p align="left">
+<i>Location of radar in port of Nome. Image from <a href="https://seaice.alaska.edu/gi/observatories/nome_radar/" target="_blank">here</a>.</i>
+</p>
+
+<p><img style="border: 2px solid black" src="/assets/images/nome-pier-radar-4-12.png" alt="Latest Radar" width="500" /></p>
+<p align="left">
+<i>Latest radar image from the port.</i>
+</p>
+
+<p>Naturally, I wanted to investigate how this ground-based radar compares with satellite observations of recent sea ice conditions. Here’s what I found out.</p>
+
+<h1 id="quick-radar-background">Quick radar background</h1>
+
+<p>Radar sensors measure light (a.k.a. radiation) reflected off of surfaces. Just like a human eye; however the wavelength of radar used here is in the centimeter range, which is many many times longer than the visible light our eyes perceive in the nanometer range. In short, we can’t see these radar light waves, but the radar sensors can.</p>
+
+<p>Essentially, these sensors emit radiation (a.k.a. light) at a specific frequency and measure the amount of light returned to the sensor. In general, smoother surfaces reflect more light away (like looking at a mirror from the side) and rougher surfaces reflect more light back towards the sensor.</p>
+
+<p>The exact interaction of the light with sea ice and open water is more complex, but in general <strong>smoother surfaces</strong> like calm open water and smoother sea ice <strong>show up as darker</strong> in the radar image, whereas windy water, sea ice ridges, and a variety of other <strong>rougher surfaces</strong> from sea ice <strong>show up as lighter</strong> in the radar image.</p>
+
+<p><strong>BIG DISCLAIMER:</strong> The interpretation of sea ice from radar images is very difficult, and I am not an expert. Always use extreme caution when venturing out on the ice pack. <a href="https://driftnoise.com/sentinel-1-information.html" target="_blank">This is an excellent guide</a> to sea ice interpretation from radar, and here’s an image showing the general relationship and myriad complications of measuring sea ice extent and type from radar imagery:</p>
+
+<p><img style="border: 2px solid black" src="https://driftnoise.com/static/images/s1_backscatter_qualitative.png" alt="Radar and Sea Ice" width="500" /></p>
+<p align="left">
+<i>Image from <a href="https://driftnoise.com/sentinel-1-information.html" target="_blank">here</a>, based on modification of <a href="http://articles.adsabs.harvard.edu//full/1996ESASP.383..291J/0000291.000.html" target="_blank">Johannessen et al. (1997)</a></i>
+</p>
+
+<p>The basic thing to keep in mind is:</p>
+
+<ul>
+  <li>smoother = low radar backscatter = darker in radar image</li>
+  <li>rougher = high radar backscatter = lighter in radar image</li>
+</ul>
+
+<h1 id="on-to-the-good-stuff">On to the good stuff</h1>
+
+<p>With that out of the way, let’s look at some pretty pictures.</p>
+
+<h2 id="what-does-it-actually-look-like">What does it <em>actually</em> look like?</h2>
+
+<p>Before we get into the weird world of radar, how does it look with our own eyes on the coast off of Nome right now?</p>
+
+<p><img style="border: 2px solid black" src="/assets/images/sea-ice-office.jpg" alt="Sea Ice Picture" width="500" /></p>
+
+<p>That’s a picture from today. You can see the relatively smoother, stable, older ice near-shore and then some ridges of rafted ice about one or two kilometers out in the distance.</p>
+
+<h2 id="sentinel-1-satellite-radar">Sentinel-1 Satellite Radar</h2>
+
+<p>The satellite data I want to check out is from the Sentinel-1 satellite pair. These are radar (technically a synthetic aperture radar, or SAR) satellites that have been up in orbit since 2015. The data is free to the public. Unfortunately, <a href="https://sentinels.copernicus.eu/web/sentinel/-/end-of-mission-of-the-copernicus-sentinel-1b-satellite/1.5" target="_blank">one of these pair was recently decommissioned</a>, so rather than getting an image every day or two in the arctic, we only get one every four or five days.</p>
+
+<p>Here’s a timelapse of sea ice from a few days when the satellite was passing over Nome in the past few weeks:</p>
+
+<p><img src="/assets/images/sentinel1-VV.gif" alt="" /></p>
+
+<p>(I made the Sentinel timelapse images throughout this post using <a href="https://geemap.org/" target="_blank">Google Earth Engine</a>.)</p>
+
+<p>For reference, the cross in the top center of the timelapse is the airport (each arm of the cross is a runway), and the town of Nome is the bright (white) patch just east of the airport. The Bering Sea is everything south of the east-west oriented coastline and the port is the white arm sticking out into the sea off of the coast.</p>
+
+<p>And look! The runways are a smooth surface, and they appear dark in the radar image (low backscatter), whereas town is very rough (lots of buildings) and thus appears very light in the radar image (high backscatter).</p>
+
+<p>If we keep in mind that general rule, then we can interpret the whiter pixels in the Bering Sea as rough sea ice. Although it could also be rough, windy seas, but the winds have not been especially strong these first few weeks of April. On the other hand, it has been <em>very, very cold</em> (record breaking for April in fact). So white = rough sea ice, and that makes the darker black pixels open water. Pixels in between black and white might be some of that smoother ice like we saw in my photo just off the coast.</p>
+
+<p>Look how much it’s changing a few kilometers off of the coast in the two weeks shown in this timelapse! Neat! (And tread carefully out there.)</p>
+
+<h3 id="what-about-the-other-polarization">What about the other polarization?</h3>
+
+<p>Okay, true, I only showed the VV (vertical-vertical) polarized timelapse, but we can also look at the cross-polarized (vertical-horizontal, or VH) image from Sentinel-1. There are differences in the sea-ice interaction between these two modes of sensor operation, but in general the results are similar, showing near-shore consistent ice pack and a lot of movement nearby off shore:</p>
+
+<p><img src="/assets/images/sentinel1-VH.gif" alt="" /></p>
+
+<p>I also really like how the radar images show the smoother (darker pixels) on the land north of the coastline, where the tundra is covered in several meters of mostly smooth snow. The lighter pixels on the land are a mixture of human infrastructure (buildings, roads, mining operations) and natural, rough features occurring in river valleys (willows poking up through the snow).</p>
+
+<h2 id="radar-from-port">Radar From Port</h2>
+
+<p>It looks like something happened between April 5th and 10th that dramatically changed the ice extent and opened up a large amount of open water a few kilometers off of the coast. Unfortunately, we only have a limited number of satellite scenes, so we can’t fill those gaps from the current data.</p>
+
+<p>But, how do the ground-based port radar measurements represent this time period?</p>
+
+<p>A couple of notes in comparison to the Sentinel-1 satellite: the ground based radar has a much higher spatial resolution (each pixel shows a smaller area), it has a much higher temporal resolution (the timelapse is composed of one image every four minutes), and the radar wavelength is shorter (by about half).</p>
+
+<p>Regardless of these differences, the same general rule of darker = smoother and lighter = rougher hold for interpreting this video timelapse courtesy of UAF (Press the play button to watch it):</p>
+
+<figure class="video_container">
+<video style="border: 2px solid black" width="600" controls="true">
+  <source src="/assets/videos/Nome_20230407to20230409.mp4" type="video/mp4" />
+</video>
+</figure>
+<p align="left">
+<i>Sea ice radar timelapse from April 7th, 8th, 9th <a href="https://seaice.alaska.edu/gi/observatories/nome_radar/" target="_blank">from here</a></i>
+</p>
+
+<p>Clearly in the early morning on April 8th, a big raft of ice broke off and began floating away, opening things up like we saw in the satellite! Thanks, port radar!</p>
+
+<p>There are a lot of differences compared to the satellite imagery (also in the extent of coverage, where the ground measurement is only showing an eight kilometer radius from the pier), but clearly the data is complementary and show generally similar trends:</p>
+
+<p>Nearby the shore we currently have pretty stable ice, but a few kilometers out we have frequent changes in the ice pack. Let’s see how long into the spring this ice lasts.</p>
+
+<h2 id="hold-up-why-not-optical-images">Hold up, why not optical images?</h2>
+
+<p>Radar is neat and all, but we also have a bunch of optical satellites orbiting the earth, like Landsat and Sentinel-2. Why not just use these easy-to-interpret pictures from space?</p>
+
+<p>Well, in this case, we actually do have some nice Sentinel-2 imagery to corroborate the radar data (ice becoming open water):</p>
+
+<p><img src="/assets/images/sentinel2-with-text.gif" alt="" /></p>
+
+<p>But, the first image in this timelapse from March 26th shows the issue with optical data: it doesn’t penetrate cloud cover. And cloudy days are pretty frequent, making it difficult to get the consistent measurement of sea ice that radar offers with its ability to “see through” any cloud cover.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#geemap" class="page__taxonomy-item p-category" rel="tag">geemap</a><span class="sep">, </span>
+    
+      <a href="/tags/#nome" class="page__taxonomy-item p-category" rel="tag">nome</a><span class="sep">, </span>
+    
+      <a href="/tags/#sar" class="page__taxonomy-item p-category" rel="tag">sar</a><span class="sep">, </span>
+    
+      <a href="/tags/#sea-ice" class="page__taxonomy-item p-category" rel="tag">sea-ice</a><span class="sep">, </span>
+    
+      <a href="/tags/#sentinel" class="page__taxonomy-item p-category" rel="tag">sentinel</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-04-12T00:00:00-07:00">April 12, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Exploring+Nome%27s+Sea+Ice+with+Satellite+and+Ground+Radar%20http%3A%2F%2Flocalhost%3A4000%2Fsea-ice-radar%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fsea-ice-radar%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fsea-ice-radar%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/docker-geemap/" class="pagination--pager" title="Running dockerized google earth engine (GEE) map
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docker-geemap/" rel="permalink">Running dockerized google earth engine (GEE) map
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-25T00:00:00-07:00">March 25, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">The steps I took to open and run a dockerized geemap:
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/notes-on-git/" rel="permalink">Notes on using git
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-18T00:00:00-07:00">March 18, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’m currently going through the extremely helpful thoughtbot git tutorial. I want to leave some notes here for future reference.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/merging-feature-branch/" rel="permalink">Git merging main into an in-progress feature-branch
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-17T00:00:00-07:00">March 17, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In a collaborative (or solo) git project I’m often in a position where I was working on a feature-branch, got busy, stopped working on it, then came back to ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ruby-on-rails-with-postgres/" rel="permalink">Setting up Ruby on Rails with PostgreSQL
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-02-15T00:00:00-08:00">February 15, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I just spent a long time getting my Windows machine setup with Ruby on Rails and the PostgreSQL database in order to work on some software development. Here ...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/bpurinton/bpurinton.github.io" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Ben Purinton. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
