@@ -3,95 +3,739 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Not Yet Published</title>
+    <title>Dr. Benjamin Purinton - CV</title>
     <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
             background: #f8f9fa;
             padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
         }
-        .message-container {
-            max-width: 600px;
+
+        .cv-container {
+            max-width: 800px;
+            margin: 0 auto;
             background: white;
-            padding: 40px;
-            border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .print-controls {
             text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
         }
-        h1 {
-            color: #e8b76b;
-            margin-bottom: 20px;
-        }
-        p {
-            margin-bottom: 20px;
-            color: #666;
-        }
-        .button {
-            display: inline-block;
-            padding: 12px 24px;
+
+        .print-btn {
             background: linear-gradient(135deg, #e8b76b, #d4a347);
             color: white;
-            text-decoration: none;
+            border: none;
+            padding: 12px 24px;
             border-radius: 6px;
+            font-size: 1em;
             font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .button:hover {
-            transform: translateY(-2px);
+
+        .print-btn:hover {
+            transform: translateY(-1px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
-        .instructions {
-            margin-top: 30px;
-            padding: 20px;
+
+        .section-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            justify-content: flex-end;
+        }
+
+        .section-btn {
+            background: #e8b76b;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            opacity: 0.8;
+        }
+
+        .section-btn:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .section-btn.delete {
+            background: #dc3545;
+        }
+
+        .item-controls {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            justify-content: flex-end;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .experience-item:hover .item-controls,
+        .education-item:hover .item-controls,
+        .publication-item:hover .item-controls,
+        .achievement-item:hover .item-controls,
+        .skill-category:hover .item-controls,
+        .project-item:hover .item-controls {
+            opacity: 1;
+        }
+
+        .item-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .item-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .item-btn.delete {
+            background: #dc3545;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e8b76b 0%, #d4a347 100%);
+            color: white;
+            padding: 30px 30px 25px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .title {
+            font-size: 1.2em;
+            font-weight: 300;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.95em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item::before {
+            display: none;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #e8b76b;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e9ecef;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(135deg, #e8b76b, #d4a347);
+        }
+
+        .summary {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #555;
+            text-align: justify;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding: 15px;
             background: #f8f9fa;
             border-radius: 6px;
-            text-align: left;
+            border-left: 4px solid #e8b76b;
         }
-        .instructions h3 {
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .company {
+            font-size: 1em;
+            color: #e8b76b;
+            font-weight: 500;
+        }
+
+        .date {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 500;
+            background: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            white-space: nowrap;
+        }
+
+        .job-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .job-description ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .job-description li {
+            margin-bottom: 6px;
+        }
+
+        .tech-stack {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #e9ecef;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .project-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #e8b76b;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            color: #e8b76b;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: opacity 0.2s;
+        }
+
+        .project-link:hover {
+            opacity: 0.8;
+        }
+
+        .project-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-top: 3px solid #e8b76b;
+        }
+
+        .skill-category h4 {
+            font-size: 1em;
+            font-weight: 600;
             color: #333;
             margin-bottom: 10px;
         }
-        .instructions ol {
-            padding-left: 20px;
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: white;
+            color: #e8b76b;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            border: 1px solid #e9ecef;
+        }
+
+        .publication-item {
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .publication-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .publication-details {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .achievement-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #e8b76b;
+        }
+
+        .achievement-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .achievement-description {
+            font-size: 0.9em;
             color: #666;
         }
-        .instructions li {
-            margin-bottom: 8px;
+
+        @media print {
+            body { 
+                background: white; 
+                padding: 0; 
+                font-size: 12px;
+                line-height: 1.4;
+            }
+            .cv-container { 
+                box-shadow: none; 
+                border-radius: 0; 
+                max-width: none;
+                margin: 0;
+            }
+            .print-controls { display: none; }
+            .section-controls { display: none; }
+            .item-controls { display: none; }
+            .header { 
+                break-inside: avoid; 
+                padding: 20px 20px 15px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .name {
+                font-size: 1.8em;
+                margin-bottom: 4px;
+            }
+            .title {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+            .section { 
+                break-inside: avoid-page; 
+                margin-bottom: 15px;
+            }
+            .section-title {
+                font-size: 1.1em;
+                margin-bottom: 8px;
+                padding-bottom: 4px;
+            }
+            .experience-item, .education-item {
+                margin-bottom: 12px;
+                padding: 10px;
+                break-inside: avoid;
+            }
+            .job-title {
+                font-size: 1em;
+            }
+            .company {
+                font-size: 0.9em;
+            }
+            .job-description {
+                font-size: 0.9em;
+                line-height: 1.3;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            .skill-category {
+                padding: 8px;
+            }
+            .skill-category h4 {
+                font-size: 0.9em;
+                margin-bottom: 6px;
+            }
+            .skill-tag {
+                font-size: 0.7em;
+                padding: 3px 6px;
+            }
+            .publication-item, .achievement-item {
+                margin-bottom: 8px;
+                padding: 8px;
+            }
         }
-        code {
-            background: #e9ecef;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: monospace;
+
+        @media (max-width: 768px) {
+            .cv-container { margin: 10px; }
+            .header, .main-content { padding: 15px; }
+            .name { font-size: 1.8em; }
+            .contact-info { flex-direction: column; gap: 10px; }
+            .experience-header { flex-direction: column; align-items: flex-start; }
+            .skills-grid { grid-template-columns: 1fr; }
         }
+
+        /* Editable styling */
+        [contenteditable="true"] {
+            outline: none;
+            transition: background-color 0.2s;
+        }
+
+        [contenteditable="true"]:hover {
+            background-color: rgba(232, 183, 107, 0.05);
+        }
+
+        [contenteditable="true"]:focus {
+            background-color: rgba(232, 183, 107, 0.1);
+        }
+    
+        /* Hide all controls in published version */
+        .print-controls, .section-controls, .item-controls { display: none !important; }
+        [contenteditable] { outline: none !important; }
+        [contenteditable]:hover { background-color: transparent !important; }
+        body { padding-top: 40px; }
     </style>
 </head>
 <body>
-    <div class="message-container">
-        <h1>📄 CV Not Yet Published</h1>
-        <p>The interactive CV hasn't been published yet. Please use the CV Builder to create and publish your CV.</p>
+    <div class="cv-container">
         
-        <a href="/cv-builder" class="button">Go to CV Builder</a>
         
-        <div class="instructions">
-            <h3>How to publish your CV:</h3>
-            <ol>
-                <li>Visit the <a href="/cv-builder">CV Builder</a></li>
-                <li>Fill in your information (your draft will auto-save locally)</li>
-                <li>Click the "🚀 Publish CV" button</li>
-                <li>Save the downloaded file as <code>_pages/cv-current.html</code></li>
-                <li>Commit and push to your repository</li>
-                <li>Your CV will be live at this URL!</li>
-            </ol>
-        </div>
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name" style="">Dr. Benjamin Purinton</h1>
+                <div class="title">Head of Operations, First Draft | Full-Stack Developer | Research Scientist</div>
+                <div class="contact-info">
+                    <div class="contact-item">📧 [your.email@company.com]</div>
+                    <div class="contact-item">📱 [+1 (555) 123-4567]</div>
+                    <div class="contact-item">📍 [City, State]</div>
+                    <div class="contact-item">🌐 [yourwebsite.com]</div>
+                    <div class="contact-item">💻 [github.com/yourusername]</div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-title">Professional Summary</h2>
+                <div class="summary">
+                    Innovative technologist and educator bridging the gap between rigorous scientific research and accessible technology education. As Head of Operations at [EdTech Company], I combine full-stack development expertise with a PhD in Remote Sensing to scale educational platforms and democratize programming knowledge. My unique trajectory—from analyzing satellite data and publishing ML algorithms to building web applications and teaching coding to beginners—positions me perfectly for roles at the intersection of education, technology, and AI. Passionate about leveraging data-driven insights and modern web technologies to create transformative learning experiences.
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Core Experience</h2>
+                
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Head of Operations</div>
+                            <div class="company">[Company Name] - Education Technology Startup</div>
+                        </div>
+                        <div class="date">[Start Date] - Present</div>
+                    </div>
+                    <div class="job-description">
+                        Leading end-to-end operations for a rapidly scaling coding education platform serving [X] students globally. Combining technical expertise with educational innovation to democratize programming education.
+                        <ul>
+                            <li>Architected and deployed scalable web applications supporting [X]% growth in student enrollment</li>
+                            <li>Developed full-stack features using Ruby on Rails, JavaScript, and PostgreSQL to enhance learning experience</li>
+                            <li>Applied machine learning principles from research background to analyze student performance data</li>
+                            <li>Built automated systems for curriculum deployment and student progress tracking</li>
+                            <li>Led cross-functional teams bridging engineering, education, and business operations</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <strong>Key Technologies:</strong> Ruby on Rails, JavaScript, PostgreSQL, HTML/CSS, Git, AWS, Docker
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Technical Skills</h2>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Engineering &amp; Development</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Ruby on Rails</span>
+                            <span class="skill-tag">JavaScript/Node.js</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">SQL/PostgreSQL</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">Git/GitHub</span>
+                            <span class="skill-tag">RESTful APIs</span>
+                            <span class="skill-tag">Docker</span>
+                        </div>
+                        
+                    </div>
+                    <div class="skill-category">
+                        <h4>Research Science</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Statistical Analysis</span>
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Remote Sensing</span>
+                            <span class="skill-tag">Geospatial Computing</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">NumPy/Pandas</span>
+                            <span class="skill-tag">GDAL/QGIS</span>
+                        </div>
+                        
+                    </div>
+                    <div class="skill-category">
+                        <h4>Teaching &amp; Communication</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Curriculum Design</span>
+                            <span class="skill-tag">Technical Writing</span>
+                            <span class="skill-tag">University Teaching</span>
+                            <span class="skill-tag">Beginner-Friendly Content</span>
+                            <span class="skill-tag">Public Speaking</span>
+                            <span class="skill-tag">Cross-Team Leadership</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Academic &amp; Research Background</h2>
+                
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">[Previous Research Position]</div>
+                            <div class="company">[Institution/Company Name]</div>
+                        </div>
+                        <div class="date">[Start Date] - [End Date]</div>
+                    </div>
+                    <div class="job-description">
+                        [Brief description of your research focus and key contributions]
+                        <ul>
+                            <li>[Key research achievement or publication]</li>
+                            <li>[Method or technique you developed/mastered]</li>
+                            <li>[Impact or application of your work]</li>
+                            <li>[Collaboration or leadership experience]</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">[Additional Research Role]</div>
+                            <div class="company">[Institution Name]</div>
+                        </div>
+                        <div class="date">[Start Date] - [End Date]</div>
+                    </div>
+                    <div class="job-description">
+                        [Description of role and achievements]
+                        <ul>
+                            <li>[Key accomplishment]</li>
+                            <li>[Technical skills demonstrated]</li>
+                            <li>[Research outcomes]</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+                
+                
+                <div class="education-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">[Ph.D./Master's] in [Field]</div>
+                            <div class="company">[University Name]</div>
+                        </div>
+                        <div class="date">[Graduation Year]</div>
+                    </div>
+                    <div class="job-description">
+                        Dissertation: "[Thesis Title]"<br>
+                        Advisor: [Advisor Name]<br>
+                        [Notable achievements, awards, or relevant coursework]
+                    </div>
+                    
+                </div>
+
+                <div class="education-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">[Bachelor's Degree] in [Field]</div>
+                            <div class="company">[University Name]</div>
+                        </div>
+                        <div class="date">[Graduation Year]</div>
+                    </div>
+                    <div class="job-description">
+                        [Honors, GPA if notable, relevant achievements]
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Selected Publications &amp; Research</h2>
+                
+                
+                <div class="publication-item">
+                    <div class="publication-title">[Publication Title]</div>
+                    <div class="publication-details">
+                        [Author names]. [Journal Name], [Year]. [DOI or link if applicable]
+                    </div>
+                    
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title">[Publication Title]</div>
+                    <div class="publication-details">
+                        [Author names]. [Journal Name], [Year]. [DOI or link if applicable]
+                    </div>
+                    
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title">[Conference Presentation or Additional Publication]</div>
+                    <div class="publication-details">
+                        [Details about presentation/publication]
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Awards &amp; Recognition</h2>
+                
+                <div class="achievements">
+                    <div class="achievement-item">
+                        <div class="achievement-title">[Award/Recognition Name]</div>
+                        <div class="achievement-description">[Year] - [Brief description of achievement]</div>
+                        
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-title">[Grant or Fellowship]</div>
+                        <div class="achievement-description">[Year] - [Amount if appropriate] - [Granting organization]</div>
+                        
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-title">[Professional Recognition]</div>
+                        <div class="achievement-description">[Year] - [Description of recognition]</div>
+                        
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
+    <script>
+        // Simple print function for published CV
+        function printCV() { window.print(); }
+    </script>
 </body>
 </html>
