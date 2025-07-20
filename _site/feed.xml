@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-20T12:47:48-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Purinton</title><subtitle>Made with jekyll and mimimal mistakes.</subtitle><author><name>Ben Purinton</name></author><entry><title type="html">Building an Interactive CV Builder with Claude</title><link href="http://localhost:4000/building-cv-builder-with-claude/" rel="alternate" type="text/html" title="Building an Interactive CV Builder with Claude" /><published>2025-01-20T00:00:00-08:00</published><updated>2025-01-20T00:00:00-08:00</updated><id>http://localhost:4000/building-cv-builder-with-claude</id><content type="html" xml:base="http://localhost:4000/building-cv-builder-with-claude/"><![CDATA[<p>As someone who straddles the worlds of academic research and tech education, I’ve always struggled with maintaining different versions of my CV. I have a comprehensive academic CV in LaTeX that spans multiple pages, and a condensed one-page version for industry roles. But updating both is tedious, and neither really captures my unique career trajectory.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-20T13:01:51-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Ben Purinton</title><subtitle>Made with jekyll and mimimal mistakes.</subtitle><author><name>Ben Purinton</name></author><entry><title type="html">Building an Interactive CV Builder with Claude</title><link href="http://localhost:4000/building-cv-builder-with-claude/" rel="alternate" type="text/html" title="Building an Interactive CV Builder with Claude" /><published>2025-07-20T00:00:00-07:00</published><updated>2025-07-20T00:00:00-07:00</updated><id>http://localhost:4000/building-cv-builder-with-claude</id><content type="html" xml:base="http://localhost:4000/building-cv-builder-with-claude/"><![CDATA[<p>As someone who straddles the worlds of academic research and tech education, I’ve always struggled with maintaining different versions of my CV. I have a comprehensive academic CV in LaTeX that spans multiple pages, and a condensed one-page version for industry roles. But updating both is tedious, and neither really captures my unique career trajectory.</p>
 
 <p>So I decided to build something better: an interactive, web-based CV builder that I could customize on the fly and publish directly to my Jekyll site. Here’s how I did it with the help of Claude.</p>
+
+<p>(It’s linked below at the end of the post, but if you’re anxious to have a look now: <a href="/cv-builder" target="_blank">Edit CV Builder</a>)</p>
 
 <h1 id="the-journey-begins-claude-artifacts">The Journey Begins: Claude Artifacts</h1>
 
@@ -102,7 +104,7 @@
 
 <ol>
   <li><strong>CV Builder</strong> (<code class="language-plaintext highlighter-rouge">/cv-builder</code>): An interactive editor where I can update my CV</li>
-  <li><strong>Static CV</strong> (<code class="language-plaintext highlighter-rouge">/cv-current</code>): The published, read-only version for visitors</li>
+  <li><strong>Static CV</strong> (<code class="language-plaintext highlighter-rouge">/cv-current</code>): The published, read-only version for visitors. I can print this page to save it as PDF for distribution.</li>
   <li><strong>CV Page</strong> (<code class="language-plaintext highlighter-rouge">/cv</code>): Displays the static CV in an iframe with links to the builder and PDF versions</li>
 </ol>
 
@@ -117,6 +119,12 @@
   <li><strong>No database needed</strong>: Perfect for static sites like Jekyll</li>
 </ul>
 
+<h2 id="next-up-features">Next Up Features</h2>
+
+<p>The interactive CV builder page doesn’t persist edits, since I didn’t want to complicate my static website with a database hookup for persistence. I’m okay with that for now, since I only rarely update my CV, and I don’t need the page to save work. Also, if I really want to make minor tweaks, I can just update the exported static HTML page.</p>
+
+<p>That said, the next thing to add to my CV builder would be persistence, so a visitor could save their work and load previous versions.</p>
+
 <h1 id="lessons-learned">Lessons Learned</h1>
 
 <ol>
@@ -128,21 +136,11 @@
 
 <h1 id="try-it-yourself">Try It Yourself</h1>
 
-<p>Want to build something similar? Here’s my advice:</p>
-
-<ol>
-  <li>Start with a clear vision of what you need</li>
-  <li>Use AI tools for rapid prototyping</li>
-  <li>Think carefully about where data should live</li>
-  <li>Don’t be afraid to pivot when you hit constraints</li>
-  <li>Keep the user experience front and center</li>
-</ol>
-
-<p>The code is all open source in my <a href="https://github.com/bpurinton/bpurinton.github.io">GitHub repository</a>. Feel free to adapt it for your own needs!</p>
+<p>The code is all open source in my <a href="https://github.com/bpurinton/bpurinton.github.io" target="_blank">GitHub repository</a>. Feel free to adapt it for your own needs!</p>
 
 <p>Building this CV builder was a fun exercise in creative problem-solving. It’s not every day you get to combine academic credentials, web development skills, and AI assistance to solve a personal productivity problem. But that’s exactly the kind of interdisciplinary thinking I love about my current role bridging research and education technology.</p>
 
-<p>Now if you’ll excuse me, I need to go update my CV… which is now as easy as clicking “Edit CV Builder” and typing! 🚀</p>]]></content><author><name>Ben Purinton</name></author><category term="web-development" /><category term="javascript" /><category term="claude-ai" /><category term="cv-builder" /><category term="html" /><category term="css" /><summary type="html"><![CDATA[How I built a dynamic, printable CV builder for my Jekyll site using Claude's new Artifacts feature and some creative problem-solving]]></summary></entry><entry><title type="html">Exploring Nome’s Sea Ice with Satellite and Ground Radar</title><link href="http://localhost:4000/sea-ice-radar/" rel="alternate" type="text/html" title="Exploring Nome’s Sea Ice with Satellite and Ground Radar" /><published>2023-04-12T00:00:00-07:00</published><updated>2023-04-12T00:00:00-07:00</updated><id>http://localhost:4000/sea-ice-radar</id><content type="html" xml:base="http://localhost:4000/sea-ice-radar/"><![CDATA[<p>I recently found out about <a href="https://seaice.alaska.edu/gi/observatories/nome_radar/" target="_blank">UAF’s sea-ice radar monitor</a> at the end of the pier in Nome’s port.</p>
+<p>Now if you’ll excuse me, I need to go update my CV… which is now as easy as clicking <a href="/cv-builder" target="_blank">Edit CV Builder</a> and typing! 🚀</p>]]></content><author><name>Ben Purinton</name></author><category term="web-development" /><category term="javascript" /><category term="claude-ai" /><category term="cv-builder" /><category term="html" /><category term="css" /><summary type="html"><![CDATA[How I built a dynamic, printable CV builder for my Jekyll site using Claude's new Artifacts feature and some creative problem-solving]]></summary></entry><entry><title type="html">Exploring Nome’s Sea Ice with Satellite and Ground Radar</title><link href="http://localhost:4000/sea-ice-radar/" rel="alternate" type="text/html" title="Exploring Nome’s Sea Ice with Satellite and Ground Radar" /><published>2023-04-12T00:00:00-07:00</published><updated>2023-04-12T00:00:00-07:00</updated><id>http://localhost:4000/sea-ice-radar</id><content type="html" xml:base="http://localhost:4000/sea-ice-radar/"><![CDATA[<p>I recently found out about <a href="https://seaice.alaska.edu/gi/observatories/nome_radar/" target="_blank">UAF’s sea-ice radar monitor</a> at the end of the pier in Nome’s port.</p>
 
 <p><img style="border: 2px solid black" src="https://seaice.alaska.edu/gi/observatories/nome_radar/nome_radar-placement2.png" alt="Pier Radar" width="500" /></p>
 <p align="left">

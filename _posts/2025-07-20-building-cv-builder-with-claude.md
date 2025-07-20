@@ -13,6 +13,8 @@ As someone who straddles the worlds of academic research and tech education, I'v
 
 So I decided to build something better: an interactive, web-based CV builder that I could customize on the fly and publish directly to my Jekyll site. Here's how I did it with the help of Claude.
 
+(It's linked below at the end of the post, but if you're anxious to have a look now: [Edit CV Builder](/cv-builder){: target="_blank"})
+
 # The Journey Begins: Claude Artifacts
 
 I started with Claude's web-based Artifacts tool, which lets you iterate on code in a visual interface. My initial prompt was simple:
@@ -109,7 +111,7 @@ One interesting bug we encountered: when generating the static HTML, I initially
 The result is a three-part system:
 
 1. **CV Builder** (`/cv-builder`): An interactive editor where I can update my CV
-2. **Static CV** (`/cv-current`): The published, read-only version for visitors
+2. **Static CV** (`/cv-current`): The published, read-only version for visitors. I can print this page to save it as PDF for distribution.
 3. **CV Page** (`/cv`): Displays the static CV in an iframe with links to the builder and PDF versions
 
 ## Key Features
@@ -121,6 +123,12 @@ The result is a three-part system:
 - **Version controlled**: The published CV is committed to Git
 - **No database needed**: Perfect for static sites like Jekyll
 
+## Next Up Features
+
+The interactive CV builder page doesn't persist edits, since I didn't want to complicate my static website with a database hookup for persistence. I'm okay with that for now, since I only rarely update my CV, and I don't need the page to save work. Also, if I really want to make minor tweaks, I can just update the exported static HTML page.
+
+That said, the next thing to add to my CV builder would be persistence, so a visitor could save their work and load previous versions.
+
 # Lessons Learned
 
 1. **Start simple**: Claude's Artifacts tool was perfect for rapid prototyping
@@ -130,16 +138,8 @@ The result is a three-part system:
 
 # Try It Yourself
 
-Want to build something similar? Here's my advice:
-
-1. Start with a clear vision of what you need
-2. Use AI tools for rapid prototyping
-3. Think carefully about where data should live
-4. Don't be afraid to pivot when you hit constraints
-5. Keep the user experience front and center
-
-The code is all open source in my [GitHub repository](https://github.com/bpurinton/bpurinton.github.io). Feel free to adapt it for your own needs!
+The code is all open source in my [GitHub repository](https://github.com/bpurinton/bpurinton.github.io){: target="_blank"}. Feel free to adapt it for your own needs!
 
 Building this CV builder was a fun exercise in creative problem-solving. It's not every day you get to combine academic credentials, web development skills, and AI assistance to solve a personal productivity problem. But that's exactly the kind of interdisciplinary thinking I love about my current role bridging research and education technology.
 
-Now if you'll excuse me, I need to go update my CV... which is now as easy as clicking "Edit CV Builder" and typing! 🚀
+Now if you'll excuse me, I need to go update my CV... which is now as easy as clicking [Edit CV Builder](/cv-builder){: target="_blank"} and typing! 🚀
