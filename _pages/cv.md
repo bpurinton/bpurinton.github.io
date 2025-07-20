@@ -19,7 +19,7 @@ redirect_from:
 .cv-link-button {
     display: inline-block;
     padding: 12px 24px;
-    background: linear-gradient(135deg, #e8b76b, #d4a347);
+    background: linear-gradient(135deg, #c4821b, #d4a347);
     color: white;
     text-decoration: none;
     border-radius: 6px;
