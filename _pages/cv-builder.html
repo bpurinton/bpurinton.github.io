@@ -1,0 +1,959 @@
+---
+layout: none
+permalink: /cv-builder/
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+
+        .cv-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .print-controls {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .print-btn {
+            background: linear-gradient(135deg, #e8b76b, #d4a347);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .print-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .section-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            justify-content: flex-end;
+        }
+
+        .section-btn {
+            background: #e8b76b;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            opacity: 0.8;
+        }
+
+        .section-btn:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .section-btn.delete {
+            background: #dc3545;
+        }
+
+        .item-controls {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            justify-content: flex-end;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .experience-item:hover .item-controls,
+        .education-item:hover .item-controls,
+        .publication-item:hover .item-controls,
+        .achievement-item:hover .item-controls,
+        .skill-category:hover .item-controls {
+            opacity: 1;
+        }
+
+        .item-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .item-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .item-btn.delete {
+            background: #dc3545;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e8b76b 0%, #d4a347 100%);
+            color: white;
+            padding: 30px 30px 25px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .title {
+            font-size: 1.2em;
+            font-weight: 300;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.95em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item::before {
+            content: '●';
+            color: rgba(255,255,255,0.7);
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #e8b76b;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e9ecef;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(135deg, #e8b76b, #d4a347);
+        }
+
+        .summary {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #555;
+            text-align: justify;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #e8b76b;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .company {
+            font-size: 1em;
+            color: #e8b76b;
+            font-weight: 500;
+        }
+
+        .date {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 500;
+            background: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            white-space: nowrap;
+        }
+
+        .job-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .job-description ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .job-description li {
+            margin-bottom: 6px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-top: 3px solid #e8b76b;
+        }
+
+        .skill-category h4 {
+            font-size: 1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: white;
+            color: #e8b76b;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            border: 1px solid #e9ecef;
+        }
+
+        .publication-item {
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .publication-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .publication-details {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .achievement-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #e8b76b;
+        }
+
+        .achievement-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .achievement-description {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        @media print {
+            body { 
+                background: white; 
+                padding: 0; 
+                font-size: 12px;
+                line-height: 1.4;
+            }
+            .cv-container { 
+                box-shadow: none; 
+                border-radius: 0; 
+                max-width: none;
+                margin: 0;
+            }
+            .print-controls { display: none; }
+            .section-controls { display: none; }
+            .item-controls { display: none; }
+            .header { 
+                break-inside: avoid; 
+                padding: 20px 20px 15px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .name {
+                font-size: 1.8em;
+                margin-bottom: 4px;
+            }
+            .title {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+            .section { 
+                break-inside: avoid-page; 
+                margin-bottom: 15px;
+            }
+            .section-title {
+                font-size: 1.1em;
+                margin-bottom: 8px;
+                padding-bottom: 4px;
+            }
+            .experience-item, .education-item {
+                margin-bottom: 12px;
+                padding: 10px;
+                break-inside: avoid;
+            }
+            .job-title {
+                font-size: 1em;
+            }
+            .company {
+                font-size: 0.9em;
+            }
+            .job-description {
+                font-size: 0.9em;
+                line-height: 1.3;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            .skill-category {
+                padding: 8px;
+            }
+            .skill-category h4 {
+                font-size: 0.9em;
+                margin-bottom: 6px;
+            }
+            .skill-tag {
+                font-size: 0.7em;
+                padding: 3px 6px;
+            }
+            .publication-item, .achievement-item {
+                margin-bottom: 8px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cv-container { margin: 10px; }
+            .header, .main-content { padding: 15px; }
+            .name { font-size: 1.8em; }
+            .contact-info { flex-direction: column; gap: 10px; }
+            .experience-header { flex-direction: column; align-items: flex-start; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Editable styling */
+        [contenteditable="true"] {
+            outline: none;
+            transition: background-color 0.2s;
+        }
+
+        [contenteditable="true"]:hover {
+            background-color: rgba(232, 183, 107, 0.05);
+        }
+
+        [contenteditable="true"]:focus {
+            background-color: rgba(232, 183, 107, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <div class="print-controls">
+            <button class="print-btn" onclick="printCV()">📄 Print CV / Save as PDF</button>
+        </div>
+        
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name" contenteditable="true">Dr. [Your Name]</h1>
+                <div class="title" contenteditable="true">Head of Operations | Former Research Scientist</div>
+                <div class="contact-info">
+                    <div class="contact-item" contenteditable="true">[your.email@company.com]</div>
+                    <div class="contact-item" contenteditable="true">[+1 (555) 123-4567]</div>
+                    <div class="contact-item" contenteditable="true">[City, State]</div>
+                    <div class="contact-item" contenteditable="true">[linkedin.com/in/yourname]</div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-title">Professional Summary</h2>
+                <div class="summary" contenteditable="true">
+                    Results-driven operations leader with a unique background bridging rigorous scientific research and technology education. Currently serving as Head of Operations at [Company Name], where I leverage analytical thinking and systematic approaches developed through [X] years of academic research to scale operations for a fast-growing coding education platform. Proven track record of translating complex technical concepts into accessible learning experiences while building efficient systems that support rapid organizational growth.
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Core Experience</h2>
+                <div class="section-controls">
+                    <button class="section-btn" onclick="addExperienceItem()">+ Add Experience</button>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title" contenteditable="true">Head of Operations</div>
+                            <div class="company" contenteditable="true">[Company Name] - Education Technology Startup</div>
+                        </div>
+                        <div class="date" contenteditable="true">[Start Date] - Present</div>
+                    </div>
+                    <div class="job-description" contenteditable="true">
+                        Leading end-to-end operations for a rapidly scaling coding education platform serving [X] students globally. Drive strategic initiatives that improve operational efficiency, student outcomes, and organizational growth.
+                        <ul>
+                            <li>Designed and implemented scalable operational frameworks that supported [X]% growth in student enrollment</li>
+                            <li>Built cross-functional processes connecting curriculum development, student success, and business operations</li>
+                            <li>Led data-driven decision making using analytical skills from research background to optimize key metrics</li>
+                            <li>Managed vendor relationships and strategic partnerships to enhance platform capabilities</li>
+                            <li>Developed quality assurance processes ensuring consistent educational delivery across all programs</li>
+                        </ul>
+                    </div>
+                    <div class="item-controls">
+                        <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Academic & Research Background</h2>
+                <div class="section-controls">
+                    <button class="section-btn" onclick="addResearchItem()">+ Add Research</button>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title" contenteditable="true">[Previous Research Position]</div>
+                            <div class="company" contenteditable="true">[Institution/Company Name]</div>
+                        </div>
+                        <div class="date" contenteditable="true">[Start Date] - [End Date]</div>
+                    </div>
+                    <div class="job-description" contenteditable="true">
+                        [Brief description of your research focus and key contributions]
+                        <ul>
+                            <li>[Key research achievement or publication]</li>
+                            <li>[Method or technique you developed/mastered]</li>
+                            <li>[Impact or application of your work]</li>
+                            <li>[Collaboration or leadership experience]</li>
+                        </ul>
+                    </div>
+                    <div class="item-controls">
+                        <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title" contenteditable="true">[Additional Research Role]</div>
+                            <div class="company" contenteditable="true">[Institution Name]</div>
+                        </div>
+                        <div class="date" contenteditable="true">[Start Date] - [End Date]</div>
+                    </div>
+                    <div class="job-description" contenteditable="true">
+                        [Description of role and achievements]
+                        <ul>
+                            <li>[Key accomplishment]</li>
+                            <li>[Technical skills demonstrated]</li>
+                            <li>[Research outcomes]</li>
+                        </ul>
+                    </div>
+                    <div class="item-controls">
+                        <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+                <div class="section-controls">
+                    <button class="section-btn" onclick="addEducationItem()">+ Add Education</button>
+                </div>
+                
+                <div class="education-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title" contenteditable="true">[Ph.D./Master's] in [Field]</div>
+                            <div class="company" contenteditable="true">[University Name]</div>
+                        </div>
+                        <div class="date" contenteditable="true">[Graduation Year]</div>
+                    </div>
+                    <div class="job-description" contenteditable="true">
+                        Dissertation: "[Thesis Title]"<br>
+                        Advisor: [Advisor Name]<br>
+                        [Notable achievements, awards, or relevant coursework]
+                    </div>
+                    <div class="item-controls">
+                        <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title" contenteditable="true">[Bachelor's Degree] in [Field]</div>
+                            <div class="company" contenteditable="true">[University Name]</div>
+                        </div>
+                        <div class="date" contenteditable="true">[Graduation Year]</div>
+                    </div>
+                    <div class="job-description" contenteditable="true">
+                        [Honors, GPA if notable, relevant achievements]
+                    </div>
+                    <div class="item-controls">
+                        <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="section-controls">
+                    <button class="section-btn" onclick="addSkillCategory()">+ Add Skill Category</button>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Operations & Strategy</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag" contenteditable="true">Process Design</span>
+                            <span class="skill-tag" contenteditable="true">Scale Operations</span>
+                            <span class="skill-tag" contenteditable="true">Strategic Planning</span>
+                            <span class="skill-tag" contenteditable="true">Quality Assurance</span>
+                            <span class="skill-tag" contenteditable="true">Vendor Management</span>
+                        </div>
+                        <div class="item-controls">
+                            <button class="item-btn" onclick="addSkillTag(this)">+ Skill</button>
+                            <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Technical & Research</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag" contenteditable="true">Data Analysis</span>
+                            <span class="skill-tag" contenteditable="true">Statistical Modeling</span>
+                            <span class="skill-tag" contenteditable="true">[Your Research Tools]</span>
+                            <span class="skill-tag" contenteditable="true">Research Design</span>
+                            <span class="skill-tag" contenteditable="true">Technical Writing</span>
+                        </div>
+                        <div class="item-controls">
+                            <button class="item-btn" onclick="addSkillTag(this)">+ Skill</button>
+                            <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Leadership & Communication</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag" contenteditable="true">Cross-functional Teams</span>
+                            <span class="skill-tag" contenteditable="true">Stakeholder Management</span>
+                            <span class="skill-tag" contenteditable="true">Public Speaking</span>
+                            <span class="skill-tag" contenteditable="true">Curriculum Development</span>
+                            <span class="skill-tag" contenteditable="true">Mentoring</span>
+                        </div>
+                        <div class="item-controls">
+                            <button class="item-btn" onclick="addSkillTag(this)">+ Skill</button>
+                            <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Technology & Tools</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag" contenteditable="true">[Programming Languages]</span>
+                            <span class="skill-tag" contenteditable="true">[Lab Equipment]</span>
+                            <span class="skill-tag" contenteditable="true">Project Management</span>
+                            <span class="skill-tag" contenteditable="true">[Software Tools]</span>
+                            <span class="skill-tag" contenteditable="true">Database Management</span>
+                        </div>
+                        <div class="item-controls">
+                            <button class="item-btn" onclick="addSkillTag(this)">+ Skill</button>
+                            <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Selected Publications & Research</h2>
+                <div class="section-controls">
+                    <button class="section-btn" onclick="addPublicationItem()">+ Add Publication</button>
+                </div>
+                
+                <div class="publication-item">
+                    <div class="publication-title" contenteditable="true">[Publication Title]</div>
+                    <div class="publication-details" contenteditable="true">
+                        [Author names]. [Journal Name], [Year]. [DOI or link if applicable]
+                    </div>
+                    <div class="item-controls">
+                        <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                    </div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title" contenteditable="true">[Publication Title]</div>
+                    <div class="publication-details" contenteditable="true">
+                        [Author names]. [Journal Name], [Year]. [DOI or link if applicable]
+                    </div>
+                    <div class="item-controls">
+                        <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                    </div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title" contenteditable="true">[Conference Presentation or Additional Publication]</div>
+                    <div class="publication-details" contenteditable="true">
+                        [Details about presentation/publication]
+                    </div>
+                    <div class="item-controls">
+                        <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Awards & Recognition</h2>
+                <div class="section-controls">
+                    <button class="section-btn" onclick="addAchievementItem()">+ Add Achievement</button>
+                </div>
+                <div class="achievements">
+                    <div class="achievement-item">
+                        <div class="achievement-title" contenteditable="true">[Award/Recognition Name]</div>
+                        <div class="achievement-description" contenteditable="true">[Year] - [Brief description of achievement]</div>
+                        <div class="item-controls">
+                            <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-title" contenteditable="true">[Grant or Fellowship]</div>
+                        <div class="achievement-description" contenteditable="true">[Year] - [Amount if appropriate] - [Granting organization]</div>
+                        <div class="item-controls">
+                            <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-title" contenteditable="true">[Professional Recognition]</div>
+                        <div class="achievement-description" contenteditable="true">[Year] - [Description of recognition]</div>
+                        <div class="item-controls">
+                            <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Print CV function
+        function printCV() {
+            window.print();
+        }
+
+        // Add new experience item
+        function addExperienceItem() {
+            const experienceSection = document.querySelector('[data-section="experience"]') || 
+                                    document.querySelector('h2:contains("Core Experience")').parentElement ||
+                                    document.querySelector('.section-title').parentElement;
+            
+            const newItem = document.createElement('div');
+            newItem.className = 'experience-item';
+            newItem.innerHTML = `
+                <div class="experience-header">
+                    <div>
+                        <div class="job-title" contenteditable="true">[Job Title]</div>
+                        <div class="company" contenteditable="true">[Company Name]</div>
+                    </div>
+                    <div class="date" contenteditable="true">[Start Date] - [End Date]</div>
+                </div>
+                <div class="job-description" contenteditable="true">
+                    [Description of role and achievements]
+                    <ul>
+                        <li>[Key accomplishment]</li>
+                        <li>[Technical skills demonstrated]</li>
+                        <li>[Impact or results]</li>
+                    </ul>
+                </div>
+                <div class="item-controls">
+                    <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+            `;
+            
+            // Find the correct section and insert before the next section
+            const sections = document.querySelectorAll('.section');
+            let targetSection = null;
+            for (let section of sections) {
+                if (section.querySelector('h2').textContent.includes('Core Experience')) {
+                    targetSection = section;
+                    break;
+                }
+            }
+            
+            if (targetSection) {
+                targetSection.appendChild(newItem);
+            }
+        }
+
+        // Add new research item
+        function addResearchItem() {
+            const newItem = document.createElement('div');
+            newItem.className = 'experience-item';
+            newItem.innerHTML = `
+                <div class="experience-header">
+                    <div>
+                        <div class="job-title" contenteditable="true">[Research Position]</div>
+                        <div class="company" contenteditable="true">[Institution Name]</div>
+                    </div>
+                    <div class="date" contenteditable="true">[Start Date] - [End Date]</div>
+                </div>
+                <div class="job-description" contenteditable="true">
+                    [Brief description of research focus and key contributions]
+                    <ul>
+                        <li>[Key research achievement]</li>
+                        <li>[Method or technique developed]</li>
+                        <li>[Impact or application]</li>
+                    </ul>
+                </div>
+                <div class="item-controls">
+                    <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+            `;
+            
+            const sections = document.querySelectorAll('.section');
+            let targetSection = null;
+            for (let section of sections) {
+                if (section.querySelector('h2').textContent.includes('Academic & Research')) {
+                    targetSection = section;
+                    break;
+                }
+            }
+            
+            if (targetSection) {
+                targetSection.appendChild(newItem);
+            }
+        }
+
+        // Add new education item
+        function addEducationItem() {
+            const newItem = document.createElement('div');
+            newItem.className = 'education-item';
+            newItem.innerHTML = `
+                <div class="experience-header">
+                    <div>
+                        <div class="job-title" contenteditable="true">[Degree] in [Field]</div>
+                        <div class="company" contenteditable="true">[University Name]</div>
+                    </div>
+                    <div class="date" contenteditable="true">[Year]</div>
+                </div>
+                <div class="job-description" contenteditable="true">
+                    [Relevant details, honors, coursework]
+                </div>
+                <div class="item-controls">
+                    <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+            `;
+            
+            const sections = document.querySelectorAll('.section');
+            let targetSection = null;
+            for (let section of sections) {
+                if (section.querySelector('h2').textContent.includes('Education')) {
+                    targetSection = section;
+                    break;
+                }
+            }
+            
+            if (targetSection) {
+                targetSection.appendChild(newItem);
+            }
+        }
+
+        // Add new skill category
+        function addSkillCategory() {
+            const newCategory = document.createElement('div');
+            newCategory.className = 'skill-category';
+            newCategory.innerHTML = `
+                <h4 contenteditable="true">[Skill Category]</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag" contenteditable="true">[Skill 1]</span>
+                    <span class="skill-tag" contenteditable="true">[Skill 2]</span>
+                    <span class="skill-tag" contenteditable="true">[Skill 3]</span>
+                </div>
+                <div class="item-controls">
+                    <button class="item-btn" onclick="addSkillTag(this)">+ Skill</button>
+                    <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+            `;
+            
+            const skillsGrid = document.querySelector('.skills-grid');
+            if (skillsGrid) {
+                skillsGrid.appendChild(newCategory);
+            }
+        }
+
+        // Add skill tag to existing category
+        function addSkillTag(button) {
+            const skillCategory = button.closest('.skill-category');
+            const skillTags = skillCategory.querySelector('.skill-tags');
+            
+            const newTag = document.createElement('span');
+            newTag.className = 'skill-tag';
+            newTag.contentEditable = true;
+            newTag.textContent = '[New Skill]';
+            
+            skillTags.appendChild(newTag);
+        }
+
+        // Add new publication
+        function addPublicationItem() {
+            const newItem = document.createElement('div');
+            newItem.className = 'publication-item';
+            newItem.innerHTML = `
+                <div class="publication-title" contenteditable="true">[Publication Title]</div>
+                <div class="publication-details" contenteditable="true">
+                    [Author names]. [Journal/Conference], [Year]. [DOI or details]
+                </div>
+                <div class="item-controls">
+                    <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+            `;
+            
+            const sections = document.querySelectorAll('.section');
+            let targetSection = null;
+            for (let section of sections) {
+                if (section.querySelector('h2').textContent.includes('Publications')) {
+                    targetSection = section;
+                    break;
+                }
+            }
+            
+            if (targetSection) {
+                targetSection.appendChild(newItem);
+            }
+        }
+
+        // Add new achievement
+        function addAchievementItem() {
+            const newItem = document.createElement('div');
+            newItem.className = 'achievement-item';
+            newItem.innerHTML = `
+                <div class="achievement-title" contenteditable="true">[Award/Achievement Name]</div>
+                <div class="achievement-description" contenteditable="true">[Year] - [Description]</div>
+                <div class="item-controls">
+                    <button class="item-btn delete" onclick="deleteItem(this)">Delete</button>
+                </div>
+            `;
+            
+            const achievementsGrid = document.querySelector('.achievements');
+            if (achievementsGrid) {
+                achievementsGrid.appendChild(newItem);
+            }
+        }
+
+        // Delete item
+        function deleteItem(button) {
+            const item = button.closest('.experience-item, .education-item, .skill-category, .publication-item, .achievement-item');
+            if (item && confirm('Are you sure you want to delete this item?')) {
+                item.remove();
+            }
+        }
+
+        // Initialize editable functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const editableElements = document.querySelectorAll('[contenteditable="true"]');
+            
+            editableElements.forEach(element => {
+                element.addEventListener('focus', function() {
+                    if (this.textContent.includes('[') && this.textContent.includes(']')) {
+                        this.style.backgroundColor = 'rgba(232, 183, 107, 0.1)';
+                    }
+                });
+                
+                element.addEventListener('blur', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
