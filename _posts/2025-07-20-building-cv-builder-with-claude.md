@@ -13,7 +13,7 @@ As someone who straddles the worlds of academic research and tech education, I'v
 
 So I decided to build something better: an interactive, web-based CV builder that I could customize on the fly and publish directly to my Jekyll site. Here's how I did it with the help of Claude.
 
-(It's linked below at the end of the post, but if you're anxious to have a look now: [Edit CV Builder](/cv-builder){: target="_blank"})
+(It's linked below at the end of the post, but if you're anxious to have a look now: [CV Builder](/cv-builder){: target="_blank"})
 
 # The Journey Begins: Claude Artifacts
 
@@ -142,4 +142,4 @@ The code is all open source in my [GitHub repository](https://github.com/bpurint
 
 Building this CV builder was a fun exercise in creative problem-solving. It's not every day you get to combine academic credentials, web development skills, and AI assistance to solve a personal productivity problem. But that's exactly the kind of interdisciplinary thinking I love about my current role bridging research and education technology.
 
-Now if you'll excuse me, I need to go update my CV... which is now as easy as clicking [Edit CV Builder](/cv-builder){: target="_blank"} and typing! 🚀
+Now if you'll excuse me, I need to go update my CV... which is now as easy as clicking [CV Builder](/cv-builder){: target="_blank"} and typing! 🚀
