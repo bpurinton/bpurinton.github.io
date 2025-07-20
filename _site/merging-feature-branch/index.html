@@ -1,0 +1,794 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Git merging main into an in-progress feature-branch | Ben Purinton</title>
+<meta name="description" content="In a collaborative (or solo) git project I’m often in a position where I was working on a feature-branch, got busy, stopped working on it, then came back to it awhile later. In that time, there were changes on main (formerly master), that might affect my feature branch.">
+
+
+  <meta name="author" content="Ben Purinton">
+  
+  <meta property="article:author" content="Ben Purinton">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ben Purinton">
+<meta property="og:title" content="Git merging main into an in-progress feature-branch">
+<meta property="og:url" content="http://localhost:4000/merging-feature-branch/">
+
+
+  <meta property="og:description" content="In a collaborative (or solo) git project I’m often in a position where I was working on a feature-branch, got busy, stopped working on it, then came back to it awhile later. In that time, there were changes on main (formerly master), that might affect my feature branch.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-03-17T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/merging-feature-branch/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ben Purinton",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ben Purinton Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<!-- <link rel="icon" type="image/x-icon" href="/assets/images/favicon-test.ico"> -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ben Purinton
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/research/">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/publications/">Publications</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/purinton_profile_photo.jpg" alt="Ben Purinton" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Ben Purinton</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Howdy. I like dirt :) And computer coding.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, Washington</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ben.purinton@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/bpurinton" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/dirt_facts" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/benjamin-purinton/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Git merging main into an in-progress feature-branch">
+    <meta itemprop="description" content="In a collaborative (or solo) git project I’m often in a position where I was working on a feature-branch, got busy, stopped working on it, then came back to it awhile later. In that time, there were changes on main (formerly master), that might affect my feature branch.">
+    <meta itemprop="datePublished" content="2023-03-17T00:00:00-07:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/merging-feature-branch/" class="u-url" itemprop="url">Git merging main into an in-progress feature-branch
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-17T00:00:00-07:00">March 17, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Content</h4></header>
+              <ul class="toc__menu"><li><a href="#change-the-editor">Change the editor</a></li><li><a href="#getting-main-up-to-date">Getting main up to date</a><ul><li><a href="#source-vs-target-branch">Source vs. Target Branch</a></li></ul></li><li><a href="#rebase-into-feature-branch">Rebase into feature-branch</a></li><li><a href="#merge-to-main">Merge to main</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>In a collaborative (or solo) <code class="language-plaintext highlighter-rouge">git</code> project I’m often in a position where I was working on a <code class="language-plaintext highlighter-rouge">feature-branch</code>, got busy, stopped working on it, then came back to it awhile later. In that time, there were changes on <code class="language-plaintext highlighter-rouge">main</code> (formerly <code class="language-plaintext highlighter-rouge">master</code>), that might affect my feature branch.</p>
+
+<p>The question is: how do I merge the changes on <code class="language-plaintext highlighter-rouge">main</code> into my <code class="language-plaintext highlighter-rouge">feature-branch</code>, such that, when I merge the <code class="language-plaintext highlighter-rouge">feature-branch</code> into <code class="language-plaintext highlighter-rouge">main</code> down the road, there is a clean history?</p>
+
+<p>We could <code class="language-plaintext highlighter-rouge">merge --squash</code>, but what we really want for a nice clean history is explained here.</p>
+
+<p><strong>Note, this blog post is a companion to <a href="https://www.bendirt.com/notes-on-git/" target="_blank">this longer post</a></strong></p>
+
+<h1 id="change-the-editor">Change the editor</h1>
+
+<p>Before beginning, it’s nice to change the editor that Github uses away from VIM, which I find to be a pain. On my macbook, I ran:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> core.editor <span class="s2">"code --wait"</span><span class="sb">`</span>
+</code></pre></div></div>
+
+<p>to change the default editor to VS code. The <code class="language-plaintext highlighter-rouge">--wait</code> option freezes the command line until I close the file in the editor.</p>
+
+<h1 id="getting-main-up-to-date">Getting main up to date</h1>
+
+<p>First, I pull main locally:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout main
+<span class="o">(</span>main<span class="o">)</span> <span class="nv">$ </span>git pull
+</code></pre></div></div>
+
+<p>Once everything is up to date there, I switch back to my branch:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>main<span class="o">)</span> <span class="nv">$ </span>git checkout feature-branch
+<span class="o">(</span>feature-branch<span class="o">)</span> <span class="err">$</span>
+</code></pre></div></div>
+
+<h2 id="source-vs-target-branch">Source vs. Target Branch</h2>
+
+<p>Quick note here. We are trying to merge like <code class="language-plaintext highlighter-rouge">main --&gt; feature-branch</code>. The branch with added changes we are trying to gather is called the <strong>source branch</strong> (here <code class="language-plaintext highlighter-rouge">main</code>) while the branch you request to merge your changes into is called the <strong>target branch</strong> (here <code class="language-plaintext highlighter-rouge">feature-branch</code>). We want to merge <code class="language-plaintext highlighter-rouge">main</code> (source) <em>into</em> <code class="language-plaintext highlighter-rouge">feature-branch</code> (target).</p>
+
+<h1 id="rebase-into-feature-branch">Rebase into <code class="language-plaintext highlighter-rouge">feature-branch</code></h1>
+
+<p>Now I want to <strong>rebase</strong> the <code class="language-plaintext highlighter-rouge">main</code> <em>into</em> <code class="language-plaintext highlighter-rouge">feature-branch</code>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>feature-branch<span class="o">)</span> <span class="nv">$ </span>git rebase main
+</code></pre></div></div>
+
+<p>I <em>could</em> have added the <code class="language-plaintext highlighter-rouge">-i</code> (or <code class="language-plaintext highlighter-rouge">--interactive</code>) flag, like <code class="language-plaintext highlighter-rouge">git rebase main -i</code>. This would allow me to craft a commit history by <code class="language-plaintext highlighter-rouge">s</code>quashing all the commits except for one that I <code class="language-plaintext highlighter-rouge">p</code>ick (the top-most in the editor). <code class="language-plaintext highlighter-rouge">p</code>icking multiple is almost never worth it (or, alternatively, it means your branches are too long lived). We skip the <code class="language-plaintext highlighter-rouge">-i</code> flag at this stage because we don’t need to make the history clean, we just need to get all the changes from <code class="language-plaintext highlighter-rouge">main</code>. Later, when we merge the feature to main, we will use <code class="language-plaintext highlighter-rouge">-i</code>.</p>
+
+<p>After the <code class="language-plaintext highlighter-rouge">rebase</code>, I need to pull to get all the changes:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>feature-branch<span class="o">)</span> <span class="nv">$ </span>git pull
+</code></pre></div></div>
+
+<p>If an error comes up regarding divergent branches, then we need to specify how to reconcile them. We can pass one of the flags <code class="language-plaintext highlighter-rouge">--rebase</code>, <code class="language-plaintext highlighter-rouge">--no-rebase</code>, or <code class="language-plaintext highlighter-rouge">--ff-only</code>. We need to use <code class="language-plaintext highlighter-rouge">--rebase</code> because <code class="language-plaintext highlighter-rouge">--ff-only</code> will fail since the local and remote branches have diverged:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>feature-branch<span class="o">)</span> <span class="nv">$ </span>git pull <span class="nt">--rebase</span>
+</code></pre></div></div>
+
+<p>Now I can push:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>feature-branch<span class="o">)</span> <span class="nv">$ </span>git push
+</code></pre></div></div>
+
+<p><strong>These two actions take all of the <code class="language-plaintext highlighter-rouge">main</code> commits that occurred since making the feature branch and slots them into the feature branch’s history</strong></p>
+
+<p>And if I check on the open PR for the feature branch, I will see all of the history from <code class="language-plaintext highlighter-rouge">main</code>, and I can continue working on (and making commits) the feature branch.</p>
+
+<h1 id="merge-to-main">Merge to <code class="language-plaintext highlighter-rouge">main</code></h1>
+
+<p>When I’m done with the <code class="language-plaintext highlighter-rouge">feature-branch</code> (meaning I’ve made all the commits I’m going to and pushed them all to Github) and ready to merge to <code class="language-plaintext highlighter-rouge">main</code>, I can</p>
+
+<ul>
+  <li>merge on Github using the open PR, including receiving code review and then clicking “Squash and merge”</li>
+</ul>
+
+<p>OR <strong>if I want to merge without the PR / code review</strong>:</p>
+
+<ul>
+  <li>run these commands:</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+git pull
+git checkout feature-branch
+git rebase main <span class="nt">-i</span>
+</code></pre></div></div>
+
+<p>At this point, an editor will pop up. I can replace <code class="language-plaintext highlighter-rouge">pick</code> for all but the first commit (top-most in the editor) with <code class="language-plaintext highlighter-rouge">s</code> (for <code class="language-plaintext highlighter-rouge">squash</code>). Then I save and close the file.</p>
+
+<p>Another text editor will open where you can craft <a href="https://chris.beams.io/posts/git-commit/">a wonderful commit message</a> to <a href="https://dhwthompson.com/2019/my-favourite-git-commit" target="_blank">communicate the WHY</a> of your changes (the WHAT is told by the diff).</p>
+
+<p>Now, with the messy history of commits ironed out, we merge the feature to main:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+git merge feature-branch
+git push
+</code></pre></div></div>
+
+<p>And if we want to delete the remote <code class="language-plaintext highlighter-rouge">feature-branch</code> branch from Github:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin :feature-branch
+</code></pre></div></div>
+
+<p>And locally we can delete the branch with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="nt">-d</span> feature-branch
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#git" class="page__taxonomy-item p-category" rel="tag">git</a><span class="sep">, </span>
+    
+      <a href="/tags/#rebase" class="page__taxonomy-item p-category" rel="tag">rebase</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-03-17T00:00:00-07:00">March 17, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Git+merging+main+into+an+in-progress+feature-branch%20http%3A%2F%2Flocalhost%3A4000%2Fmerging-feature-branch%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fmerging-feature-branch%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fmerging-feature-branch%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ruby-on-rails-with-postgres/" class="pagination--pager" title="Setting up Ruby on Rails with PostgreSQL
+">Previous</a>
+    
+    
+      <a href="/notes-on-git/" class="pagination--pager" title="Notes on using git
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/cv-builder-preview.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/building-cv-builder-with-claude/" rel="permalink">Building an Interactive CV Builder with Claude
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-07-20T00:00:00-07:00">July 20, 2025</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How I built a dynamic, printable CV builder for my Jekyll site using Claude’s new Artifacts feature and some creative problem-solving
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/sea-ice-office.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/sea-ice-radar/" rel="permalink">Exploring Nome’s Sea Ice with Satellite and Ground Radar
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-12T00:00:00-07:00">April 12, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I recently found out about UAF’s sea-ice radar monitor at the end of the pier in Nome’s port.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docker-geemap/" rel="permalink">Running dockerized google earth engine (GEE) map
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-25T00:00:00-07:00">March 25, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">The steps I took to open and run a dockerized geemap:
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/notes-on-git/" rel="permalink">Notes on using git
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-18T00:00:00-07:00">March 18, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’m currently going through the extremely helpful thoughtbot git tutorial. I want to leave some notes here for future reference.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/bpurinton/bpurinton.github.io" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Ben Purinton. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

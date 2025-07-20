@@ -1,0 +1,956 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Setting up Ruby on Rails with PostgreSQL | Ben Purinton</title>
+<meta name="description" content="I just spent a long time getting my Windows machine setup with Ruby on Rails and the PostgreSQL database in order to work on some software development. Here are the steps I followed.  Docker + Ruby on Rails  Ideally, I could have set things up as a docker container, with the steps here, but that didn’t work at all. I had a lot of issues with docker on my machine, which may have come down to my own misunderstanding, or may have had to do with some similar bugs reported here or here or maybe here. In any case, I took a different approach.  Install Linux Subsystem  The first step was getting a Linux subsystem installed on Windows. I mostly followed the steps here. But I had some diversions due to issues. In the end my steps were as follows:  Open a Windows PowerShell as an admin and run  dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart   to enable the WSL subsystem feature.  Then run  dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart   to enable the virtual machine feature.  I then needed to download and run the WSL2 (version 2!) kernel updater shown in step 4 at the link above.  After that update, back in the admin PowerShell, I ran:  wsl.exe --set-default-version 2   (Note: in many cases I had to add an .exe to my commands, because e.g., wsl &lt;some command&gt; was not working.)  On the Microsoft store, I installed Ubuntu-20.04.2 LTS. Now I can open an Ubuntu shell on my machine!  Aside: Getting Ubuntu Shell Looking Nice  I added to my .bashrc (found in the Ubuntu home directory ~/.bashrc) the following:  parse_git_branch() {  git branch 2&gt; /dev/null | sed -e &#39;/^[^*]/d&#39; -e &#39;s/* \(.*\)/(\1)/&#39; } if [ &quot;$color_prompt&quot; = yes ]; then  PS1=&#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$ &#39; else  PS1=&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ &#39; fi  # THE SIX LINES BELOW are the default prompt and the unset (which were in the original .bashrc) #if [ &quot;$color_prompt&quot; = yes ]; then #    PS1=&#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39; #else #    PS1=&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w\$ &#39; #fi #unset color_prompt force_color_prompt   Basically, I commented out the default behavior and added the git branch parser so I can see what git branch I am on in the shell (if I’m in a repo folder).  There’s a lot more you can do in the ~/.bashrc file to customize your shell. Like you can set what commands are run when the shell opens, because this file is run everytime you open a new shell.  Setting up Ruby on Rails  Now that I have a Linux virtual machine on my PC, I followed these steps to get Ruby on Rails running. There were again some diversions due to errors, but the general steps (and commands) were:  Ruby  In the Ubuntu WSL shell, run:  sudo apt-get update sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev   These are some dependencies. Once that’s done we need a Ruby version manager called rbenv. That is installed with these commands:  cd git clone https://github.com/rbenv/rbenv.git ~/.rbenv echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc echo &#39;eval &quot;$(rbenv init -)&quot;&#39; &gt;&gt; ~/.bashrc exec $SHELL  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build echo &#39;export PATH=&quot;$HOME/.rbenv/plugins/ruby-build/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc exec $SHELL   (Note the echo ... commands send some copy into the /.bashrc via the &gt;&gt; shovel operator. Now this code will be run whenever the shell opens or whenever we run exec $SHELL.)  We now want to install Ruby with the manager. For my current project, I needed version 3.1.2, so I installed that at the Ubuntu shell with:  rbenv install 3.1.2   Then set it to be the global Ruby version for the shell with:  rbenv global 3.1.2   Now whenever I want to install or switch versions in a shell I can just do  rbenv install &lt;version&gt; rbenv global &lt;version&gt;   And confirm the version with  ruby -v   We also need the all-important bundler gem, which is a Ruby environment manager (kinda like conda for python?). In the Ubuntu shell I ran:  gem install bundler rbenv rehash   Git  At the Ubuntu shell I ran:  git config --global color.ui true git config --global user.name &quot;YOUR NAME&quot; git config --global user.email &quot;YOUR@EMAIL.com&quot; ssh-keygen -t rsa -b 4096 -C &quot;YOUR@EMAIL.com&quot;   The first three commands are just for setting some colors and my username on Github “Ben Purinton” and email. The last ssh-keygen command generates a public/private SSH key. The last command asks for a location (I used the default ~/.ssh/id_rsa.pub) and password ([redacted]).  I put the public key on my Github profile by pasting the output of:  cat ~/.ssh/id_rsa.pub   to the relevant area of my Github account (“Settings” &gt; “SSH”).  Now I don’t need to go and enter my Github password all the time! I can check it’s working by running ssh -T git@github.com, which gives back some “you’re connected” copy.  Rails  To install Rails, at the Ubuntu shell I ran:  curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | sudo tee /etc/apt/sources.list.d/yarn.list  sudo apt update sudo apt-get install -y nodejs yarn   These are to cover dependencies for Rails. NodeJS is a Javascript runtime and Yarn is a package manager.  Now I can install Rails (which is just a gem!) by running:  gem install rails -v 7.0.4   The version can of course be changed, but I just used the latest version (7.0.4).  I also need to rehash via:  rbenv rehash   And confirm the install via:  rails -v   PostgreSQL  Now came the really annoying part. I’ll spare all the gory details, but here’s what worked for me. I began with the steps here, but did NOT create a new user. My commands were:  sudo apt-get remove postgresql   To remove any previously installed package. (Note: if you really want to purge postgresql then you need to run sudo apt-get --purge remove postgresql*).  Then I installed the database and its dependencies with:  sudo apt install postgresql postgresql-contrib libpq-dev   Now it should work! You just need to type:  sudo service postgresql start   To start the database. You can stop it by changing start to stop  You can also start a database with sudo pg_createcluster 14 main (changing 14) to whatever version you have installed, which you can check by doing an ls /etc/postgresql where you should see a folder with the version number. Actually, in that folder you will find the named databases (e.g., main). Oh and while I’m at it with these run on thoughts, when things are really messed up you can also drop a database wtih pg_dropcluster… Oh, and by the way, the database seems to exist at both /etc/postgresql/14/main/ AND /var/lib/postgresql/14/main/, go figure… TLDR; follow the steps / commands above and below and hopefully you don’t need to worry about all these asides.  Everytime we start a shell, we need to run:  sudo service postgresql start   But if you forget, when you go and start your Rails app, you’ll immediatelly get an error connecting to ActiveRecord, so that’ll be your reminder to start the database. You could also add the command to ~/.bashrc.  How to fix postgres user error  Thought I was done? Me too! Nope! When I tried to bin/setup or rails server in my Rails app that I wanted to work on, I got the error:  ActiveRecord::DatabaseConnectionError: There is an issue connecting to your database with you username/password, username: postgres.   When you install postgres I guess it generates a superuser named postgres that has full control over databases you create. But the Rails app I was working in said there was some error with this profile / password combo (that I had no part in setting up…)  Luckily, a colleague pointed me towards this post, which I summarize:  Running (psql is a terminal-based front-end to PostgreSQL):  psql -U postgres   Gave me the error message:  psql: error: FATAL: Peer authentication failed for user &quot;postgres&quot;   Uh-oh! I need to configure a password!  First I ran:  sudo -i -u postgres   That opened a sub-shell as the postgres user (as opposed to the username I used to setup my Ubuntu subsystem: bpurinton). Now at this new sub-shell prompot I ran:  psql   which opens the PostgreSQL terminal, where the prompt starts with postgres=# and you enter commands after that #. Now I ran:  ALTER USER postgres PASSWORD &#39;postgres&#39;;   To give the postgres superuser a password (in quotation marks)! The above returns ALTER ROLE. Great, thanks for letting me know. Now I can exit the postgres terminal by typing \q at the # prompt, then exit the postgres user subshell by typing exit, and wind up back at my standard Ubuntu shell.  Another step! I need to alter the pg_hba.config file to allow access. Using an editor (I just did it with nano):  sudo nano /etc/postgresql/14/main/pg_hba.conf   14 and main would need to be changed if you have a different postgres version or cluster name. Basically, the file says, somewhere near the bottom this:    And I needed to change all the peer keywords to something like scram-sha-256, like so:    Now, with the file changed and saved, back at the Ubuntu shell I run:  sudo service postgresql restart   then:  psql -U postgres   and I don’t get any errors and now I’m good to go! bin/setup and rails server work. Finally!">
+
+
+  <meta name="author" content="Ben Purinton">
+  
+  <meta property="article:author" content="Ben Purinton">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ben Purinton">
+<meta property="og:title" content="Setting up Ruby on Rails with PostgreSQL">
+<meta property="og:url" content="http://localhost:4000/ruby-on-rails-with-postgres/">
+
+
+  <meta property="og:description" content="I just spent a long time getting my Windows machine setup with Ruby on Rails and the PostgreSQL database in order to work on some software development. Here are the steps I followed.  Docker + Ruby on Rails  Ideally, I could have set things up as a docker container, with the steps here, but that didn’t work at all. I had a lot of issues with docker on my machine, which may have come down to my own misunderstanding, or may have had to do with some similar bugs reported here or here or maybe here. In any case, I took a different approach.  Install Linux Subsystem  The first step was getting a Linux subsystem installed on Windows. I mostly followed the steps here. But I had some diversions due to issues. In the end my steps were as follows:  Open a Windows PowerShell as an admin and run  dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart   to enable the WSL subsystem feature.  Then run  dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart   to enable the virtual machine feature.  I then needed to download and run the WSL2 (version 2!) kernel updater shown in step 4 at the link above.  After that update, back in the admin PowerShell, I ran:  wsl.exe --set-default-version 2   (Note: in many cases I had to add an .exe to my commands, because e.g., wsl &lt;some command&gt; was not working.)  On the Microsoft store, I installed Ubuntu-20.04.2 LTS. Now I can open an Ubuntu shell on my machine!  Aside: Getting Ubuntu Shell Looking Nice  I added to my .bashrc (found in the Ubuntu home directory ~/.bashrc) the following:  parse_git_branch() {  git branch 2&gt; /dev/null | sed -e &#39;/^[^*]/d&#39; -e &#39;s/* \(.*\)/(\1)/&#39; } if [ &quot;$color_prompt&quot; = yes ]; then  PS1=&#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$ &#39; else  PS1=&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ &#39; fi  # THE SIX LINES BELOW are the default prompt and the unset (which were in the original .bashrc) #if [ &quot;$color_prompt&quot; = yes ]; then #    PS1=&#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39; #else #    PS1=&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w\$ &#39; #fi #unset color_prompt force_color_prompt   Basically, I commented out the default behavior and added the git branch parser so I can see what git branch I am on in the shell (if I’m in a repo folder).  There’s a lot more you can do in the ~/.bashrc file to customize your shell. Like you can set what commands are run when the shell opens, because this file is run everytime you open a new shell.  Setting up Ruby on Rails  Now that I have a Linux virtual machine on my PC, I followed these steps to get Ruby on Rails running. There were again some diversions due to errors, but the general steps (and commands) were:  Ruby  In the Ubuntu WSL shell, run:  sudo apt-get update sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev   These are some dependencies. Once that’s done we need a Ruby version manager called rbenv. That is installed with these commands:  cd git clone https://github.com/rbenv/rbenv.git ~/.rbenv echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc echo &#39;eval &quot;$(rbenv init -)&quot;&#39; &gt;&gt; ~/.bashrc exec $SHELL  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build echo &#39;export PATH=&quot;$HOME/.rbenv/plugins/ruby-build/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc exec $SHELL   (Note the echo ... commands send some copy into the /.bashrc via the &gt;&gt; shovel operator. Now this code will be run whenever the shell opens or whenever we run exec $SHELL.)  We now want to install Ruby with the manager. For my current project, I needed version 3.1.2, so I installed that at the Ubuntu shell with:  rbenv install 3.1.2   Then set it to be the global Ruby version for the shell with:  rbenv global 3.1.2   Now whenever I want to install or switch versions in a shell I can just do  rbenv install &lt;version&gt; rbenv global &lt;version&gt;   And confirm the version with  ruby -v   We also need the all-important bundler gem, which is a Ruby environment manager (kinda like conda for python?). In the Ubuntu shell I ran:  gem install bundler rbenv rehash   Git  At the Ubuntu shell I ran:  git config --global color.ui true git config --global user.name &quot;YOUR NAME&quot; git config --global user.email &quot;YOUR@EMAIL.com&quot; ssh-keygen -t rsa -b 4096 -C &quot;YOUR@EMAIL.com&quot;   The first three commands are just for setting some colors and my username on Github “Ben Purinton” and email. The last ssh-keygen command generates a public/private SSH key. The last command asks for a location (I used the default ~/.ssh/id_rsa.pub) and password ([redacted]).  I put the public key on my Github profile by pasting the output of:  cat ~/.ssh/id_rsa.pub   to the relevant area of my Github account (“Settings” &gt; “SSH”).  Now I don’t need to go and enter my Github password all the time! I can check it’s working by running ssh -T git@github.com, which gives back some “you’re connected” copy.  Rails  To install Rails, at the Ubuntu shell I ran:  curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | sudo tee /etc/apt/sources.list.d/yarn.list  sudo apt update sudo apt-get install -y nodejs yarn   These are to cover dependencies for Rails. NodeJS is a Javascript runtime and Yarn is a package manager.  Now I can install Rails (which is just a gem!) by running:  gem install rails -v 7.0.4   The version can of course be changed, but I just used the latest version (7.0.4).  I also need to rehash via:  rbenv rehash   And confirm the install via:  rails -v   PostgreSQL  Now came the really annoying part. I’ll spare all the gory details, but here’s what worked for me. I began with the steps here, but did NOT create a new user. My commands were:  sudo apt-get remove postgresql   To remove any previously installed package. (Note: if you really want to purge postgresql then you need to run sudo apt-get --purge remove postgresql*).  Then I installed the database and its dependencies with:  sudo apt install postgresql postgresql-contrib libpq-dev   Now it should work! You just need to type:  sudo service postgresql start   To start the database. You can stop it by changing start to stop  You can also start a database with sudo pg_createcluster 14 main (changing 14) to whatever version you have installed, which you can check by doing an ls /etc/postgresql where you should see a folder with the version number. Actually, in that folder you will find the named databases (e.g., main). Oh and while I’m at it with these run on thoughts, when things are really messed up you can also drop a database wtih pg_dropcluster… Oh, and by the way, the database seems to exist at both /etc/postgresql/14/main/ AND /var/lib/postgresql/14/main/, go figure… TLDR; follow the steps / commands above and below and hopefully you don’t need to worry about all these asides.  Everytime we start a shell, we need to run:  sudo service postgresql start   But if you forget, when you go and start your Rails app, you’ll immediatelly get an error connecting to ActiveRecord, so that’ll be your reminder to start the database. You could also add the command to ~/.bashrc.  How to fix postgres user error  Thought I was done? Me too! Nope! When I tried to bin/setup or rails server in my Rails app that I wanted to work on, I got the error:  ActiveRecord::DatabaseConnectionError: There is an issue connecting to your database with you username/password, username: postgres.   When you install postgres I guess it generates a superuser named postgres that has full control over databases you create. But the Rails app I was working in said there was some error with this profile / password combo (that I had no part in setting up…)  Luckily, a colleague pointed me towards this post, which I summarize:  Running (psql is a terminal-based front-end to PostgreSQL):  psql -U postgres   Gave me the error message:  psql: error: FATAL: Peer authentication failed for user &quot;postgres&quot;   Uh-oh! I need to configure a password!  First I ran:  sudo -i -u postgres   That opened a sub-shell as the postgres user (as opposed to the username I used to setup my Ubuntu subsystem: bpurinton). Now at this new sub-shell prompot I ran:  psql   which opens the PostgreSQL terminal, where the prompt starts with postgres=# and you enter commands after that #. Now I ran:  ALTER USER postgres PASSWORD &#39;postgres&#39;;   To give the postgres superuser a password (in quotation marks)! The above returns ALTER ROLE. Great, thanks for letting me know. Now I can exit the postgres terminal by typing \q at the # prompt, then exit the postgres user subshell by typing exit, and wind up back at my standard Ubuntu shell.  Another step! I need to alter the pg_hba.config file to allow access. Using an editor (I just did it with nano):  sudo nano /etc/postgresql/14/main/pg_hba.conf   14 and main would need to be changed if you have a different postgres version or cluster name. Basically, the file says, somewhere near the bottom this:    And I needed to change all the peer keywords to something like scram-sha-256, like so:    Now, with the file changed and saved, back at the Ubuntu shell I run:  sudo service postgresql restart   then:  psql -U postgres   and I don’t get any errors and now I’m good to go! bin/setup and rails server work. Finally!">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-02-15T00:00:00-08:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/ruby-on-rails-with-postgres/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ben Purinton",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ben Purinton Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<!-- <link rel="icon" type="image/x-icon" href="/assets/images/favicon-test.ico"> -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ben Purinton
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/research/">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/publications/">Publications</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/purinton_profile_photo.jpg" alt="Ben Purinton" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Ben Purinton</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Howdy. I like dirt :) And computer coding.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, Washington</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ben.purinton@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/bpurinton" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/dirt_facts" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/benjamin-purinton/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Setting up Ruby on Rails with PostgreSQL">
+    <meta itemprop="description" content="I just spent a long time getting my Windows machine setup with Ruby on Rails and the PostgreSQL database in order to work on some software development. Here are the steps I followed.Docker + Ruby on RailsIdeally, I could have set things up as a docker container, with the steps here, but that didn’t work at all. I had a lot of issues with docker on my machine, which may have come down to my own misunderstanding, or may have had to do with some similar bugs reported here or here or maybe here. In any case, I took a different approach.Install Linux SubsystemThe first step was getting a Linux subsystem installed on Windows. I mostly followed the steps here. But I had some diversions due to issues. In the end my steps were as follows:Open a Windows PowerShell as an admin and rundism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestartto enable the WSL subsystem feature.Then rundism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestartto enable the virtual machine feature.I then needed to download and run the WSL2 (version 2!) kernel updater shown in step 4 at the link above.After that update, back in the admin PowerShell, I ran:wsl.exe --set-default-version 2(Note: in many cases I had to add an .exe to my commands, because e.g., wsl &lt;some command&gt; was not working.)On the Microsoft store, I installed Ubuntu-20.04.2 LTS. Now I can open an Ubuntu shell on my machine!Aside: Getting Ubuntu Shell Looking NiceI added to my .bashrc (found in the Ubuntu home directory ~/.bashrc) the following:parse_git_branch() { git branch 2&gt; /dev/null | sed -e &#39;/^[^*]/d&#39; -e &#39;s/* \(.*\)/(\1)/&#39;}if [ &quot;$color_prompt&quot; = yes ]; then PS1=&#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$ &#39;else PS1=&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ &#39;fi# THE SIX LINES BELOW are the default prompt and the unset (which were in the original .bashrc)#if [ &quot;$color_prompt&quot; = yes ]; then#    PS1=&#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &#39;#else#    PS1=&#39;${debian_chroot:+($debian_chroot)}\u@\h:\w\$ &#39;#fi#unset color_prompt force_color_promptBasically, I commented out the default behavior and added the git branch parser so I can see what git branch I am on in the shell (if I’m in a repo folder).There’s a lot more you can do in the ~/.bashrc file to customize your shell. Like you can set what commands are run when the shell opens, because this file is run everytime you open a new shell.Setting up Ruby on RailsNow that I have a Linux virtual machine on my PC, I followed these steps to get Ruby on Rails running. There were again some diversions due to errors, but the general steps (and commands) were:RubyIn the Ubuntu WSL shell, run:sudo apt-get updatesudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-devThese are some dependencies. Once that’s done we need a Ruby version manager called rbenv. That is installed with these commands:cdgit clone https://github.com/rbenv/rbenv.git ~/.rbenvecho &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrcecho &#39;eval &quot;$(rbenv init -)&quot;&#39; &gt;&gt; ~/.bashrcexec $SHELLgit clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-buildecho &#39;export PATH=&quot;$HOME/.rbenv/plugins/ruby-build/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrcexec $SHELL(Note the echo ... commands send some copy into the /.bashrc via the &gt;&gt; shovel operator. Now this code will be run whenever the shell opens or whenever we run exec $SHELL.)We now want to install Ruby with the manager. For my current project, I needed version 3.1.2, so I installed that at the Ubuntu shell with:rbenv install 3.1.2Then set it to be the global Ruby version for the shell with:rbenv global 3.1.2Now whenever I want to install or switch versions in a shell I can just dorbenv install &lt;version&gt;rbenv global &lt;version&gt;And confirm the version withruby -vWe also need the all-important bundler gem, which is a Ruby environment manager (kinda like conda for python?). In the Ubuntu shell I ran:gem install bundlerrbenv rehashGitAt the Ubuntu shell I ran:git config --global color.ui truegit config --global user.name &quot;YOUR NAME&quot;git config --global user.email &quot;YOUR@EMAIL.com&quot;ssh-keygen -t rsa -b 4096 -C &quot;YOUR@EMAIL.com&quot;The first three commands are just for setting some colors and my username on Github “Ben Purinton” and email. The last ssh-keygen command generates a public/private SSH key. The last command asks for a location (I used the default ~/.ssh/id_rsa.pub) and password ([redacted]).I put the public key on my Github profile by pasting the output of:cat ~/.ssh/id_rsa.pubto the relevant area of my Github account (“Settings” &gt; “SSH”).Now I don’t need to go and enter my Github password all the time! I can check it’s working by running ssh -T git@github.com, which gives back some “you’re connected” copy.RailsTo install Rails, at the Ubuntu shell I ran:curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | sudo tee /etc/apt/sources.list.d/yarn.listsudo apt updatesudo apt-get install -y nodejs yarnThese are to cover dependencies for Rails. NodeJS is a Javascript runtime and Yarn is a package manager.Now I can install Rails (which is just a gem!) by running:gem install rails -v 7.0.4The version can of course be changed, but I just used the latest version (7.0.4).I also need to rehash via:rbenv rehashAnd confirm the install via:rails -vPostgreSQLNow came the really annoying part. I’ll spare all the gory details, but here’s what worked for me. I began with the steps here, but did NOT create a new user. My commands were:sudo apt-get remove postgresqlTo remove any previously installed package. (Note: if you really want to purge postgresql then you need to run sudo apt-get --purge remove postgresql*).Then I installed the database and its dependencies with:sudo apt install postgresql postgresql-contrib libpq-devNow it should work! You just need to type:sudo service postgresql startTo start the database. You can stop it by changing start to stopYou can also start a database with sudo pg_createcluster 14 main (changing 14) to whatever version you have installed, which you can check by doing an ls /etc/postgresql where you should see a folder with the version number. Actually, in that folder you will find the named databases (e.g., main). Oh and while I’m at it with these run on thoughts, when things are really messed up you can also drop a database wtih pg_dropcluster… Oh, and by the way, the database seems to exist at both /etc/postgresql/14/main/ AND /var/lib/postgresql/14/main/, go figure… TLDR; follow the steps / commands above and below and hopefully you don’t need to worry about all these asides.Everytime we start a shell, we need to run:sudo service postgresql startBut if you forget, when you go and start your Rails app, you’ll immediatelly get an error connecting to ActiveRecord, so that’ll be your reminder to start the database. You could also add the command to ~/.bashrc.How to fix postgres user errorThought I was done? Me too! Nope! When I tried to bin/setup or rails server in my Rails app that I wanted to work on, I got the error:ActiveRecord::DatabaseConnectionError: There is an issue connecting to your database with you username/password, username: postgres.When you install postgres I guess it generates a superuser named postgres that has full control over databases you create. But the Rails app I was working in said there was some error with this profile / password combo (that I had no part in setting up…)Luckily, a colleague pointed me towards this post, which I summarize:Running (psql is a terminal-based front-end to PostgreSQL):psql -U postgresGave me the error message:psql: error: FATAL: Peer authentication failed for user &quot;postgres&quot;Uh-oh! I need to configure a password!First I ran:sudo -i -u postgresThat opened a sub-shell as the postgres user (as opposed to the username I used to setup my Ubuntu subsystem: bpurinton). Now at this new sub-shell prompot I ran:psqlwhich opens the PostgreSQL terminal, where the prompt starts with postgres=# and you enter commands after that #. Now I ran:ALTER USER postgres PASSWORD &#39;postgres&#39;;To give the postgres superuser a password (in quotation marks)! The above returns ALTER ROLE. Great, thanks for letting me know. Now I can exit the postgres terminal by typing \q at the # prompt, then exit the postgres user subshell by typing exit, and wind up back at my standard Ubuntu shell.Another step! I need to alter the pg_hba.config file to allow access. Using an editor (I just did it with nano):sudo nano /etc/postgresql/14/main/pg_hba.conf14 and main would need to be changed if you have a different postgres version or cluster name. Basically, the file says, somewhere near the bottom this:And I needed to change all the peer keywords to something like scram-sha-256, like so:Now, with the file changed and saved, back at the Ubuntu shell I run:sudo service postgresql restartthen:psql -U postgresand I don’t get any errors and now I’m good to go! bin/setup and rails server work. Finally!">
+    <meta itemprop="datePublished" content="2023-02-15T00:00:00-08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/ruby-on-rails-with-postgres/" class="u-url" itemprop="url">Setting up Ruby on Rails with PostgreSQL
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-02-15T00:00:00-08:00">February 15, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Content</h4></header>
+              <ul class="toc__menu"><li><a href="#docker--ruby-on-rails">Docker + Ruby on Rails</a></li><li><a href="#install-linux-subsystem">Install Linux Subsystem</a><ul><li><a href="#aside-getting-ubuntu-shell-looking-nice">Aside: Getting Ubuntu Shell Looking Nice</a></li></ul></li><li><a href="#setting-up-ruby-on-rails">Setting up Ruby on Rails</a><ul><li><a href="#ruby">Ruby</a></li><li><a href="#git">Git</a></li><li><a href="#rails">Rails</a></li><li><a href="#postgresql">PostgreSQL</a><ul><li><a href="#how-to-fix-postgres-user-error">How to fix postgres user error</a></li></ul></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>I just spent a long time getting my Windows machine setup with Ruby on Rails and the PostgreSQL database in order to work on some software development. Here are the steps I followed.</p>
+
+<h1 id="docker--ruby-on-rails">Docker + Ruby on Rails</h1>
+
+<p>Ideally, I could have set things up as a docker container, with the steps <a href="https://github.com/rails/docked" target="_blank">here</a>, but that didn’t work at all. I had a lot of issues with docker on my machine, which may have come down to my own misunderstanding, or may have had to do with some similar bugs reported <a href="https://forums.docker.com/t/solved-docker-failed-to-start-docker-desktop-for-windows/106976" target="_blank">here</a> or <a href="https://stackoverflow.com/questions/67406780/not-able-to-start-docker-desktop-in-windows" target="_blank">here</a> or maybe <a href="https://github.com/docker/for-win/issues/13075" target="_blank">here</a>. In any case, I took a different approach.</p>
+
+<h1 id="install-linux-subsystem">Install Linux Subsystem</h1>
+
+<p>The first step was getting a Linux subsystem installed on Windows. I mostly followed the steps <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual" target="_blank">here</a>. But I had some diversions due to issues. In the end my steps were as follows:</p>
+
+<p>Open a Windows PowerShell as an admin and run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+</code></pre></div></div>
+
+<p>to enable the WSL subsystem feature.</p>
+
+<p>Then run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+</code></pre></div></div>
+
+<p>to enable the virtual machine feature.</p>
+
+<p>I then needed to download and run the WSL2 (version 2!) kernel updater shown in step 4 at the <a href="https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package" target="_blank">link above</a>.</p>
+
+<p>After that update, back in the admin PowerShell, I ran:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wsl.exe --set-default-version 2
+</code></pre></div></div>
+
+<p>(Note: in many cases I had to add an <code class="language-plaintext highlighter-rouge">.exe</code> to my commands, because e.g., <code class="language-plaintext highlighter-rouge">wsl &lt;some command&gt;</code> was not working.)</p>
+
+<p>On the Microsoft store, I installed Ubuntu-20.04.2 LTS. Now I can open an Ubuntu shell on my machine!</p>
+
+<h2 id="aside-getting-ubuntu-shell-looking-nice">Aside: Getting Ubuntu Shell Looking Nice</h2>
+
+<p>I added to my <code class="language-plaintext highlighter-rouge">.bashrc</code> (found in the Ubuntu home directory <code class="language-plaintext highlighter-rouge">~/.bashrc</code>) the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>parse_git_branch() {
+ git branch 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+if [ "$color_prompt" = yes ]; then
+ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$ '
+else
+ PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ '
+fi
+
+# THE SIX LINES BELOW are the default prompt and the unset (which were in the original .bashrc)
+#if [ "$color_prompt" = yes ]; then
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#else
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#fi
+#unset color_prompt force_color_prompt
+</code></pre></div></div>
+
+<p>Basically, I commented out the default behavior and added the git branch parser so I can see what git branch I am on in the shell (if I’m in a repo folder).</p>
+
+<p>There’s a lot more you can do in the <code class="language-plaintext highlighter-rouge">~/.bashrc</code> file to customize your shell. Like you can set what commands are run when the shell opens, because this file is run everytime you open a new shell.</p>
+
+<h1 id="setting-up-ruby-on-rails">Setting up Ruby on Rails</h1>
+
+<p>Now that I have a Linux virtual machine on my PC, I followed <a href="https://gorails.com/setup/windows/10#ruby" target="_blank">these steps</a> to get Ruby on Rails running. There were again some diversions due to errors, but the general steps (and commands) were:</p>
+
+<h2 id="ruby">Ruby</h2>
+
+<p>In the Ubuntu WSL shell, run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev
+</code></pre></div></div>
+
+<p>These are some dependencies. Once that’s done we need a Ruby version manager called <code class="language-plaintext highlighter-rouge">rbenv</code>. That is installed with these commands:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bashrc
+echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bashrc
+exec $SHELL
+
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' &gt;&gt; ~/.bashrc
+exec $SHELL
+</code></pre></div></div>
+
+<p>(Note the <code class="language-plaintext highlighter-rouge">echo ...</code> commands send some copy into the <code class="language-plaintext highlighter-rouge">/.bashrc</code> via the <code class="language-plaintext highlighter-rouge">&gt;&gt;</code> shovel operator. Now this code will be run whenever the shell opens or whenever we run <code class="language-plaintext highlighter-rouge">exec $SHELL</code>.)</p>
+
+<p>We now want to install Ruby with the manager. For my current project, I needed version 3.1.2, so I installed that at the Ubuntu shell with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv install 3.1.2
+</code></pre></div></div>
+
+<p>Then set it to be the global Ruby version for the shell with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv global 3.1.2
+</code></pre></div></div>
+
+<p>Now whenever I want to install or switch versions in a shell I can just do</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv install &lt;version&gt;
+rbenv global &lt;version&gt;
+</code></pre></div></div>
+
+<p>And confirm the version with</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby -v
+</code></pre></div></div>
+
+<p>We also need the all-important <a href="https://bundler.io/" target="_blank">bundler</a> gem, which is a Ruby environment manager (kinda like <code class="language-plaintext highlighter-rouge">conda</code> for python?). In the Ubuntu shell I ran:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install bundler
+rbenv rehash
+</code></pre></div></div>
+
+<h2 id="git">Git</h2>
+
+<p>At the Ubuntu shell I ran:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global color.ui true
+git config --global user.name "YOUR NAME"
+git config --global user.email "YOUR@EMAIL.com"
+ssh-keygen -t rsa -b 4096 -C "YOUR@EMAIL.com"
+</code></pre></div></div>
+
+<p>The first three commands are just for setting some colors and my username on Github “Ben Purinton” and email. The last <code class="language-plaintext highlighter-rouge">ssh-keygen</code> command generates a public/private SSH key. The last command asks for a location (I used the default <code class="language-plaintext highlighter-rouge">~/.ssh/id_rsa.pub</code>) and password ([redacted]).</p>
+
+<p>I put the public key on my Github profile by pasting the output of:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat ~/.ssh/id_rsa.pub
+</code></pre></div></div>
+
+<p>to the relevant area of my Github account (“Settings” &gt; “SSH”).</p>
+
+<p>Now I don’t need to go and enter my Github password all the time! I can check it’s working by running <code class="language-plaintext highlighter-rouge">ssh -T git@github.com</code>, which gives back some “you’re connected” copy.</p>
+
+<h2 id="rails">Rails</h2>
+
+<p>To install Rails, at the Ubuntu shell I ran:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt update
+sudo apt-get install -y nodejs yarn
+</code></pre></div></div>
+
+<p>These are to cover dependencies for Rails. NodeJS is a Javascript runtime and Yarn is a package manager.</p>
+
+<p>Now I can install Rails (which is just a gem!) by running:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install rails -v 7.0.4
+</code></pre></div></div>
+
+<p>The version can of course be changed, but I just used the latest version (7.0.4).</p>
+
+<p>I also need to rehash via:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv rehash
+</code></pre></div></div>
+
+<p>And confirm the install via:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails -v
+</code></pre></div></div>
+
+<h2 id="postgresql">PostgreSQL</h2>
+
+<p>Now came the really annoying part. I’ll spare all the gory details, but here’s what worked for <em>me</em>. I began with the steps <a href="https://kdshah6593.medium.com/installing-postgresql-with-windows-subsystem-linux-wsl2-4adfa524f86d" target="_blank">here</a>, but did NOT create a new user. My commands were:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get remove postgresql
+</code></pre></div></div>
+
+<p>To remove any previously installed package. (Note: <a href="https://askubuntu.com/questions/1010442/how-to-uninstall-the-postgresql" target="_blank">if you really want to purge</a> postgresql then you need to run <code class="language-plaintext highlighter-rouge">sudo apt-get --purge remove postgresql*</code>).</p>
+
+<p>Then I installed the database and its dependencies with:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install postgresql postgresql-contrib libpq-dev
+</code></pre></div></div>
+
+<p>Now it should work! You just need to type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service postgresql start
+</code></pre></div></div>
+
+<p>To start the database. You can stop it by changing <code class="language-plaintext highlighter-rouge">start</code> to <code class="language-plaintext highlighter-rouge">stop</code></p>
+
+<p>You can also start a database with <code class="language-plaintext highlighter-rouge">sudo pg_createcluster 14 main</code> (changing <code class="language-plaintext highlighter-rouge">14</code>) to whatever version you have installed, which you can check by doing an <code class="language-plaintext highlighter-rouge">ls /etc/postgresql</code> where you should see a folder with the version number. Actually, in that folder you will find the named databases (e.g., <code class="language-plaintext highlighter-rouge">main</code>). Oh and while I’m at it with these run on thoughts, when things are really messed up you can also drop a database wtih <code class="language-plaintext highlighter-rouge">pg_dropcluster</code>… Oh, and by the way, the database seems to exist at both <code class="language-plaintext highlighter-rouge">/etc/postgresql/14/main/</code> AND <code class="language-plaintext highlighter-rouge">/var/lib/postgresql/14/main/</code>, go figure… TLDR; follow the steps / commands above and below and hopefully you don’t need to worry about all these asides.</p>
+
+<p>Everytime we start a shell, we need to run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service postgresql start
+</code></pre></div></div>
+
+<p>But if you forget, when you go and start your Rails app, you’ll immediatelly get an error connecting to ActiveRecord, so that’ll be your reminder to start the database. You could also add the command to <code class="language-plaintext highlighter-rouge">~/.bashrc</code>.</p>
+
+<h3 id="how-to-fix-postgres-user-error">How to fix <code class="language-plaintext highlighter-rouge">postgres</code> user error</h3>
+
+<p>Thought I was done? Me too! Nope! When I tried to <code class="language-plaintext highlighter-rouge">bin/setup</code> or <code class="language-plaintext highlighter-rouge">rails server</code> in my Rails app that I wanted to work on, I got the error:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ActiveRecord::DatabaseConnectionError: There is an issue connecting to your database with you username/password, username: postgres.
+</code></pre></div></div>
+
+<p>When you install postgres I guess it generates a superuser named <code class="language-plaintext highlighter-rouge">postgres</code> that has full control over databases you create. But the Rails app I was working in said there was some error with this profile / password combo (that I had no part in setting up…)</p>
+
+<p>Luckily, a colleague pointed me towards <a href="https://gabrielinnocentrockerfeller.medium.com/how-to-fix-fatal-password-authentication-failed-for-user-postgres-in-ubuntu-20-4-f7c6d2856fc9" target="_blank">this post</a>, which I summarize:</p>
+
+<p>Running (<code class="language-plaintext highlighter-rouge">psql</code> is a terminal-based front-end to PostgreSQL):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql -U postgres
+</code></pre></div></div>
+
+<p>Gave me the error message:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql: error: FATAL: Peer authentication failed for user "postgres"
+</code></pre></div></div>
+
+<p>Uh-oh! I need to configure a password!</p>
+
+<p>First I ran:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo -i -u postgres
+</code></pre></div></div>
+
+<p>That opened a sub-shell <em>as</em> the postgres user (as opposed to the username I used to setup my Ubuntu subsystem: <code class="language-plaintext highlighter-rouge">bpurinton</code>). Now at this new sub-shell prompot I ran:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql
+</code></pre></div></div>
+
+<p>which opens the PostgreSQL <em>terminal</em>, where the prompt starts with <code class="language-plaintext highlighter-rouge">postgres=#</code> and you enter commands after that <code class="language-plaintext highlighter-rouge">#</code>. Now I ran:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ALTER USER postgres PASSWORD 'postgres';
+</code></pre></div></div>
+
+<p>To give the postgres superuser a password (in quotation marks)! The above returns <code class="language-plaintext highlighter-rouge">ALTER ROLE</code>. Great, thanks for letting me know. Now I can exit the postgres terminal by typing <code class="language-plaintext highlighter-rouge">\q</code> at the <code class="language-plaintext highlighter-rouge">#</code> prompt, then exit the postgres user subshell by typing <code class="language-plaintext highlighter-rouge">exit</code>, and wind up back at my standard Ubuntu shell.</p>
+
+<p>Another step! I need to alter the <code class="language-plaintext highlighter-rouge">pg_hba.config</code> file to allow access. Using an editor (I just did it with nano):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nano /etc/postgresql/14/main/pg_hba.conf
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">14</code> and <code class="language-plaintext highlighter-rouge">main</code> would need to be changed if you have a different postgres version or cluster name. Basically, the file says, somewhere near the bottom this:</p>
+
+<p><img src="/assets/images/pg_hba.conf.before.png" alt="" /></p>
+
+<p>And I needed to change all the <code class="language-plaintext highlighter-rouge">peer</code> keywords to something like <code class="language-plaintext highlighter-rouge">scram-sha-256</code>, like so:</p>
+
+<p><img src="/assets/images/pg_hba.conf.after.png" alt="" /></p>
+
+<p>Now, with the file changed and saved, back at the Ubuntu shell I run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service postgresql restart
+</code></pre></div></div>
+
+<p>then:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql -U postgres
+</code></pre></div></div>
+
+<p>and I don’t get any errors and now I’m good to go! <code class="language-plaintext highlighter-rouge">bin/setup</code> and <code class="language-plaintext highlighter-rouge">rails server</code> work. Finally!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#postgresql" class="page__taxonomy-item p-category" rel="tag">postgresql</a><span class="sep">, </span>
+    
+      <a href="/tags/#rails" class="page__taxonomy-item p-category" rel="tag">rails</a><span class="sep">, </span>
+    
+      <a href="/tags/#ruby" class="page__taxonomy-item p-category" rel="tag">ruby</a><span class="sep">, </span>
+    
+      <a href="/tags/#wsl" class="page__taxonomy-item p-category" rel="tag">wsl</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-02-15T00:00:00-08:00">February 15, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Setting+up+Ruby+on+Rails+with+PostgreSQL%20http%3A%2F%2Flocalhost%3A4000%2Fruby-on-rails-with-postgres%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fruby-on-rails-with-postgres%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fruby-on-rails-with-postgres%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/javascript-in-bookdown/" class="pagination--pager" title="Custom JavaScript in Bookdown
+">Previous</a>
+    
+    
+      <a href="/merging-feature-branch/" class="pagination--pager" title="Git merging main into an in-progress feature-branch
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/cv-builder-preview.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/building-cv-builder-with-claude/" rel="permalink">Building an Interactive CV Builder with Claude
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-07-20T00:00:00-07:00">July 20, 2025</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How I built a dynamic, printable CV builder for my Jekyll site using Claude’s new Artifacts feature and some creative problem-solving
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/sea-ice-office.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/sea-ice-radar/" rel="permalink">Exploring Nome’s Sea Ice with Satellite and Ground Radar
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-12T00:00:00-07:00">April 12, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I recently found out about UAF’s sea-ice radar monitor at the end of the pier in Nome’s port.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docker-geemap/" rel="permalink">Running dockerized google earth engine (GEE) map
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-25T00:00:00-07:00">March 25, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">The steps I took to open and run a dockerized geemap:
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/notes-on-git/" rel="permalink">Notes on using git
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-18T00:00:00-07:00">March 18, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’m currently going through the extremely helpful thoughtbot git tutorial. I want to leave some notes here for future reference.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/bpurinton/bpurinton.github.io" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Ben Purinton. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

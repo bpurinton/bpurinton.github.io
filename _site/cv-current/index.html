@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Benjamin Purinton - CV</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+
+        .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .print-controls {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .print-btn {
+            background: linear-gradient(135deg, #c4821b, #d4a347);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .print-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .section-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            justify-content: flex-end;
+        }
+
+        .section-btn {
+            background: #c4821b;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            opacity: 0.8;
+        }
+
+        .section-btn:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .section-btn.delete {
+            background: #dc3545;
+        }
+
+        .item-controls {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            justify-content: flex-end;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .experience-item:hover .item-controls,
+        .education-item:hover .item-controls,
+        .publication-item:hover .item-controls,
+        .achievement-item:hover .item-controls,
+        .skill-category:hover .item-controls,
+        .project-item:hover .item-controls {
+            opacity: 1;
+        }
+
+        .item-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .item-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .item-btn.delete {
+            background: #dc3545;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #c4821b 0%, #d4a347 100%);
+            color: white;
+            padding: 30px 30px 25px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .title {
+            font-size: 1.2em;
+            font-weight: 300;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.95em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item::before {
+            display: none;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #c4821b;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e9ecef;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(135deg, #c4821b, #d4a347);
+        }
+
+        .summary {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #555;
+            text-align: justify;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #c4821b;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .company {
+            font-size: 1em;
+            color: #c4821b;
+            font-weight: 500;
+        }
+
+        .date {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 500;
+            background: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            white-space: nowrap;
+        }
+
+        .job-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .job-description ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .job-description li {
+            margin-bottom: 6px;
+        }
+
+        .tech-stack {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #e9ecef;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .project-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #c4821b;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .project-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            color: #c4821b;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: opacity 0.2s;
+        }
+
+        .project-link:hover {
+            opacity: 0.8;
+        }
+
+        .project-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-top: 3px solid #c4821b;
+        }
+
+        .skill-category h4 {
+            font-size: 1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: white;
+            color: #c4821b;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            border: 1px solid #e9ecef;
+        }
+
+        .publication-item {
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .publication-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .publication-details {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .achievement-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #c4821b;
+        }
+
+        .achievement-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .achievement-description {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        @media print {
+            body { 
+                background: white; 
+                padding: 0; 
+                font-size: 12px;
+                line-height: 1.4;
+            }
+            .cv-container { 
+                box-shadow: none; 
+                border-radius: 0; 
+                max-width: none;
+                margin: 0;
+            }
+            .print-controls { display: none; }
+            .section-controls { display: none; }
+            .item-controls { display: none; }
+            .header { 
+                break-inside: avoid; 
+                padding: 20px 20px 15px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .name {
+                font-size: 1.8em;
+                margin-bottom: 4px;
+            }
+            .title {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+            .section { 
+                break-inside: avoid-page; 
+                margin-bottom: 15px;
+            }
+            .section-title {
+                font-size: 1.1em;
+                margin-bottom: 8px;
+                padding-bottom: 4px;
+            }
+            .experience-item, .education-item {
+                margin-bottom: 12px;
+                padding: 10px;
+                break-inside: avoid;
+            }
+            .job-title {
+                font-size: 1em;
+            }
+            .company {
+                font-size: 0.9em;
+            }
+            .job-description {
+                font-size: 0.9em;
+                line-height: 1.3;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+            .skill-category {
+                padding: 8px;
+            }
+            .skill-category h4 {
+                font-size: 0.9em;
+                margin-bottom: 6px;
+            }
+            .skill-tag {
+                font-size: 0.7em;
+                padding: 3px 6px;
+            }
+            .publication-item, .achievement-item {
+                margin-bottom: 8px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cv-container { margin: 10px; }
+            .header, .main-content { padding: 15px; }
+            .name { font-size: 1.8em; }
+            .contact-info { flex-direction: column; gap: 10px; }
+            .experience-header { flex-direction: column; align-items: flex-start; }
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Editable styling */
+        [contenteditable="true"] {
+            outline: none;
+            transition: background-color 0.2s;
+        }
+
+        [contenteditable="true"]:hover {
+            background-color: rgba(232, 183, 107, 0.05);
+        }
+
+        [contenteditable="true"]:focus {
+            background-color: rgba(232, 183, 107, 0.1);
+        }
+    
+        /* Hide all controls in published version */
+        .print-controls, .section-controls, .item-controls { display: none !important; }
+        [contenteditable] { outline: none !important; }
+        [contenteditable]:hover { background-color: transparent !important; }
+        body { padding-top: 40px; }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        
+        
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name" style="">Dr. Benjamin Purinton</h1>
+                <div class="title">Head of Operations, First Draft | Full-Stack Developer | Research Scientist</div>
+                <div class="contact-info">
+                    <div class="contact-item"><a href="mailto:ben.purinton@gmail.com" style="text-decoration: none; color: inherit;">📧 ben.purinton@gmail.com</a></div>
+                    <div class="contact-item"><a href="tel:+19178057664" style="text-decoration: none; color: inherit;">📱 +1 (917) 805-7664</a></div>
+                    <div class="contact-item">📍 Seattle, WA</div>
+                    <div class="contact-item"><a href="https://bendirt.com" style="text-decoration: none; color: inherit;" target="_blank">🌐 bendirt.com</a></div>
+                    <div class="contact-item"><a href="https://github.com/bpurinton" style="text-decoration: none; color: inherit;" target="_blank">💻 github.com/bpurinton</a></div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-title">Professional Summary</h2>
+                <div class="summary">
+                    Educator, developer, and scientist, currently working towards accessible technology education. As Head of Operations at First Draft, I combine my background in research science and education with full-stack development expertise to democratize programming knowledge. My unique trajectory—from analyzing satellite data and publishing scientific algorithms to building web applications and teaching coding to beginners—positions me perfectly for roles at the intersection of education, technology, and AI.
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Core Experience</h2>
+                
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Head of Operations</div>
+                            <div class="company">First Draft - Education Technology Startup</div>
+                        </div>
+                        <div class="date">November 2022 - Present</div>
+                    </div>
+                    <div class="job-description">
+                        Developing the best beginner-friendly coding course out there. Have a look: <a href="https://firstdraft.com" style="text-decoration: none; color: inherit;">firstdraft.com</a>
+                        <ul>
+                            <li>Day-to-day company operations and task management</li>
+                            <li>Teaching assistant for Application Development course at University of Chicago Booth School of Business (8 sections/year)</li>
+                            <li>Engineering interactive learning platform and tools, including AI tutor integration</li>
+                            <li>Creating and editing course material</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <strong>Key Technologies:</strong> Ruby on Rails, JavaScript, PostgreSQL, HTML/CSS, Git, AWS, Docker
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Research Scientist (Part-time)</div>
+                            <div class="company">University of Washington</div>
+                        </div>
+                        <div class="date">June 2023 - Present</div>
+                    </div>
+                    <div class="job-description">
+                        Continuing academic remote sensing research with focus on high-resolution surface model generation from satellite data.
+                        <ul>
+                            <li>Developing algorithms for optical DEM generation and quality assessment</li>
+                            <li>Collaborating on interdisciplinary projects bridging technology and earth sciences</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <strong>Key Technologies:</strong> Python, Bash, GDAL, Big Data Processing
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Technical Skills</h2>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Engineering &amp; Development</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Ruby on Rails</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">SQL/PostgreSQL</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">Git/GitHub</span>
+                            <span class="skill-tag">Bash Scripting</span>
+                            <span class="skill-tag">Docker/AWS</span>
+                            <span class="skill-tag">Unix/Linux</span>
+                        </div>
+                        
+                    </div>
+                    <div class="skill-category">
+                        <h4>Research &amp; Data Science</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Geological Remote Sensing</span>
+                            <span class="skill-tag">Geospatial Computing</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">Statistical Analysis</span>
+                            <span class="skill-tag">GDAL/QGIS</span>
+                        </div>
+                        
+                    </div>
+                    <div class="skill-category">
+                        <h4>Teaching &amp; Communication</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">University Teaching</span>
+                            <span class="skill-tag">Curriculum Design</span>
+                            <span class="skill-tag">Scientific Publication &amp; Reviewing</span>
+                            <span class="skill-tag">Task Management</span>
+                            <span class="skill-tag">German (B2 Level)</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Academic &amp; Research Background</h2>
+                
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Post-Doctoral Researcher and Instructor</div>
+                            <div class="company">University of Potsdam, Germany</div>
+                        </div>
+                        <div class="date">June 2020 - October 2022</div>
+                    </div>
+                    <div class="job-description">
+                        Advanced research in remote sensing applications while teaching multiple courses in GIS, data analysis, and optical remote sensing.
+                        <ul>
+                            <li>Taught courses: Optical Remote Sensing, Data Analysis and Statistics, Introduction to GIS</li>
+                            <li>Published multiple peer-reviewed articles on DEM quality assessment and grain-size analysis</li>
+                            <li>Developed open-source algorithms including PebbleCounts for automated grain-sizing</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">PhD Candidate and Teaching Assistant</div>
+                            <div class="company">University of Potsdam, Germany</div>
+                        </div>
+                        <div class="date">2017 - 2020</div>
+                    </div>
+                    <div class="job-description">
+                        Conducted fieldwork in the Eastern Central Andes while developing novel remote sensing methodologies.
+                        <ul>
+                            <li>Led three field campaigns in Argentina for data collection and validation</li>
+                            <li>Co-instructed courses in Lidar/Photogrammetry and Spatial Data Analysis</li>
+                            <li>Published algorithms and peer-reviewed articles for DEM noise removal and surface change detection</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+                
+                
+                <div class="education-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">PhD in Remote Sensing (magna cum laude)</div>
+                            <div class="company">University of Potsdam, Germany</div>
+                        </div>
+                        <div class="date">February 2020</div>
+                    </div>
+                    <div class="job-description">
+                        Dissertation: "Remote Sensing Applications to Earth Surface Processes in the Eastern Central Andes"<br>
+                        Developed novel methodologies for satellite-based geomorphic analysis in arid mountain environments
+                    </div>
+                    
+                </div>
+
+                <div class="education-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">MSc in Geology</div>
+                            <div class="company">University of Potsdam, Germany</div>
+                        </div>
+                        <div class="date">November 2016</div>
+                    </div>
+                    <div class="job-description">
+                        Thesis: "Validation of DEMs &amp; Derived Geomorphic Metrics on the Southern Central Andean Plateau"<br>
+                        Comprehensive evaluation of global digital elevation models for geomorphic applications
+                    </div>
+                    
+                </div>
+
+                <div class="education-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">BA in Earth &amp; Environmental Sciences (high honors)</div>
+                            <div class="company">Wesleyan University, USA</div>
+                        </div>
+                        <div class="date">May 2013</div>
+                    </div>
+                    <div class="job-description">
+                        Thesis: "The Hydrologic &amp; Geomorphic Impacts of the 2010 Fourmile Canyon Fire, Boulder Creek Watershed, CO"<br>
+                        Focused on post-wildfire hydrology and sediment transport dynamics
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Selected Publications &amp; Research</h2>
+                
+                
+                <div class="publication-item">
+                    <div class="publication-title">Image Texture as Quality Indicator for Optical DEM Generation: Geomorphic Applications in the Arid Central Andes</div>
+                    <div class="publication-details">
+                        Purinton, B., Mueting, A., Bookhagen, B. Remote Sensing, 2023. <a href="https://doi.org/10.3390/rs15010085" style="text-decoration: none;" target="_blank">https://doi.org/10.3390/rs15010085</a>.
+                    </div>
+                    
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title">Tracking Downstream Variability in Large Grain-Size Distributions in the South-Central Andes</div>
+                    <div class="publication-details">
+                        Purinton, B. and Bookhagen, B. Journal of Geophysical Research: Earth Surface, 2021. <a href="https://doi.org/10.1029/2021JF006260" style="text-decoration: none;" target="_blank">https://doi.org/10.1029/2021JF006260</a>.
+                    </div>
+                    
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title">Beyond vertical point accuracy: Assessing inter-pixel consistency in 30 m global DEMs for the arid Central Andes</div>
+                    <div class="publication-details">
+                        Purinton, B. and Bookhagen, B. Frontiers in Earth Science, 2021. <a href="https://doi.org/10.3389/feart.2021.758606" style="text-decoration: none;" target="_blank">https://doi.org/10.3389/feart.2021.758606</a>.
+                    </div>
+                    
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title">Multiband (X, C, L) radar amplitude analysis for a mixed sand- and gravel-bed river in the eastern Central Andes</div>
+                    <div class="publication-details">
+                        Purinton, B. and Bookhagen, B. Remote Sensing of Environment, 2020. <a href="https://doi.org/10.1016/j.rse.2020.111799" style="text-decoration: none;" target="_blank">https://doi.org/10.1016/j.rse.2020.111799</a>.
+                    </div>
+                    
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title">Introducing PebbleCounts: a grain-sizing tool for photo surveys of dynamic gravel-bed rivers</div>
+                    <div class="publication-details">
+                        Purinton, B. and Bookhagen, B. Earth Surface Dynamics, 2019. <a href="https://github.com/bpurinton/PebbleCounts" style="text-decoration: none;" target="_blank">Open Source Algorithm</a>
+                    </div>
+                    
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-title">Additional Publications</div>
+                    <div class="publication-details">
+                        7 peer-reviewed articles, 4 published algorithms, 10+ conference presentations. See full list on <a href="https://scholar.google.com/citations?hl=en&user=EacO3GQAAAAJ" style="text-decoration: none;" target="_blank">Google Scholar profile</a>.
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Awards &amp; Recognition</h2>
+                
+                <div class="achievements">
+                    <div class="achievement-item">
+                        <div class="achievement-title">SPOT6 Third Party Mission Grant</div>
+                        <div class="achievement-description">2021 - European Space Agency (ESA) satellite data grant</div>
+                        
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-title">PhD magna cum laude</div>
+                        <div class="achievement-description">2020 - University of Potsdam PhD honor</div>
+                        
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-title">TanDEM-X Science Grant</div>
+                        <div class="achievement-description">2017 - German Aerospace Center (DLR) research grant</div>
+                        
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-title">Phi Beta Kappa</div>
+                        <div class="achievement-description">2013 - Academic honor society, Wesleyan University</div>
+                        
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-title">Peirce Prize for Excellence in Geology</div>
+                        <div class="achievement-description">2013 - Top geology student award, Wesleyan University</div>
+                        
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-title">Journal Referee</div>
+                        <div class="achievement-description">Reviewer for JGR, Earth Surface Dynamics, Remote Sensing, and others</div>
+                        
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        // Simple print function for published CV
+        function printCV() { window.print(); }
+    </script>
+</body>
+</html>

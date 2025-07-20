@@ -1,0 +1,842 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Building an Interactive CV Builder with Claude | Ben Purinton</title>
+<meta name="description" content="How I built a dynamic, printable CV builder for my Jekyll site using Claude’s new Artifacts feature and some creative problem-solving">
+
+
+  <meta name="author" content="Ben Purinton">
+  
+  <meta property="article:author" content="Ben Purinton">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ben Purinton">
+<meta property="og:title" content="Building an Interactive CV Builder with Claude">
+<meta property="og:url" content="http://localhost:4000/building-cv-builder-with-claude/">
+
+
+  <meta property="og:description" content="How I built a dynamic, printable CV builder for my Jekyll site using Claude’s new Artifacts feature and some creative problem-solving">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/cv-builder-preview.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-07-20T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/building-cv-builder-with-claude/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ben Purinton",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ben Purinton Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+<!-- <link rel="icon" type="image/x-icon" href="/assets/images/favicon-test.ico"> -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Ben Purinton
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/research/">Research</a>
+            </li><li class="masthead__menu-item">
+              <a href="/publications/">Publications</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cv/">CV</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blog/">Blog</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/images/purinton_profile_photo.jpg" alt="Ben Purinton" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Ben Purinton</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Howdy. I like dirt :) And computer coding.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, Washington</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ben.purinton@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/bpurinton" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/dirt_facts" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/benjamin-purinton/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Building an Interactive CV Builder with Claude">
+    <meta itemprop="description" content="How I built a dynamic, printable CV builder for my Jekyll site using Claude’s new Artifacts feature and some creative problem-solving">
+    <meta itemprop="datePublished" content="2025-07-20T00:00:00-07:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/building-cv-builder-with-claude/" class="u-url" itemprop="url">Building an Interactive CV Builder with Claude
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-07-20T00:00:00-07:00">July 20, 2025</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Content</h4></header>
+              <ul class="toc__menu"><li><a href="#the-journey-begins-claude-artifacts">The Journey Begins: Claude Artifacts</a></li><li><a href="#moving-to-the-repository">Moving to the Repository</a><ul><li><a href="#the-localstorage-dilemma">The localStorage Dilemma</a></li><li><a href="#the-static-html-solution">The Static HTML Solution</a></li><li><a href="#the-template-literal-trap">The Template Literal Trap</a></li></ul></li><li><a href="#the-final-product">The Final Product</a><ul><li><a href="#key-features">Key Features</a></li><li><a href="#next-up-features">Next Up Features</a></li></ul></li><li><a href="#lessons-learned">Lessons Learned</a></li><li><a href="#try-it-yourself">Try It Yourself</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>As someone who straddles the worlds of academic research and tech education, I’ve always struggled with maintaining different versions of my CV. I have a comprehensive academic CV in LaTeX that spans multiple pages, and a condensed one-page version for industry roles. But updating both is tedious, and neither really captures my unique career trajectory.</p>
+
+<p>So I decided to build something better: an interactive, web-based CV builder that I could customize on the fly and publish directly to my Jekyll site. Here’s how I did it with the help of Claude.</p>
+
+<p>(It’s linked below at the end of the post, but if you’re anxious to have a look now: <a href="/cv-builder" target="_blank">Edit CV Builder</a>)</p>
+
+<h1 id="the-journey-begins-claude-artifacts">The Journey Begins: Claude Artifacts</h1>
+
+<p>I started with Claude’s web-based Artifacts tool, which lets you iterate on code in a visual interface. My initial prompt was simple:</p>
+
+<blockquote>
+  <p>I want a slick CV template. I’m a scientist with a bunch of education and research credentials, but I now work for an education startup that teaches people to code. I’m the head of operations there.</p>
+</blockquote>
+
+<p>Claude generated a beautiful, interactive CV template with:</p>
+<ul>
+  <li>Editable fields (using <code class="language-plaintext highlighter-rouge">contenteditable</code>)</li>
+  <li>A professional gradient header</li>
+  <li>Organized sections for experience, skills, education, etc.</li>
+  <li>Print-friendly CSS</li>
+  <li>Dynamic add/remove functionality for list items</li>
+</ul>
+
+<p>After some iteration in the Artifacts interface to refine the design and functionality, I had a solid foundation. But I wanted to integrate this into my Jekyll site and add some crucial features.</p>
+
+<h1 id="moving-to-the-repository">Moving to the Repository</h1>
+
+<p>I brought the code over to my GitHub Pages repository and continued working with Claude in my local development environment. This is where things got interesting.</p>
+
+<h2 id="the-localstorage-dilemma">The localStorage Dilemma</h2>
+
+<p>My first challenge: the CV builder would reset to the template every time I visited the page. Annoying! My initial thought was to use localStorage to persist edits between sessions.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">saveToLocalStorage</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">cvContent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.main-content</span><span class="dl">'</span><span class="p">).</span><span class="nx">innerHTML</span><span class="p">;</span>
+    <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">cvBuilderContent</span><span class="dl">'</span><span class="p">,</span> <span class="nx">cvContent</span><span class="p">);</span>
+    <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">cvBuilderLastSaved</span><span class="dl">'</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>But then I realized the fundamental issue: localStorage is browser-specific. Other visitors to my site wouldn’t see my actual CV—they’d see the blank template!</p>
+
+<h2 id="the-static-html-solution">The Static HTML Solution</h2>
+
+<p>After discussing options with Claude, we landed on a clever solution:</p>
+
+<ol>
+  <li><strong>Edit locally</strong>: Use the CV builder at <code class="language-plaintext highlighter-rouge">/cv-builder</code> to create and edit my CV</li>
+  <li><strong>Publish to static</strong>: Export the completed CV as a static HTML file</li>
+  <li><strong>Commit to repo</strong>: Save this as <code class="language-plaintext highlighter-rouge">cv-current.html</code> in my repository</li>
+  <li><strong>Display publicly</strong>: Embed the static CV on my main <code class="language-plaintext highlighter-rouge">/cv</code> page</li>
+</ol>
+
+<p>Here’s the publish function that makes the magic happen:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">publishCV</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Clone the current CV</span>
+    <span class="kd">const</span> <span class="nx">cvClone</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.cv-container</span><span class="dl">'</span><span class="p">).</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    
+    <span class="c1">// Remove all edit controls and buttons</span>
+    <span class="nx">cvClone</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">.print-controls, .section-controls, .item-controls</span><span class="dl">'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">remove</span><span class="p">());</span>
+    
+    <span class="c1">// Remove contenteditable attributes</span>
+    <span class="nx">cvClone</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">[contenteditable]</span><span class="dl">'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">contenteditable</span><span class="dl">'</span><span class="p">));</span>
+    
+    <span class="c1">// Create the full HTML document</span>
+    <span class="kd">const</span> <span class="nx">htmlContent</span> <span class="o">=</span> <span class="s2">`&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;</span><span class="p">${</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.name</span><span class="dl">'</span><span class="p">).</span><span class="nx">textContent</span><span class="p">}</span><span class="s2"> - CV&lt;/title&gt;
+    &lt;style&gt;</span><span class="p">${</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">style</span><span class="dl">'</span><span class="p">).</span><span class="nx">textContent</span><span class="p">}</span><span class="s2">&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    </span><span class="p">${</span><span class="nx">cvClone</span><span class="p">.</span><span class="nx">outerHTML</span><span class="p">}</span><span class="s2">
+&lt;/body&gt;
+&lt;/html&gt;`</span><span class="p">;</span>
+    
+    <span class="c1">// Trigger download</span>
+    <span class="kd">const</span> <span class="nx">blob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">htmlContent</span><span class="p">],</span> <span class="p">{</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">text/html</span><span class="dl">'</span> <span class="p">});</span>
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span><span class="nx">blob</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">url</span><span class="p">;</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">cv-current.html</span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="the-template-literal-trap">The Template Literal Trap</h2>
+
+<p>One interesting bug we encountered: when generating the static HTML, I initially had a <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> tag inside a template literal, which confused the browser’s parser. The solution? Break it up:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Instead of &lt;script&gt;, use:</span>
+<span class="o">&lt;</span><span class="nx">$</span><span class="p">{</span><span class="dl">'</span><span class="s1">script</span><span class="dl">'</span><span class="p">}</span><span class="o">&gt;</span>
+    <span class="kd">function</span> <span class="nx">printCV</span><span class="p">()</span> <span class="p">{</span> <span class="nb">window</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="p">}</span>
+<span class="o">&lt;</span><span class="sr">/${'script'}</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<h1 id="the-final-product">The Final Product</h1>
+
+<p>The result is a three-part system:</p>
+
+<ol>
+  <li><strong>CV Builder</strong> (<code class="language-plaintext highlighter-rouge">/cv-builder</code>): An interactive editor where I can update my CV</li>
+  <li><strong>Static CV</strong> (<code class="language-plaintext highlighter-rouge">/cv-current</code>): The published, read-only version for visitors. I can print this page to save it as PDF for distribution.</li>
+  <li><strong>CV Page</strong> (<code class="language-plaintext highlighter-rouge">/cv</code>): Displays the static CV in an iframe with links to the builder and PDF versions</li>
+</ol>
+
+<h2 id="key-features">Key Features</h2>
+
+<ul>
+  <li><strong>Fully editable</strong>: Click any text to edit it in place</li>
+  <li><strong>Dynamic sections</strong>: Add/remove experience items, skills, publications, etc.</li>
+  <li><strong>Print-friendly</strong>: Optimized CSS for clean PDF generation</li>
+  <li><strong>Mobile responsive</strong>: Works great on all devices</li>
+  <li><strong>Version controlled</strong>: The published CV is committed to Git</li>
+  <li><strong>No database needed</strong>: Perfect for static sites like Jekyll</li>
+</ul>
+
+<h2 id="next-up-features">Next Up Features</h2>
+
+<p>The interactive CV builder page doesn’t persist edits, since I didn’t want to complicate my static website with a database hookup for persistence. I’m okay with that for now, since I only rarely update my CV, and I don’t need the page to save work. Also, if I really want to make minor tweaks, I can just update the exported static HTML page.</p>
+
+<p>That said, the next thing to add to my CV builder would be persistence, so a visitor could save their work and load previous versions.</p>
+
+<h1 id="lessons-learned">Lessons Learned</h1>
+
+<ol>
+  <li><strong>Start simple</strong>: Claude’s Artifacts tool was perfect for rapid prototyping</li>
+  <li><strong>Think about your users</strong>: localStorage is great for personal tools, but not for public content</li>
+  <li><strong>Static sites have constraints</strong>: But creative solutions can work around them</li>
+  <li><strong>AI assistants are incredible collaborators</strong>: Claude helped me think through architectural decisions, not just write code</li>
+</ol>
+
+<h1 id="try-it-yourself">Try It Yourself</h1>
+
+<p>The code is all open source in my <a href="https://github.com/bpurinton/bpurinton.github.io" target="_blank">GitHub repository</a>. Feel free to adapt it for your own needs!</p>
+
+<p>Building this CV builder was a fun exercise in creative problem-solving. It’s not every day you get to combine academic credentials, web development skills, and AI assistance to solve a personal productivity problem. But that’s exactly the kind of interdisciplinary thinking I love about my current role bridging research and education technology.</p>
+
+<p>Now if you’ll excuse me, I need to go update my CV… which is now as easy as clicking <a href="/cv-builder" target="_blank">Edit CV Builder</a> and typing! 🚀</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#claude-ai" class="page__taxonomy-item p-category" rel="tag">claude-ai</a><span class="sep">, </span>
+    
+      <a href="/tags/#css" class="page__taxonomy-item p-category" rel="tag">css</a><span class="sep">, </span>
+    
+      <a href="/tags/#cv-builder" class="page__taxonomy-item p-category" rel="tag">cv-builder</a><span class="sep">, </span>
+    
+      <a href="/tags/#html" class="page__taxonomy-item p-category" rel="tag">html</a><span class="sep">, </span>
+    
+      <a href="/tags/#javascript" class="page__taxonomy-item p-category" rel="tag">javascript</a><span class="sep">, </span>
+    
+      <a href="/tags/#web-development" class="page__taxonomy-item p-category" rel="tag">web-development</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2025-07-20T00:00:00-07:00">July 20, 2025</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Building+an+Interactive+CV+Builder+with+Claude%20http%3A%2F%2Flocalhost%3A4000%2Fbuilding-cv-builder-with-claude%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fbuilding-cv-builder-with-claude%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fbuilding-cv-builder-with-claude%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/sea-ice-radar/" class="pagination--pager" title="Exploring Nome’s Sea Ice with Satellite and Ground Radar
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You may also enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/sea-ice-office.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/sea-ice-radar/" rel="permalink">Exploring Nome’s Sea Ice with Satellite and Ground Radar
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-12T00:00:00-07:00">April 12, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I recently found out about UAF’s sea-ice radar monitor at the end of the pier in Nome’s port.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docker-geemap/" rel="permalink">Running dockerized google earth engine (GEE) map
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-25T00:00:00-07:00">March 25, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">The steps I took to open and run a dockerized geemap:
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/notes-on-git/" rel="permalink">Notes on using git
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-18T00:00:00-07:00">March 18, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’m currently going through the extremely helpful thoughtbot git tutorial. I want to leave some notes here for future reference.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/favicon-32x32.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/merging-feature-branch/" rel="permalink">Git merging main into an in-progress feature-branch
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-17T00:00:00-07:00">March 17, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">In a collaborative (or solo) git project I’m often in a position where I was working on a feature-branch, got busy, stopped working on it, then came back to ...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/bpurinton/bpurinton.github.io" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 Ben Purinton. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
