@@ -733,10 +733,6 @@ permalink: /cv-builder/
 
         // Add new experience item
         function addExperienceItem() {
-            const experienceSection = document.querySelector('[data-section="experience"]') || 
-                                    document.querySelector('h2:contains("Core Experience")').parentElement ||
-                                    document.querySelector('.section-title').parentElement;
-            
             const newItem = document.createElement('div');
             newItem.className = 'experience-item';
             newItem.innerHTML = `
@@ -760,11 +756,12 @@ permalink: /cv-builder/
                 </div>
             `;
             
-            // Find the correct section and insert before the next section
+            // Find the Core Experience section
             const sections = document.querySelectorAll('.section');
             let targetSection = null;
             for (let section of sections) {
-                if (section.querySelector('h2').textContent.includes('Core Experience')) {
+                const heading = section.querySelector('h2');
+                if (heading && heading.textContent.includes('Core Experience')) {
                     targetSection = section;
                     break;
                 }
@@ -803,7 +800,8 @@ permalink: /cv-builder/
             const sections = document.querySelectorAll('.section');
             let targetSection = null;
             for (let section of sections) {
-                if (section.querySelector('h2').textContent.includes('Academic & Research')) {
+                const heading = section.querySelector('h2');
+                if (heading && heading.textContent.includes('Academic & Research')) {
                     targetSection = section;
                     break;
                 }
@@ -837,7 +835,8 @@ permalink: /cv-builder/
             const sections = document.querySelectorAll('.section');
             let targetSection = null;
             for (let section of sections) {
-                if (section.querySelector('h2').textContent.includes('Education')) {
+                const heading = section.querySelector('h2');
+                if (heading && heading.textContent.includes('Education')) {
                     targetSection = section;
                     break;
                 }
