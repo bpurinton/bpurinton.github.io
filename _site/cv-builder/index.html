@@ -498,6 +498,11 @@
     <div class="cv-container">
         <div class="print-controls">
             <button class="print-btn" onclick="printCV()">📄 Print CV / Save as PDF</button>
+            <div style="margin-top: 10px;">
+                <button class="print-btn" style="background: linear-gradient(135deg, #5cb85c, #4cae4c);" onclick="saveToLocalStorage()">💾 Save Draft</button>
+                <button class="print-btn" style="background: linear-gradient(135deg, #5bc0de, #46b8da); margin-left: 10px;" onclick="loadFromLocalStorage()">📂 Load Draft</button>
+                <button class="print-btn" style="background: linear-gradient(135deg, #f0ad4e, #ec971f); margin-left: 10px;" onclick="publishCV()">🚀 Publish CV</button>
+            </div>
         </div>
         
         <header class="header">
@@ -508,7 +513,6 @@
                     <div class="contact-item" contenteditable="true">📧 [your.email@company.com]</div>
                     <div class="contact-item" contenteditable="true">📱 [+1 (555) 123-4567]</div>
                     <div class="contact-item" contenteditable="true">📍 [City, State]</div>
-                    <div class="contact-item" contenteditable="true">💼 [linkedin.com/in/yourname]</div>
                     <div class="contact-item" contenteditable="true">🌐 [yourwebsite.com]</div>
                     <div class="contact-item" contenteditable="true">💻 [github.com/yourusername]</div>
                 </div>
@@ -1023,8 +1027,110 @@
             }
         }
 
+        // Save CV to localStorage
+        function saveToLocalStorage() {
+            const cvContent = document.querySelector('.main-content').innerHTML;
+            localStorage.setItem('cvBuilderContent', cvContent);
+            localStorage.setItem('cvBuilderLastSaved', new Date().toISOString());
+            showNotification('Draft saved successfully! ✅');
+        }
+        
+        // Load CV from localStorage
+        function loadFromLocalStorage() {
+            const savedContent = localStorage.getItem('cvBuilderContent');
+            if (!savedContent) {
+                showNotification('No saved draft found! 📭');
+                return;
+            }
+            
+            const lastSaved = localStorage.getItem('cvBuilderLastSaved');
+            const savedDate = lastSaved ? new Date(lastSaved).toLocaleString() : 'Unknown';
+            
+            if (confirm(`Load draft from ${savedDate}? This will replace current content.`)) {
+                document.querySelector('.main-content').innerHTML = savedContent;
+                initializeEditableElements();
+                showNotification('Draft loaded successfully! ✅');
+            }
+        }
+        
+        // Publish CV as static HTML
+        function publishCV() {
+            // Clone the current CV
+            const cvClone = document.querySelector('.cv-container').cloneNode(true);
+            
+            // Remove all edit controls and buttons
+            cvClone.querySelectorAll('.print-controls, .section-controls, .item-controls').forEach(el => el.remove());
+            
+            // Remove contenteditable attributes
+            cvClone.querySelectorAll('[contenteditable]').forEach(el => {
+                el.removeAttribute('contenteditable');
+            });
+            
+            // Create the full HTML document
+            const htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${document.querySelector('.name').textContent} - CV</title>
+    <style>
+${document.querySelector('style').textContent}
+        /* Hide all controls in published version */
+        .print-controls, .section-controls, .item-controls { display: none !important; }
+        [contenteditable] { outline: none !important; }
+        [contenteditable]:hover { background-color: transparent !important; }
+        body { padding-top: 40px; }
+    </style>
+</head>
+<body>
+    ${cvClone.outerHTML}
+    <${'script'}>
+        // Simple print function for published CV
+        function printCV() { window.print(); }
+    </${'script'}>
+</body>
+</html>`;
+            
+            // Create a blob and download link
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cv-current.html';
+            
+            // Trigger download
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showNotification('CV published! Save the downloaded file as _pages/cv-current.html in your repository.');
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #333;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
         // Initialize editable functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        function initializeEditableElements() {
             const editableElements = document.querySelectorAll('[contenteditable="true"]');
             
             editableElements.forEach(element => {
@@ -1038,6 +1144,43 @@
                     this.style.backgroundColor = '';
                 });
             });
+        }
+        
+        // Auto-save functionality
+        let autoSaveTimer;
+        function setupAutoSave() {
+            document.addEventListener('input', function(e) {
+                if (e.target.getAttribute('contenteditable') === 'true') {
+                    clearTimeout(autoSaveTimer);
+                    autoSaveTimer = setTimeout(() => {
+                        saveToLocalStorage();
+                        console.log('Auto-saved draft');
+                    }, 5000); // Auto-save after 5 seconds of inactivity
+                }
+            });
+        }
+        
+        // Add notification animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEditableElements();
+            setupAutoSave();
+            
+            // Check for saved draft
+            if (localStorage.getItem('cvBuilderContent')) {
+                const lastSaved = localStorage.getItem('cvBuilderLastSaved');
+                const savedDate = lastSaved ? new Date(lastSaved).toLocaleString() : 'Unknown';
+                showNotification(`Found draft from ${savedDate}. Click "Load Draft" to restore.`);
+            }
         });
     </script>
 </body>

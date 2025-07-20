@@ -55,6 +55,9 @@
 <loc>http://localhost:4000/cv-builder/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/cv-current/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/cv/</loc>
 </url>
 <url>

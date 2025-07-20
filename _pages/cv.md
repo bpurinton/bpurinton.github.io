@@ -9,8 +9,39 @@ redirect_from:
   - /resume
 ---
 
+<style>
+.cv-links {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+.cv-link-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #e8b76b, #d4a347);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.cv-link-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    color: white;
+}
+</style>
+
+<div class="cv-links">
+    <a href="/cv-current" class="cv-link-button">📄 View Interactive CV</a>
+    <a href="/assets/documents/Purinton_CV_October2024.pdf" class="cv-link-button" target="_blank">📑 Download PDF (Academic)</a>
+    <a href="/cv-builder" class="cv-link-button">✏️ Edit CV (Private)</a>
+</div>
+
 <p></p>
-Here is a [link to my current full CV](/assets/documents/Purinton_CV_October2024.pdf){:target="_blank"}, written in a detailed, academic format. My professional highlights are below.
+Below are my professional highlights. For the most up-to-date information, please view my [interactive CV](/cv-current).
 
 ---
 
