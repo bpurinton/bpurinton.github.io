@@ -65,6 +65,8 @@ redirect_from:
 }
 </style>
 
+Below is my professional CV, which I modify and use for most job applications. [Here is a link to a full academic-style CV](/assets/documents/Purinton-Academic-CV.pdf){:target="_blank"}.
+
 <div class="cv-iframe-container">
     <iframe src="/cv-current" class="cv-iframe" title="Benjamin Purinton CV"></iframe>
 </div>

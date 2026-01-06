@@ -16,6 +16,8 @@ See also: [Google Scholar Profile](https://scholar.google.de/citations?user=EacO
 
 <hr>
 
+Rheinwalt, A., **Purinton, B.** and Bookhagen, B.: Curvature-based pebble segmentation for reconstructed surface meshes, _Earth Surface Dynamics_, [https://doi.org/10.5194/esurf-13-923-2025](https://doi.org/10.5194/esurf-13-923-2025){:target="_blank"}, 2025.
+
 **Purinton, B.**, Mueting, A. and Bookhagen, B.: Image Texture as Quality Indicator for Optical DEM Generation: Geomorphic Applications in the Arid Central Andes, _Remote Sensing_, [https://doi.org/10.3390/rs15010085](https://www.mdpi.com/2072-4292/15/1/85){:target="_blank"}, 2023.
 
 **Purinton, B.** and Bookhagen, B.: Beyond vertical point accuracy: Assessing inter-pixel consistency in 30 m global DEMs for the arid Central Andes, _Frontiers in Earth Science_, [https://doi.org/10.3389/feart.2021.758606](https://www.frontiersin.org/articles/10.3389/feart.2021.758606){:target="_blank"}, 2021.
